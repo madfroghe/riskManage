@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="duomi.dbMap.mapper.MultiplelendLoanlenderPoMapper" >
+  <resultMap id="BaseResultMap" type="duomi.dbMap.bean.MultiplelendLoanlenderPo" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="MultipleLend_id" property="multiplelendId" jdbcType="BIGINT" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="time" property="time" jdbcType="VARCHAR" />
+    <result column="loanlenders_Amount" property="loanlendersAmount" jdbcType="DOUBLE" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, MultipleLend_id, type, code, time, loanlenders_Amount, create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_dm_multiplelend_loanlender
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_dm_multiplelend_loanlender
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="duomi.dbMap.bean.MultiplelendLoanlenderPo" >
+    insert into t_dm_multiplelend_loanlender (id, MultipleLend_id, type, 
+      code, time, loanlenders_Amount, 
+      create_time)
+    values (#{id,jdbcType=BIGINT}, #{multiplelendId,jdbcType=BIGINT}, #{type,jdbcType=VARCHAR}, 
+      #{code,jdbcType=VARCHAR}, #{time,jdbcType=VARCHAR}, #{loanlendersAmount,jdbcType=DOUBLE}, 
+      #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="duomi.dbMap.bean.MultiplelendLoanlenderPo" >
+    insert into t_dm_multiplelend_loanlender
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="multiplelendId != null" >
+        MultipleLend_id,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="time != null" >
+        time,
+      </if>
+      <if test="loanlendersAmount != null" >
+        loanlenders_Amount,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="multiplelendId != null" >
+        #{multiplelendId,jdbcType=BIGINT},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null" >
+        #{time,jdbcType=VARCHAR},
+      </if>
+      <if test="loanlendersAmount != null" >
+        #{loanlendersAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="duomi.dbMap.bean.MultiplelendLoanlenderPo" >
+    update t_dm_multiplelend_loanlender
+    <set >
+      <if test="multiplelendId != null" >
+        MultipleLend_id = #{multiplelendId,jdbcType=BIGINT},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null" >
+        time = #{time,jdbcType=VARCHAR},
+      </if>
+      <if test="loanlendersAmount != null" >
+        loanlenders_Amount = #{loanlendersAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="duomi.dbMap.bean.MultiplelendLoanlenderPo" >
+    update t_dm_multiplelend_loanlender
+    set MultipleLend_id = #{multiplelendId,jdbcType=BIGINT},
+      type = #{type,jdbcType=VARCHAR},
+      code = #{code,jdbcType=VARCHAR},
+      time = #{time,jdbcType=VARCHAR},
+      loanlenders_Amount = #{loanlendersAmount,jdbcType=DOUBLE},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

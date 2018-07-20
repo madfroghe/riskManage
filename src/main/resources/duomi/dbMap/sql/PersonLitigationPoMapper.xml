@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="duomi.dbMap.mapper.PersonLitigationPoMapper" >
+  <resultMap id="BaseResultMap" type="duomi.dbMap.bean.PersonLitigationPo" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="app_no" property="appNo" jdbcType="VARCHAR" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="notice_type" property="noticeType" jdbcType="VARCHAR" />
+    <result column="id_Card" property="idCard" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="status_Desc" property="statusDesc" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, app_no, mobile, notice_type, id_Card, status, status_Desc, create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_dm_personlitigation
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_dm_personlitigation
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="duomi.dbMap.bean.PersonLitigationPo" >
+    insert into t_dm_personlitigation (id, app_no, mobile, 
+      notice_type, id_Card, status, 
+      status_Desc, create_time)
+    values (#{id,jdbcType=BIGINT}, #{appNo,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, 
+      #{noticeType,jdbcType=VARCHAR}, #{idCard,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{statusDesc,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="duomi.dbMap.bean.PersonLitigationPo" >
+    insert into t_dm_personlitigation
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="appNo != null" >
+        app_no,
+      </if>
+      <if test="mobile != null" >
+        mobile,
+      </if>
+      <if test="noticeType != null" >
+        notice_type,
+      </if>
+      <if test="idCard != null" >
+        id_Card,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="statusDesc != null" >
+        status_Desc,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="appNo != null" >
+        #{appNo,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="noticeType != null" >
+        #{noticeType,jdbcType=VARCHAR},
+      </if>
+      <if test="idCard != null" >
+        #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="statusDesc != null" >
+        #{statusDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="duomi.dbMap.bean.PersonLitigationPo" >
+    update t_dm_personlitigation
+    <set >
+      <if test="appNo != null" >
+        app_no = #{appNo,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="noticeType != null" >
+        notice_type = #{noticeType,jdbcType=VARCHAR},
+      </if>
+      <if test="idCard != null" >
+        id_Card = #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="statusDesc != null" >
+        status_Desc = #{statusDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="duomi.dbMap.bean.PersonLitigationPo" >
+    update t_dm_personlitigation
+    set app_no = #{appNo,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      notice_type = #{noticeType,jdbcType=VARCHAR},
+      id_Card = #{idCard,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      status_Desc = #{statusDesc,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

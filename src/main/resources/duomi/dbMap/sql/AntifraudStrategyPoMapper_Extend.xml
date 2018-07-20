@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="duomi.dbMap.mapper.AntifraudStrategyPoMapper" >
+	
+	<sql id="TABLE_NAME" >
+	    t_dm_antifraud_strategy
+	  </sql>
+	  
+	  <select id="querylistByMap" resultMap="BaseResultMap" parameterType="java.util.Map" >
+	    select 
+	    	<include refid="Base_Column_List" />
+	    from 
+	     	<include refid="TABLE_NAME" /> 
+	    <where>
+		     <trim suffixOverrides="AND" >
+		      <if test="id != null" >
+		        id = #{id,jdbcType=BIGINT} AND
+		      </if>
+		      <if test="antifraudId != null" >
+		        antifraud_id = #{antifraudId,jdbcType=BIGINT} AND
+		      </if>
+		      <if test="riskType != null" >
+		        risk_Type = #{riskType,jdbcType=VARCHAR} AND
+		      </if>
+		      <if test="strategyDecision != null" >
+		        strategy_Decision = #{strategyDecision,jdbcType=VARCHAR} AND
+		      </if>
+		      <if test="strategyId != null" >
+		        strategy_Id = #{strategyId,jdbcType=VARCHAR} AND
+		      </if>
+		      <if test="strategyMode != null" >
+		        strategy_Mode = #{strategyMode,jdbcType=VARCHAR} AND
+		      </if>
+		      <if test="strategyName != null" >
+		        strategy_Name = #{strategyName,jdbcType=VARCHAR} AND
+		      </if>
+		      <if test="strategyScore != null" >
+		        strategy_Score = #{strategyScore,jdbcType=VARCHAR} AND
+		      </if>
+		      <if test="createTime != null" >
+		        create_time = #{createTime,jdbcType=TIMESTAMP} AND
+		      </if>
+		     </trim>
+	    </where>
+	     
+	  </select>
+	
+	 <insert id="insertWithoutKey" useGeneratedKeys="true" keyProperty="id" parameterType="duomi.dbMap.bean.MultipleLendPo">
+	     insert into <include refid="TABLE_NAME" /> 
+	     	<trim prefix="(" suffix=")" suffixOverrides="," >
+		      <if test="id != null" >
+		        id,
+		      </if>
+		      <if test="antifraudId != null" >
+		        antifraud_id,
+		      </if>
+		      <if test="riskType != null" >
+		        risk_Type,
+		      </if>
+		      <if test="strategyDecision != null" >
+		        strategy_Decision,
+		      </if>
+		      <if test="strategyId != null" >
+		        strategy_Id,
+		      </if>
+		      <if test="strategyMode != null" >
+		        strategy_Mode,
+		      </if>
+		      <if test="strategyName != null" >
+		        strategy_Name,
+		      </if>
+		      <if test="strategyScore != null" >
+		        strategy_Score,
+		      </if>
+		      <if test="createTime != null" >
+		        create_time,
+		      </if>
+		    </trim>
+		    <trim prefix="values (" suffix=")" suffixOverrides="," >
+		      <if test="id != null" >
+		        #{id,jdbcType=BIGINT},
+		      </if>
+		      <if test="antifraudId != null" >
+		        #{antifraudId,jdbcType=BIGINT},
+		      </if>
+		      <if test="riskType != null" >
+		        #{riskType,jdbcType=VARCHAR},
+		      </if>
+		      <if test="strategyDecision != null" >
+		        #{strategyDecision,jdbcType=VARCHAR},
+		      </if>
+		      <if test="strategyId != null" >
+		        #{strategyId,jdbcType=VARCHAR},
+		      </if>
+		      <if test="strategyMode != null" >
+		        #{strategyMode,jdbcType=VARCHAR},
+		      </if>
+		      <if test="strategyName != null" >
+		        #{strategyName,jdbcType=VARCHAR},
+		      </if>
+		      <if test="strategyScore != null" >
+		        #{strategyScore,jdbcType=VARCHAR},
+		      </if>
+		      <if test="createTime != null" >
+		        #{createTime,jdbcType=TIMESTAMP},
+		      </if>
+		    </trim>
+ 	</insert>
+
+</mapper>

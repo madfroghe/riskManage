@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="duomi.dbMap.mapper.EnterprisePersoncasePoMapper" >
+
+	<sql id="TABLE_NAME" >
+	    t_dm_personenterprise_personcase
+	  </sql>
+	  
+	  <select id="querylistByMap" resultMap="BaseResultMap" parameterType="java.util.Map" >
+	    select 
+	    	<include refid="Base_Column_List" />
+	    from 
+	     	<include refid="TABLE_NAME" /> 
+	    <where>
+		     <trim suffixOverrides="AND" >
+		     	<if test="queryid != null" >
+			        queryid = #{queryid,jdbcType=BIGINT} AND
+			      </if>
+			      <if test="caseTime != null" >
+			        case_Time = #{caseTime,jdbcType=TIMESTAMP} AND
+			      </if>
+			      <if test="caseReason != null" >
+			        case_Reason = #{caseReason,jdbcType=VARCHAR} AND
+			      </if>
+			      <if test="caseVal != null" >
+			        case_Val = #{caseVal,jdbcType=VARCHAR} AND
+			      </if>
+			      <if test="caseType != null" >
+			        case_Type = #{caseType,jdbcType=VARCHAR} AND
+			      </if>
+			      <if test="caseResult != null" >
+			        case_Result = #{caseResult,jdbcType=VARCHAR} AND
+			      </if>
+			      <if test="cardNo != null" >
+			        card_NO = #{cardNo,jdbcType=VARCHAR} AND
+			      </if>
+			      <if test="name != null" >
+			        name = #{name,jdbcType=VARCHAR} AND
+			      </if>
+			      <if test="illegFact != null" >
+			        illeg_Fact = #{illegFact,jdbcType=VARCHAR} AND
+			      </if>
+			      <if test="exesort != null" >
+			        exesort = #{exesort,jdbcType=VARCHAR} AND
+			      </if>
+			      <if test="penam != null" >
+			        penam = #{penam,jdbcType=DECIMAL} AND
+			      </if>
+			      <if test="penauth != null" >
+			        penauth = #{penauth,jdbcType=VARCHAR} AND
+			      </if>
+			      <if test="penbasis != null" >
+			        penbasis = #{penbasis,jdbcType=VARCHAR} AND
+			      </if>
+			      <if test="pendecissdate != null" >
+			        pendecissdate = #{pendecissdate,jdbcType=DATE} AND
+			      </if>
+			      <if test="pendecno != null" >
+			        pendecno = #{pendecno,jdbcType=VARCHAR} AND
+			      </if>
+			      <if test="penexest != null" >
+			        penexest = #{penexest,jdbcType=VARCHAR} AND
+			      </if>
+			      <if test="penresult != null" >
+			        penresult = #{penresult,jdbcType=VARCHAR} AND
+			      </if>
+			      <if test="pentype != null" >
+			        pentype = #{pentype,jdbcType=VARCHAR} AND
+			      </if>
+			      <if test="createTime != null" >
+			        create_time = #{createTime,jdbcType=TIMESTAMP} AND
+			      </if>
+		     </trim>
+	    </where>
+	     
+	  </select>
+
+</mapper>

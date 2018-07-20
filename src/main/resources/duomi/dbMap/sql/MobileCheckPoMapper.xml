@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="duomi.dbMap.mapper.MobileCheckPoMapper" >
+  <resultMap id="BaseResultMap" type="duomi.dbMap.bean.MobileCheckPo" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="app_no" property="appNo" jdbcType="VARCHAR" />
+    <result column="app_listno" property="appListno" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="id_card" property="idCard" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="status_Desc" property="statusDesc" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, app_no, app_listno, name, mobile, id_card, status, status_Desc
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_dm_mobile_check
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_dm_mobile_check
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="duomi.dbMap.bean.MobileCheckPo" >
+    insert into t_dm_mobile_check (id, app_no, app_listno, 
+      name, mobile, id_card, 
+      status, status_Desc)
+    values (#{id,jdbcType=BIGINT}, #{appNo,jdbcType=VARCHAR}, #{appListno,jdbcType=INTEGER}, 
+      #{name,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, #{idCard,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR}, #{statusDesc,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="duomi.dbMap.bean.MobileCheckPo" >
+    insert into t_dm_mobile_check
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="appNo != null" >
+        app_no,
+      </if>
+      <if test="appListno != null" >
+        app_listno,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="mobile != null" >
+        mobile,
+      </if>
+      <if test="idCard != null" >
+        id_card,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="statusDesc != null" >
+        status_Desc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="appNo != null" >
+        #{appNo,jdbcType=VARCHAR},
+      </if>
+      <if test="appListno != null" >
+        #{appListno,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="idCard != null" >
+        #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="statusDesc != null" >
+        #{statusDesc,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="duomi.dbMap.bean.MobileCheckPo" >
+    update t_dm_mobile_check
+    <set >
+      <if test="appNo != null" >
+        app_no = #{appNo,jdbcType=VARCHAR},
+      </if>
+      <if test="appListno != null" >
+        app_listno = #{appListno,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="idCard != null" >
+        id_card = #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="statusDesc != null" >
+        status_Desc = #{statusDesc,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="duomi.dbMap.bean.MobileCheckPo" >
+    update t_dm_mobile_check
+    set app_no = #{appNo,jdbcType=VARCHAR},
+      app_listno = #{appListno,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      id_card = #{idCard,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      status_Desc = #{statusDesc,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

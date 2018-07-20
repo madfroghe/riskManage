@@ -1,0 +1,9 @@
+{
+"success":true,
+"data":{
+"consume":"(50,100]",
+"consumeDesc":"50~100元",
+"status":"EXIST",
+"statusDesc":"查询成功"
+    }
+}

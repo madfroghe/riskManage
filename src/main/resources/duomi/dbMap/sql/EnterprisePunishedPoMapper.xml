@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="duomi.dbMap.mapper.EnterprisePunishedPoMapper" >
+  <resultMap id="BaseResultMap" type="duomi.dbMap.bean.EnterprisePunishedPo" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="queryid" property="queryid" jdbcType="BIGINT" />
+    <result column="case_No" property="caseNo" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="VARCHAR" />
+    <result column="age" property="age" jdbcType="INTEGER" />
+    <result column="card_Number" property="cardNumber" jdbcType="VARCHAR" />
+    <result column="identity_Departure" property="identityDeparture" jdbcType="VARCHAR" />
+    <result column="filing_Date" property="filingDate" jdbcType="DATE" />
+    <result column="execute_Target" property="executeTarget" jdbcType="DECIMAL" />
+    <result column="province" property="province" jdbcType="VARCHAR" />
+    <result column="focus_Number" property="focusNumber" jdbcType="INTEGER" />
+    <result column="case_State" property="caseState" jdbcType="VARCHAR" />
+    <result column="court_Name" property="courtName" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, queryid, case_No, name, sex, age, card_Number, identity_Departure, filing_Date, 
+    execute_Target, province, focus_Number, case_State, court_Name, type, create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_dm_personenterprise_punished
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_dm_personenterprise_punished
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="duomi.dbMap.bean.EnterprisePunishedPo" >
+    insert into t_dm_personenterprise_punished (id, queryid, case_No, 
+      name, sex, age, card_Number, 
+      identity_Departure, filing_Date, execute_Target, 
+      province, focus_Number, case_State, 
+      court_Name, type, create_time
+      )
+    values (#{id,jdbcType=BIGINT}, #{queryid,jdbcType=BIGINT}, #{caseNo,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, #{age,jdbcType=INTEGER}, #{cardNumber,jdbcType=VARCHAR}, 
+      #{identityDeparture,jdbcType=VARCHAR}, #{filingDate,jdbcType=DATE}, #{executeTarget,jdbcType=DECIMAL}, 
+      #{province,jdbcType=VARCHAR}, #{focusNumber,jdbcType=INTEGER}, #{caseState,jdbcType=VARCHAR}, 
+      #{courtName,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="duomi.dbMap.bean.EnterprisePunishedPo" >
+    insert into t_dm_personenterprise_punished
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="queryid != null" >
+        queryid,
+      </if>
+      <if test="caseNo != null" >
+        case_No,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="age != null" >
+        age,
+      </if>
+      <if test="cardNumber != null" >
+        card_Number,
+      </if>
+      <if test="identityDeparture != null" >
+        identity_Departure,
+      </if>
+      <if test="filingDate != null" >
+        filing_Date,
+      </if>
+      <if test="executeTarget != null" >
+        execute_Target,
+      </if>
+      <if test="province != null" >
+        province,
+      </if>
+      <if test="focusNumber != null" >
+        focus_Number,
+      </if>
+      <if test="caseState != null" >
+        case_State,
+      </if>
+      <if test="courtName != null" >
+        court_Name,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="queryid != null" >
+        #{queryid,jdbcType=BIGINT},
+      </if>
+      <if test="caseNo != null" >
+        #{caseNo,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null" >
+        #{age,jdbcType=INTEGER},
+      </if>
+      <if test="cardNumber != null" >
+        #{cardNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="identityDeparture != null" >
+        #{identityDeparture,jdbcType=VARCHAR},
+      </if>
+      <if test="filingDate != null" >
+        #{filingDate,jdbcType=DATE},
+      </if>
+      <if test="executeTarget != null" >
+        #{executeTarget,jdbcType=DECIMAL},
+      </if>
+      <if test="province != null" >
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="focusNumber != null" >
+        #{focusNumber,jdbcType=INTEGER},
+      </if>
+      <if test="caseState != null" >
+        #{caseState,jdbcType=VARCHAR},
+      </if>
+      <if test="courtName != null" >
+        #{courtName,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="duomi.dbMap.bean.EnterprisePunishedPo" >
+    update t_dm_personenterprise_punished
+    <set >
+      <if test="queryid != null" >
+        queryid = #{queryid,jdbcType=BIGINT},
+      </if>
+      <if test="caseNo != null" >
+        case_No = #{caseNo,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null" >
+        age = #{age,jdbcType=INTEGER},
+      </if>
+      <if test="cardNumber != null" >
+        card_Number = #{cardNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="identityDeparture != null" >
+        identity_Departure = #{identityDeparture,jdbcType=VARCHAR},
+      </if>
+      <if test="filingDate != null" >
+        filing_Date = #{filingDate,jdbcType=DATE},
+      </if>
+      <if test="executeTarget != null" >
+        execute_Target = #{executeTarget,jdbcType=DECIMAL},
+      </if>
+      <if test="province != null" >
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="focusNumber != null" >
+        focus_Number = #{focusNumber,jdbcType=INTEGER},
+      </if>
+      <if test="caseState != null" >
+        case_State = #{caseState,jdbcType=VARCHAR},
+      </if>
+      <if test="courtName != null" >
+        court_Name = #{courtName,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="duomi.dbMap.bean.EnterprisePunishedPo" >
+    update t_dm_personenterprise_punished
+    set queryid = #{queryid,jdbcType=BIGINT},
+      case_No = #{caseNo,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      age = #{age,jdbcType=INTEGER},
+      card_Number = #{cardNumber,jdbcType=VARCHAR},
+      identity_Departure = #{identityDeparture,jdbcType=VARCHAR},
+      filing_Date = #{filingDate,jdbcType=DATE},
+      execute_Target = #{executeTarget,jdbcType=DECIMAL},
+      province = #{province,jdbcType=VARCHAR},
+      focus_Number = #{focusNumber,jdbcType=INTEGER},
+      case_State = #{caseState,jdbcType=VARCHAR},
+      court_Name = #{courtName,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

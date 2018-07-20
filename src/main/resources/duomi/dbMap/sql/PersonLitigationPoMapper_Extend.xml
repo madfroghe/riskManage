@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="duomi.dbMap.mapper.PersonLitigationPoMapper" >
+	  <sql id="TABLE_NAME" >
+	    t_dm_personlitigation
+	  </sql>
+	  
+	 <select id="selectListByAppNo" resultMap="BaseResultMap" parameterType="java.util.Map" >
+	    select 
+	    <include refid="Base_Column_List" />
+	    from 
+	    <include refid="TABLE_NAME" /> 
+	    where 
+	    app_no = #{appNo}
+	 </select>
+	 
+	 <select id="querylistByMap" resultMap="BaseResultMap" parameterType="java.util.Map" >
+	    select 
+	    	<include refid="Base_Column_List" />
+	    from 
+	     	<include refid="TABLE_NAME" /> 
+	    <where>
+		     <trim suffixOverrides="AND" >
+		     	<if test="appNo != null" >
+			        app_no = #{appNo,jdbcType=VARCHAR} AND
+			      </if>
+			      <if test="mobile != null" >
+			        mobile = #{mobile,jdbcType=VARCHAR} AND
+			      </if>
+			      <if test="noticeType != null" >
+			        notice_type = #{noticeType,jdbcType=VARCHAR} AND
+			      </if>
+			      <if test="idCard != null" >
+			        id_Card = #{idCard,jdbcType=VARCHAR} AND
+			      </if>
+			      <if test="status != null" >
+			        status = #{status,jdbcType=VARCHAR} AND
+			      </if>
+			      <if test="statusDesc != null" >
+			        status_Desc = #{statusDesc,jdbcType=VARCHAR} AND
+			      </if>
+			      <if test="createTime != null" >
+			        create_time = #{createTime,jdbcType=TIMESTAMP} AND
+			      </if>
+		     </trim>
+	    </where>
+	     
+	  </select>
+	 
+	 
+	
+	 <insert id="insertWithoutKey" useGeneratedKeys="true" keyProperty="id" parameterType="duomi.dbMap.bean.MultipleLendPo">
+	     insert into <include refid="TABLE_NAME" /> 
+		     <trim prefix="(" suffix=")" suffixOverrides="," >
+		      <if test="id != null" >
+		        id,
+		      </if>
+		      <if test="appNo != null" >
+		        app_no,
+		      </if>
+		      <if test="mobile != null" >
+		        mobile,
+		      </if>
+		      <if test="noticeType != null" >
+		        notice_type,
+		      </if>
+		      <if test="idCard != null" >
+		        id_Card,
+		      </if>
+		      <if test="status != null" >
+		        status,
+		      </if>
+		      <if test="statusDesc != null" >
+		        status_Desc,
+		      </if>
+		      <if test="createTime != null" >
+		        create_time,
+		      </if>
+		    </trim>
+		    <trim prefix="values (" suffix=")" suffixOverrides="," >
+		      <if test="id != null" >
+		        #{id,jdbcType=BIGINT},
+		      </if>
+		      <if test="appNo != null" >
+		        #{appNo,jdbcType=VARCHAR},
+		      </if>
+		      <if test="mobile != null" >
+		        #{mobile,jdbcType=VARCHAR},
+		      </if>
+		      <if test="noticeType != null" >
+		        #{noticeType,jdbcType=VARCHAR},
+		      </if>
+		      <if test="idCard != null" >
+		        #{idCard,jdbcType=VARCHAR},
+		      </if>
+		      <if test="status != null" >
+		        #{status,jdbcType=VARCHAR},
+		      </if>
+		      <if test="statusDesc != null" >
+		        #{statusDesc,jdbcType=VARCHAR},
+		      </if>
+		      <if test="createTime != null" >
+		        #{createTime,jdbcType=TIMESTAMP},
+		      </if>
+		    </trim>
+ 	 </insert>
+
+</mapper>

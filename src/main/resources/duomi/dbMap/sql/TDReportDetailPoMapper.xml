@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="duomi.dbMap.mapper.TDReportDetailPoMapper" >
+  <resultMap id="BaseResultMap" type="duomi.dbMap.bean.TDReportDetailPo" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="cert_no" property="certNo" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="duomi.dbMap.bean.TDReportDetailPoWithBLOBs" extends="BaseResultMap" >
+    <result column="risk_contact_stats" property="riskContactStats" jdbcType="LONGVARCHAR" />
+    <result column="risk_contact_detail" property="riskContactDetail" jdbcType="LONGVARCHAR" />
+    <result column="finance_contact_stats" property="financeContactStats" jdbcType="LONGVARCHAR" />
+    <result column="finance_contact_detail" property="financeContactDetail" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, mobile, cert_no
+  </sql>
+  <sql id="Blob_Column_List" >
+    risk_contact_stats, risk_contact_detail, finance_contact_stats, finance_contact_detail
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_dm_csp_td_report_detail
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_dm_csp_td_report_detail
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="duomi.dbMap.bean.TDReportDetailPoWithBLOBs" >
+    insert into t_dm_csp_td_report_detail (id, name, mobile, 
+      cert_no, risk_contact_stats, risk_contact_detail, 
+      finance_contact_stats, finance_contact_detail
+      )
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, 
+      #{certNo,jdbcType=VARCHAR}, #{riskContactStats,jdbcType=LONGVARCHAR}, #{riskContactDetail,jdbcType=LONGVARCHAR}, 
+      #{financeContactStats,jdbcType=LONGVARCHAR}, #{financeContactDetail,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="duomi.dbMap.bean.TDReportDetailPoWithBLOBs" >
+    insert into t_dm_csp_td_report_detail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="mobile != null" >
+        mobile,
+      </if>
+      <if test="certNo != null" >
+        cert_no,
+      </if>
+      <if test="riskContactStats != null" >
+        risk_contact_stats,
+      </if>
+      <if test="riskContactDetail != null" >
+        risk_contact_detail,
+      </if>
+      <if test="financeContactStats != null" >
+        finance_contact_stats,
+      </if>
+      <if test="financeContactDetail != null" >
+        finance_contact_detail,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="certNo != null" >
+        #{certNo,jdbcType=VARCHAR},
+      </if>
+      <if test="riskContactStats != null" >
+        #{riskContactStats,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="riskContactDetail != null" >
+        #{riskContactDetail,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="financeContactStats != null" >
+        #{financeContactStats,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="financeContactDetail != null" >
+        #{financeContactDetail,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="duomi.dbMap.bean.TDReportDetailPoWithBLOBs" >
+    update t_dm_csp_td_report_detail
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="certNo != null" >
+        cert_no = #{certNo,jdbcType=VARCHAR},
+      </if>
+      <if test="riskContactStats != null" >
+        risk_contact_stats = #{riskContactStats,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="riskContactDetail != null" >
+        risk_contact_detail = #{riskContactDetail,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="financeContactStats != null" >
+        finance_contact_stats = #{financeContactStats,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="financeContactDetail != null" >
+        finance_contact_detail = #{financeContactDetail,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="duomi.dbMap.bean.TDReportDetailPoWithBLOBs" >
+    update t_dm_csp_td_report_detail
+    set name = #{name,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      cert_no = #{certNo,jdbcType=VARCHAR},
+      risk_contact_stats = #{riskContactStats,jdbcType=LONGVARCHAR},
+      risk_contact_detail = #{riskContactDetail,jdbcType=LONGVARCHAR},
+      finance_contact_stats = #{financeContactStats,jdbcType=LONGVARCHAR},
+      finance_contact_detail = #{financeContactDetail,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="duomi.dbMap.bean.TDReportDetailPo" >
+    update t_dm_csp_td_report_detail
+    set name = #{name,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      cert_no = #{certNo,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

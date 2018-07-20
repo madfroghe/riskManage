@@ -1,0 +1,19 @@
+{
+"success":true,
+"data":{
+"name":"xxx",
+"idCard":"xxx",
+"address":"xxx",
+"birthday":"xxx",
+"birthPlace":"xxx",
+"company":"xxx",
+"education":"xxx",
+"usedName":"xxx",
+"maritalStatus":"xxx",
+"nation":"xxx",
+"nativePlace":"xxx",
+"sex":"xxx",
+"status":"SAME",
+"statusDesc":"一致"
+    }
+}

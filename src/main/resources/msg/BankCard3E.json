@@ -1,0 +1,10 @@
+{
+"success": true,
+"data": {
+"name": "张杰",
+"idCard": "2131312",
+"accountNo": "123123123",
+"status": "SAME",
+"statusDesc": "认证信息匹配"
+  }
+}

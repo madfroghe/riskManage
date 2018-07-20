@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="duomi.dbMap.mapper.CheckMobileForAppMapper" >
+
+    <sql id="TABLE_NAME" >
+        t_dm_csp_check_mobile_for_app
+    </sql>
+
+
+    <select id="querylistByMap" resultMap="ResultMapWithBLOBs" parameterType="java.util.Map" >
+        select
+        <include refid="Base_Column_List" />
+        ,
+        <include refid="Blob_Column_List" />
+        from
+        <include refid="TABLE_NAME" />
+        <where>
+            <trim suffixOverrides="AND" >
+                <if test="mobile != null" >
+                    mobile = #{mobile,jdbcType=VARCHAR} AND
+                </if>
+                <if test="name != null" >
+                    name = #{name,jdbcType=VARCHAR} AND
+                </if>
+                <if test="idCard != null" >
+                    id_card = #{idCard,jdbcType=VARCHAR} AND
+                </if>
+            </trim>
+        </where>
+
+    </select>
+
+
+</mapper>

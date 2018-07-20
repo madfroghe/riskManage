@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="duomi.dbMap.mapper.PersonBlacklistPoMapper" >
+  
+	    <sql id="TABLE_NAME" >
+	   	 t_dm_personblacklist
+	  	</sql>
+	  
+	   <select id="selectByAppNo" resultMap="BaseResultMap" parameterType="java.util.Map" >
+		    select 
+		    <include refid="Base_Column_List" />
+		    from 
+		    <include refid="TABLE_NAME" /> 
+		    where app_no = #{appNo}
+		    order by id desc
+		    limit 1
+	 	</select>
+	 	
+	 	<insert id="insertWithoutKey" useGeneratedKeys="true" keyProperty="id" parameterType="duomi.dbMap.bean.MultipleLendPo">
+	     insert into <include refid="TABLE_NAME" /> 
+	     <trim prefix="(" suffix=")" suffixOverrides="," >
+	      <if test="id != null" >
+	        id,
+	      </if>
+	      <if test="appNo != null" >
+	        app_no,
+	      </if>
+	      <if test="mobile != null" >
+	        mobile,
+	      </if>
+	      <if test="name != null" >
+	        name,
+	      </if>
+	      <if test="idCard != null" >
+	        id_card,
+	      </if>
+	      <if test="status != null" >
+	        status,
+	      </if>
+	      <if test="statusDesc != null" >
+	        status_Desc,
+	      </if>
+	      <if test="createTime != null" >
+	        create_time,
+	      </if>
+	    </trim>
+	    <trim prefix="values (" suffix=")" suffixOverrides="," >
+	      <if test="id != null" >
+	        #{id,jdbcType=BIGINT},
+	      </if>
+	      <if test="appNo != null" >
+	        #{appNo,jdbcType=BIGINT},
+	      </if>
+	      <if test="mobile != null" >
+	        #{mobile,jdbcType=VARCHAR},
+	      </if>
+	      <if test="name != null" >
+	        #{name,jdbcType=VARCHAR},
+	      </if>
+	      <if test="idCard != null" >
+	        #{idCard,jdbcType=VARCHAR},
+	      </if>
+	      <if test="status != null" >
+	        #{status,jdbcType=VARCHAR},
+	      </if>
+	      <if test="statusDesc != null" >
+	        #{statusDesc,jdbcType=VARCHAR},
+	      </if>
+	      <if test="createTime != null" >
+	        #{createTime,jdbcType=TIMESTAMP},
+	      </if>
+	    </trim>
+ 	</insert>
+  
+</mapper>

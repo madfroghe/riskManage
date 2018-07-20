@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="duomi.dbMap.mapper.EnterprisePersoncasePoMapper" >
+  <resultMap id="BaseResultMap" type="duomi.dbMap.bean.EnterprisePersoncasePo" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="queryid" property="queryid" jdbcType="BIGINT" />
+    <result column="case_Time" property="caseTime" jdbcType="TIMESTAMP" />
+    <result column="case_Reason" property="caseReason" jdbcType="VARCHAR" />
+    <result column="case_Val" property="caseVal" jdbcType="VARCHAR" />
+    <result column="case_Type" property="caseType" jdbcType="VARCHAR" />
+    <result column="case_Result" property="caseResult" jdbcType="VARCHAR" />
+    <result column="card_NO" property="cardNo" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="illeg_Fact" property="illegFact" jdbcType="VARCHAR" />
+    <result column="exesort" property="exesort" jdbcType="VARCHAR" />
+    <result column="penam" property="penam" jdbcType="DECIMAL" />
+    <result column="penauth" property="penauth" jdbcType="VARCHAR" />
+    <result column="penbasis" property="penbasis" jdbcType="VARCHAR" />
+    <result column="pendecissdate" property="pendecissdate" jdbcType="DATE" />
+    <result column="pendecno" property="pendecno" jdbcType="VARCHAR" />
+    <result column="penexest" property="penexest" jdbcType="VARCHAR" />
+    <result column="penresult" property="penresult" jdbcType="VARCHAR" />
+    <result column="pentype" property="pentype" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, queryid, case_Time, case_Reason, case_Val, case_Type, case_Result, card_NO, name, 
+    illeg_Fact, exesort, penam, penauth, penbasis, pendecissdate, pendecno, penexest, 
+    penresult, pentype, create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_dm_personenterprise_personcase
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_dm_personenterprise_personcase
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="duomi.dbMap.bean.EnterprisePersoncasePo" >
+    insert into t_dm_personenterprise_personcase (id, queryid, case_Time, 
+      case_Reason, case_Val, case_Type, 
+      case_Result, card_NO, name, 
+      illeg_Fact, exesort, penam, 
+      penauth, penbasis, pendecissdate, 
+      pendecno, penexest, penresult, 
+      pentype, create_time)
+    values (#{id,jdbcType=BIGINT}, #{queryid,jdbcType=BIGINT}, #{caseTime,jdbcType=TIMESTAMP}, 
+      #{caseReason,jdbcType=VARCHAR}, #{caseVal,jdbcType=VARCHAR}, #{caseType,jdbcType=VARCHAR}, 
+      #{caseResult,jdbcType=VARCHAR}, #{cardNo,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{illegFact,jdbcType=VARCHAR}, #{exesort,jdbcType=VARCHAR}, #{penam,jdbcType=DECIMAL}, 
+      #{penauth,jdbcType=VARCHAR}, #{penbasis,jdbcType=VARCHAR}, #{pendecissdate,jdbcType=DATE}, 
+      #{pendecno,jdbcType=VARCHAR}, #{penexest,jdbcType=VARCHAR}, #{penresult,jdbcType=VARCHAR}, 
+      #{pentype,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="duomi.dbMap.bean.EnterprisePersoncasePo" >
+    insert into t_dm_personenterprise_personcase
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="queryid != null" >
+        queryid,
+      </if>
+      <if test="caseTime != null" >
+        case_Time,
+      </if>
+      <if test="caseReason != null" >
+        case_Reason,
+      </if>
+      <if test="caseVal != null" >
+        case_Val,
+      </if>
+      <if test="caseType != null" >
+        case_Type,
+      </if>
+      <if test="caseResult != null" >
+        case_Result,
+      </if>
+      <if test="cardNo != null" >
+        card_NO,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="illegFact != null" >
+        illeg_Fact,
+      </if>
+      <if test="exesort != null" >
+        exesort,
+      </if>
+      <if test="penam != null" >
+        penam,
+      </if>
+      <if test="penauth != null" >
+        penauth,
+      </if>
+      <if test="penbasis != null" >
+        penbasis,
+      </if>
+      <if test="pendecissdate != null" >
+        pendecissdate,
+      </if>
+      <if test="pendecno != null" >
+        pendecno,
+      </if>
+      <if test="penexest != null" >
+        penexest,
+      </if>
+      <if test="penresult != null" >
+        penresult,
+      </if>
+      <if test="pentype != null" >
+        pentype,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="queryid != null" >
+        #{queryid,jdbcType=BIGINT},
+      </if>
+      <if test="caseTime != null" >
+        #{caseTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="caseReason != null" >
+        #{caseReason,jdbcType=VARCHAR},
+      </if>
+      <if test="caseVal != null" >
+        #{caseVal,jdbcType=VARCHAR},
+      </if>
+      <if test="caseType != null" >
+        #{caseType,jdbcType=VARCHAR},
+      </if>
+      <if test="caseResult != null" >
+        #{caseResult,jdbcType=VARCHAR},
+      </if>
+      <if test="cardNo != null" >
+        #{cardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="illegFact != null" >
+        #{illegFact,jdbcType=VARCHAR},
+      </if>
+      <if test="exesort != null" >
+        #{exesort,jdbcType=VARCHAR},
+      </if>
+      <if test="penam != null" >
+        #{penam,jdbcType=DECIMAL},
+      </if>
+      <if test="penauth != null" >
+        #{penauth,jdbcType=VARCHAR},
+      </if>
+      <if test="penbasis != null" >
+        #{penbasis,jdbcType=VARCHAR},
+      </if>
+      <if test="pendecissdate != null" >
+        #{pendecissdate,jdbcType=DATE},
+      </if>
+      <if test="pendecno != null" >
+        #{pendecno,jdbcType=VARCHAR},
+      </if>
+      <if test="penexest != null" >
+        #{penexest,jdbcType=VARCHAR},
+      </if>
+      <if test="penresult != null" >
+        #{penresult,jdbcType=VARCHAR},
+      </if>
+      <if test="pentype != null" >
+        #{pentype,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="duomi.dbMap.bean.EnterprisePersoncasePo" >
+    update t_dm_personenterprise_personcase
+    <set >
+      <if test="queryid != null" >
+        queryid = #{queryid,jdbcType=BIGINT},
+      </if>
+      <if test="caseTime != null" >
+        case_Time = #{caseTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="caseReason != null" >
+        case_Reason = #{caseReason,jdbcType=VARCHAR},
+      </if>
+      <if test="caseVal != null" >
+        case_Val = #{caseVal,jdbcType=VARCHAR},
+      </if>
+      <if test="caseType != null" >
+        case_Type = #{caseType,jdbcType=VARCHAR},
+      </if>
+      <if test="caseResult != null" >
+        case_Result = #{caseResult,jdbcType=VARCHAR},
+      </if>
+      <if test="cardNo != null" >
+        card_NO = #{cardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="illegFact != null" >
+        illeg_Fact = #{illegFact,jdbcType=VARCHAR},
+      </if>
+      <if test="exesort != null" >
+        exesort = #{exesort,jdbcType=VARCHAR},
+      </if>
+      <if test="penam != null" >
+        penam = #{penam,jdbcType=DECIMAL},
+      </if>
+      <if test="penauth != null" >
+        penauth = #{penauth,jdbcType=VARCHAR},
+      </if>
+      <if test="penbasis != null" >
+        penbasis = #{penbasis,jdbcType=VARCHAR},
+      </if>
+      <if test="pendecissdate != null" >
+        pendecissdate = #{pendecissdate,jdbcType=DATE},
+      </if>
+      <if test="pendecno != null" >
+        pendecno = #{pendecno,jdbcType=VARCHAR},
+      </if>
+      <if test="penexest != null" >
+        penexest = #{penexest,jdbcType=VARCHAR},
+      </if>
+      <if test="penresult != null" >
+        penresult = #{penresult,jdbcType=VARCHAR},
+      </if>
+      <if test="pentype != null" >
+        pentype = #{pentype,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="duomi.dbMap.bean.EnterprisePersoncasePo" >
+    update t_dm_personenterprise_personcase
+    set queryid = #{queryid,jdbcType=BIGINT},
+      case_Time = #{caseTime,jdbcType=TIMESTAMP},
+      case_Reason = #{caseReason,jdbcType=VARCHAR},
+      case_Val = #{caseVal,jdbcType=VARCHAR},
+      case_Type = #{caseType,jdbcType=VARCHAR},
+      case_Result = #{caseResult,jdbcType=VARCHAR},
+      card_NO = #{cardNo,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      illeg_Fact = #{illegFact,jdbcType=VARCHAR},
+      exesort = #{exesort,jdbcType=VARCHAR},
+      penam = #{penam,jdbcType=DECIMAL},
+      penauth = #{penauth,jdbcType=VARCHAR},
+      penbasis = #{penbasis,jdbcType=VARCHAR},
+      pendecissdate = #{pendecissdate,jdbcType=DATE},
+      pendecno = #{pendecno,jdbcType=VARCHAR},
+      penexest = #{penexest,jdbcType=VARCHAR},
+      penresult = #{penresult,jdbcType=VARCHAR},
+      pentype = #{pentype,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

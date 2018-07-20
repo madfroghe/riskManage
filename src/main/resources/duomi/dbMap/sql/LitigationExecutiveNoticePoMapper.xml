@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="duomi.dbMap.mapper.LitigationExecutiveNoticePoMapper" >
+  <resultMap id="BaseResultMap" type="duomi.dbMap.bean.LitigationExecutiveNoticePo" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="queryid" property="queryid" jdbcType="BIGINT" />
+    <result column="case_NO" property="caseNo" jdbcType="VARCHAR" />
+    <result column="identification_NO" property="identificationNo" jdbcType="VARCHAR" />
+    <result column="execution_Target" property="executionTarget" jdbcType="VARCHAR" />
+    <result column="record_Time" property="recordTime" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="court" property="court" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, queryid, case_NO, identification_NO, execution_Target, record_Time, name, court, 
+    create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_dm_personlitigation_executivenotice
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_dm_personlitigation_executivenotice
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="duomi.dbMap.bean.LitigationExecutiveNoticePo" >
+    insert into t_dm_personlitigation_executivenotice (id, queryid, case_NO, 
+      identification_NO, execution_Target, record_Time, 
+      name, court, create_time
+      )
+    values (#{id,jdbcType=BIGINT}, #{queryid,jdbcType=BIGINT}, #{caseNo,jdbcType=VARCHAR}, 
+      #{identificationNo,jdbcType=VARCHAR}, #{executionTarget,jdbcType=VARCHAR}, #{recordTime,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{court,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="duomi.dbMap.bean.LitigationExecutiveNoticePo" >
+    insert into t_dm_personlitigation_executivenotice
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="queryid != null" >
+        queryid,
+      </if>
+      <if test="caseNo != null" >
+        case_NO,
+      </if>
+      <if test="identificationNo != null" >
+        identification_NO,
+      </if>
+      <if test="executionTarget != null" >
+        execution_Target,
+      </if>
+      <if test="recordTime != null" >
+        record_Time,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="court != null" >
+        court,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="queryid != null" >
+        #{queryid,jdbcType=BIGINT},
+      </if>
+      <if test="caseNo != null" >
+        #{caseNo,jdbcType=VARCHAR},
+      </if>
+      <if test="identificationNo != null" >
+        #{identificationNo,jdbcType=VARCHAR},
+      </if>
+      <if test="executionTarget != null" >
+        #{executionTarget,jdbcType=VARCHAR},
+      </if>
+      <if test="recordTime != null" >
+        #{recordTime,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="court != null" >
+        #{court,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="duomi.dbMap.bean.LitigationExecutiveNoticePo" >
+    update t_dm_personlitigation_executivenotice
+    <set >
+      <if test="queryid != null" >
+        queryid = #{queryid,jdbcType=BIGINT},
+      </if>
+      <if test="caseNo != null" >
+        case_NO = #{caseNo,jdbcType=VARCHAR},
+      </if>
+      <if test="identificationNo != null" >
+        identification_NO = #{identificationNo,jdbcType=VARCHAR},
+      </if>
+      <if test="executionTarget != null" >
+        execution_Target = #{executionTarget,jdbcType=VARCHAR},
+      </if>
+      <if test="recordTime != null" >
+        record_Time = #{recordTime,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="court != null" >
+        court = #{court,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="duomi.dbMap.bean.LitigationExecutiveNoticePo" >
+    update t_dm_personlitigation_executivenotice
+    set queryid = #{queryid,jdbcType=BIGINT},
+      case_NO = #{caseNo,jdbcType=VARCHAR},
+      identification_NO = #{identificationNo,jdbcType=VARCHAR},
+      execution_Target = #{executionTarget,jdbcType=VARCHAR},
+      record_Time = #{recordTime,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      court = #{court,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

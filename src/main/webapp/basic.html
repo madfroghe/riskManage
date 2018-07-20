@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Basic Form - jQuery EasyUI Demo</title>
+	<link rel="stylesheet" type="text/css" href="./css/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="./css/themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="./css/demo.css">
+	<script type="text/javascript" src="./js/jquery.min.js"></script>
+	<script type="text/javascript" src="./js/jquery.easyui.min.js"></script>
+</head>
+<body>
+	<h2>Basic Form</h2>
+	<!-- <p>Fill the form and submit it.</p> -->
+	<div style="margin:20px 0;"></div>
+	<div class="easyui-panel" title="New Topic" style="width:100%;max-width:400px;padding:30px 60px;">
+		<form id="ff" method="post">
+			<div style="margin-bottom:20px">
+				<input class="easyui-textbox" name="name" style="width:100%" data-options="label:'Name:',required:true">
+			</div>
+			<div style="margin-bottom:20px">
+				<input class="easyui-textbox" name="mobile" style="width:100%" data-options="label:'Mobile:',required:true">
+			</div>
+			<div style="margin-bottom:20px">
+				<input class="easyui-textbox" name="idcard" style="width:100%" data-options="label:'Idcard:',required:true">
+			</div>
+			<div style="margin-bottom:20px">
+				<input class="easyui-textbox" name="yzm" style="width:100%" data-options="label:'yzm',required:true">
+				<!-- <img id="image" src="authImg.jpg" style="float: left; height: 24px;" /> -->
+			</div>
+<!-- 			<div style="margin-bottom:20px">
+				<img id="image" src="authImg.jpg" style="float: left; height: 24px;" />
+				<div>
+					<a href="javascript:void(0)" onclick="changeCheckCode();return false;">看不清，换一张</a>
+				</div>
+				
+			</div>
+ -->			
+ 
+ 			<div style="margin-bottom:20px">
+ 			    
+ 				<img id="base64jpg">
+ 				
+ 				<a href="javascript:void(0)" onclick="changeCheckCode();return false;">看不清，换一张</a>
+ 			</div>
+		</form>
+		<div style="text-align:center;padding:5px 0">
+			<a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitForm()" style="width:80px">Submit</a>
+			<a href="javascript:void(0)" class="easyui-linkbutton" onclick="clearForm()" style="width:80px">Clear</a>
+		</div>
+		
+		
+		
+		
+	</div>
+	<script>
+		function submitForm(){
+			$('#ff').form('submit', {
+				url:"getMobileDetail",
+				  onSubmit: function(){
+				    },
+				    success: function(data){
+				    	 alert(data)
+				    }
+				
+			});
+		}
+		function clearForm(){
+			$('#ff').form('clear');
+		}
+		
+		function changeCheckCode(){
+			 $.post("getMobileDetail",{},function(data) {
+                 //注意这里src的写法，data是经过base64编码后的内容
+                 $("#base64jpg").attr("src","data:image/jpeg;base64,"+data);
+             });
+		}
+	</script>
+</body>
+</html>

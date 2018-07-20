@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="duomi.dbMap.mapper.BadrecordCheckPoMapper" >
+	
+	<sql id="TABLE_NAME" >
+	    t_dm_badrecord_check
+	</sql>
+ 	
+ 	<select id="selectByAppNo" resultMap="BaseResultMap" parameterType="java.util.Map" >
+	    select 
+	    <include refid="Base_Column_List" />
+	    from 
+	    <include refid="TABLE_NAME" /> 
+	    where app_no = #{appNo}
+	    order by id desc
+	    limit 1
+	 </select>
+
+</mapper>

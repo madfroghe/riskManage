@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="duomi.dbMap.mapper.AntifraudPoMapper" >
+  <resultMap id="BaseResultMap" type="duomi.dbMap.bean.AntifraudPo" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="app_no" property="appNo" jdbcType="VARCHAR" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="final_Decision" property="finalDecision" jdbcType="VARCHAR" />
+    <result column="final_Score" property="finalScore" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, app_no, mobile, final_Decision, final_Score, status, create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_dm_antifraud
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_dm_antifraud
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="duomi.dbMap.bean.AntifraudPo" >
+    insert into t_dm_antifraud (id, app_no, mobile, 
+      final_Decision, final_Score, status, 
+      create_time)
+    values (#{id,jdbcType=BIGINT}, #{appNo,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, 
+      #{finalDecision,jdbcType=VARCHAR}, #{finalScore,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="duomi.dbMap.bean.AntifraudPo" >
+    insert into t_dm_antifraud
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="appNo != null" >
+        app_no,
+      </if>
+      <if test="mobile != null" >
+        mobile,
+      </if>
+      <if test="finalDecision != null" >
+        final_Decision,
+      </if>
+      <if test="finalScore != null" >
+        final_Score,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="appNo != null" >
+        #{appNo,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="finalDecision != null" >
+        #{finalDecision,jdbcType=VARCHAR},
+      </if>
+      <if test="finalScore != null" >
+        #{finalScore,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="duomi.dbMap.bean.AntifraudPo" >
+    update t_dm_antifraud
+    <set >
+      <if test="appNo != null" >
+        app_no = #{appNo,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="finalDecision != null" >
+        final_Decision = #{finalDecision,jdbcType=VARCHAR},
+      </if>
+      <if test="finalScore != null" >
+        final_Score = #{finalScore,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="duomi.dbMap.bean.AntifraudPo" >
+    update t_dm_antifraud
+    set app_no = #{appNo,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      final_Decision = #{finalDecision,jdbcType=VARCHAR},
+      final_Score = #{finalScore,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

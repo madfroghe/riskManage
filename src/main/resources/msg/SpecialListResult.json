@@ -1,0 +1,28 @@
+{
+  "success": true,
+  "data": {
+    "name": "xxx",
+    "mobile": "xxxxxxxxxxx",
+    "idCard": "310224********3110",
+    "specialList": {
+      "id": {
+        "bank_fraud": "0",
+        "nbank_other_bad": "0",
+        "p2p_bad": "0",
+        "nbank_ca_refuse": "0",
+        "p2p_refuse": "0"
+      },
+      "cell": {
+        "bank_fraud": "0",
+        "nbank_other_bad": "1",
+        "p2p_bad": "1",
+        "nbank_ca_refuse": "0",
+        "p2p_refuse": "0"
+      },
+      "gid": [],
+      "lm_cell": []
+    },
+    "status": "EXIST",
+    "statusDesc": "查询成功"
+  }
+}

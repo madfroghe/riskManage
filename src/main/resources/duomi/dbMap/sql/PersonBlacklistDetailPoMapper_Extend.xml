@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="duomi.dbMap.mapper.PersonBlacklistDetailPoMapper" >
+
+	<sql id="TABLE_NAME" >
+	    t_dm_personblacklist_detail
+	  </sql>
+	  
+	  <select id="querylistByMap" resultMap="BaseResultMap" parameterType="java.util.Map" >
+	    select 
+	    	<include refid="Base_Column_List" />
+	    from 
+	     	<include refid="TABLE_NAME" /> 
+	    <where>
+		     <trim suffixOverrides="AND" >
+		     	<if test="blacklistid != null" >
+			        blacklistid = #{blacklistid,jdbcType=BIGINT} AND
+			      </if>
+			      <if test="appNo != null" >
+			        app_no = #{appNo,jdbcType=VARCHAR} AND
+			      </if>
+			      <if test="mobile != null" >
+			        mobile = #{mobile,jdbcType=VARCHAR} AND
+			      </if>
+			      <if test="overdueDays != null" >
+			        overdue_days = #{overdueDays,jdbcType=VARCHAR} AND
+			      </if>
+			      <if test="overdueDate != null" >
+			        overdue_date = #{overdueDate,jdbcType=VARCHAR} AND
+			      </if>
+			      <if test="legalState != null" >
+			        legal_state = #{legalState,jdbcType=VARCHAR} AND
+			      </if>
+			      <if test="type != null" >
+			        type = #{type,jdbcType=VARCHAR} AND
+			      </if>
+			      <if test="overdueAmount != null" >
+			        overdue_amount = #{overdueAmount,jdbcType=VARCHAR} AND
+			      </if>
+			      <if test="createTime != null" >
+			        create_time = #{createTime,jdbcType=TIMESTAMP} AND
+			      </if>
+		     </trim>
+	    </where>
+	     
+	  </select>
+
+</mapper>

@@ -1,0 +1,10 @@
+{
+  "success": true,
+  "data": {
+    "name": "test",
+    "mobile": "XXXXXXXXXXX",
+    "idCard": "511102XXXXXXXXXXXX",
+    "score": 672,
+    "status": "EXIST"
+  }
+}

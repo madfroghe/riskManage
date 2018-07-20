@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="duomi.dbMap.mapper.EnterpriseManagerPoMapper" >
+	<sql id="TABLE_NAME" >
+	    t_dm_personenterprise_manager
+	  </sql>
+	  
+	  <select id="querylistByMap" resultMap="BaseResultMap" parameterType="java.util.Map" >
+	    select 
+	    	<include refid="Base_Column_List" />
+	    from 
+	     	<include refid="TABLE_NAME" /> 
+	    <where>
+		     <trim suffixOverrides="AND" >
+		     	<if test="queryid != null" >
+			        queryid = #{queryid,jdbcType=BIGINT} AND
+			      </if>
+			      <if test="name != null" >
+			        name = #{name,jdbcType=VARCHAR} AND
+			      </if>
+			      <if test="entName != null" >
+			        ent_Name = #{entName,jdbcType=VARCHAR} AND
+			      </if>
+			      <if test="entNo != null" >
+			        ent_No = #{entNo,jdbcType=VARCHAR} AND
+			      </if>
+			      <if test="entType != null" >
+			        ent_Type = #{entType,jdbcType=VARCHAR} AND
+			      </if>
+			      <if test="regcapital != null" >
+			        regcapital = #{regcapital,jdbcType=DECIMAL} AND
+			      </if>
+			      <if test="currency != null" >
+			        currency = #{currency,jdbcType=VARCHAR} AND
+			      </if>
+			      <if test="status != null" >
+			        status = #{status,jdbcType=VARCHAR} AND
+			      </if>
+			      <if test="position != null" >
+			        position = #{position,jdbcType=VARCHAR} AND
+			      </if>
+			      <if test="createTime != null" >
+			        create_time = #{createTime,jdbcType=TIMESTAMP} AND
+			      </if>
+		     </trim>
+	    </where>
+	     
+	  </select>
+
+</mapper>

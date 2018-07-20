@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="duomi.dbMap.mapper.EnterpriseShareholderPoMapper" >
+  <resultMap id="BaseResultMap" type="duomi.dbMap.bean.EnterpriseShareholderPo" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="queryid" property="queryid" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="ent_Name" property="entName" jdbcType="VARCHAR" />
+    <result column="ent_No" property="entNo" jdbcType="VARCHAR" />
+    <result column="ent_Type" property="entType" jdbcType="VARCHAR" />
+    <result column="regcapital" property="regcapital" jdbcType="DECIMAL" />
+    <result column="currency" property="currency" jdbcType="VARCHAR" />
+    <result column="contribution" property="contribution" jdbcType="DECIMAL" />
+    <result column="contribution_Currency" property="contributionCurrency" jdbcType="VARCHAR" />
+    <result column="card" property="card" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="fundedRatio" property="fundedratio" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, queryid, name, ent_Name, ent_No, ent_Type, regcapital, currency, contribution, 
+    contribution_Currency, card, status, fundedRatio, create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_dm_personenterprise_shareholder
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_dm_personenterprise_shareholder
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="duomi.dbMap.bean.EnterpriseShareholderPo" >
+    insert into t_dm_personenterprise_shareholder (id, queryid, name, 
+      ent_Name, ent_No, ent_Type, 
+      regcapital, currency, contribution, 
+      contribution_Currency, card, status, 
+      fundedRatio, create_time)
+    values (#{id,jdbcType=BIGINT}, #{queryid,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, 
+      #{entName,jdbcType=VARCHAR}, #{entNo,jdbcType=VARCHAR}, #{entType,jdbcType=VARCHAR}, 
+      #{regcapital,jdbcType=DECIMAL}, #{currency,jdbcType=VARCHAR}, #{contribution,jdbcType=DECIMAL}, 
+      #{contributionCurrency,jdbcType=VARCHAR}, #{card,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{fundedratio,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="duomi.dbMap.bean.EnterpriseShareholderPo" >
+    insert into t_dm_personenterprise_shareholder
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="queryid != null" >
+        queryid,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="entName != null" >
+        ent_Name,
+      </if>
+      <if test="entNo != null" >
+        ent_No,
+      </if>
+      <if test="entType != null" >
+        ent_Type,
+      </if>
+      <if test="regcapital != null" >
+        regcapital,
+      </if>
+      <if test="currency != null" >
+        currency,
+      </if>
+      <if test="contribution != null" >
+        contribution,
+      </if>
+      <if test="contributionCurrency != null" >
+        contribution_Currency,
+      </if>
+      <if test="card != null" >
+        card,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="fundedratio != null" >
+        fundedRatio,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="queryid != null" >
+        #{queryid,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="entName != null" >
+        #{entName,jdbcType=VARCHAR},
+      </if>
+      <if test="entNo != null" >
+        #{entNo,jdbcType=VARCHAR},
+      </if>
+      <if test="entType != null" >
+        #{entType,jdbcType=VARCHAR},
+      </if>
+      <if test="regcapital != null" >
+        #{regcapital,jdbcType=DECIMAL},
+      </if>
+      <if test="currency != null" >
+        #{currency,jdbcType=VARCHAR},
+      </if>
+      <if test="contribution != null" >
+        #{contribution,jdbcType=DECIMAL},
+      </if>
+      <if test="contributionCurrency != null" >
+        #{contributionCurrency,jdbcType=VARCHAR},
+      </if>
+      <if test="card != null" >
+        #{card,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="fundedratio != null" >
+        #{fundedratio,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="duomi.dbMap.bean.EnterpriseShareholderPo" >
+    update t_dm_personenterprise_shareholder
+    <set >
+      <if test="queryid != null" >
+        queryid = #{queryid,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="entName != null" >
+        ent_Name = #{entName,jdbcType=VARCHAR},
+      </if>
+      <if test="entNo != null" >
+        ent_No = #{entNo,jdbcType=VARCHAR},
+      </if>
+      <if test="entType != null" >
+        ent_Type = #{entType,jdbcType=VARCHAR},
+      </if>
+      <if test="regcapital != null" >
+        regcapital = #{regcapital,jdbcType=DECIMAL},
+      </if>
+      <if test="currency != null" >
+        currency = #{currency,jdbcType=VARCHAR},
+      </if>
+      <if test="contribution != null" >
+        contribution = #{contribution,jdbcType=DECIMAL},
+      </if>
+      <if test="contributionCurrency != null" >
+        contribution_Currency = #{contributionCurrency,jdbcType=VARCHAR},
+      </if>
+      <if test="card != null" >
+        card = #{card,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="fundedratio != null" >
+        fundedRatio = #{fundedratio,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="duomi.dbMap.bean.EnterpriseShareholderPo" >
+    update t_dm_personenterprise_shareholder
+    set queryid = #{queryid,jdbcType=BIGINT},
+      name = #{name,jdbcType=VARCHAR},
+      ent_Name = #{entName,jdbcType=VARCHAR},
+      ent_No = #{entNo,jdbcType=VARCHAR},
+      ent_Type = #{entType,jdbcType=VARCHAR},
+      regcapital = #{regcapital,jdbcType=DECIMAL},
+      currency = #{currency,jdbcType=VARCHAR},
+      contribution = #{contribution,jdbcType=DECIMAL},
+      contribution_Currency = #{contributionCurrency,jdbcType=VARCHAR},
+      card = #{card,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      fundedRatio = #{fundedratio,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

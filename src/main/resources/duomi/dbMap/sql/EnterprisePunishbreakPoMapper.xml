@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="duomi.dbMap.mapper.EnterprisePunishbreakPoMapper" >
+  <resultMap id="BaseResultMap" type="duomi.dbMap.bean.EnterprisePunishbreakPo" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="queryid" property="queryid" jdbcType="BIGINT" />
+    <result column="case_No" property="caseNo" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="VARCHAR" />
+    <result column="age" property="age" jdbcType="VARCHAR" />
+    <result column="card_Number" property="cardNumber" jdbcType="VARCHAR" />
+    <result column="ent_No" property="entNo" jdbcType="VARCHAR" />
+    <result column="identity_Departure" property="identityDeparture" jdbcType="VARCHAR" />
+    <result column="head" property="head" jdbcType="VARCHAR" />
+    <result column="filing_Date" property="filingDate" jdbcType="DATE" />
+    <result column="publish_Date" property="publishDate" jdbcType="DATE" />
+    <result column="executeCourt" property="executecourt" jdbcType="VARCHAR" />
+    <result column="province" property="province" jdbcType="VARCHAR" />
+    <result column="execute_Documentnumber" property="executeDocumentnumber" jdbcType="VARCHAR" />
+    <result column="gistunit" property="gistunit" jdbcType="VARCHAR" />
+    <result column="focus_Number" property="focusNumber" jdbcType="INTEGER" />
+    <result column="create_times" property="createTimes" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="duomi.dbMap.bean.EnterprisePunishbreakPoWithBLOBs" extends="BaseResultMap" >
+    <result column="duty" property="duty" jdbcType="LONGVARCHAR" />
+    <result column="disrupttypename" property="disrupttypename" jdbcType="LONGVARCHAR" />
+    <result column="performance" property="performance" jdbcType="LONGVARCHAR" />
+    <result column="performedpar" property="performedpar" jdbcType="LONGVARCHAR" />
+    <result column="unperformpart" property="unperformpart" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, queryid, case_No, name, type, sex, age, card_Number, ent_No, identity_Departure, 
+    head, filing_Date, publish_Date, executeCourt, province, execute_Documentnumber, 
+    gistunit, focus_Number, create_times
+  </sql>
+  <sql id="Blob_Column_List" >
+    duty, disrupttypename, performance, performedpar, unperformpart
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_dm_personenterprise_punishbreak
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_dm_personenterprise_punishbreak
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="duomi.dbMap.bean.EnterprisePunishbreakPoWithBLOBs" >
+    insert into t_dm_personenterprise_punishbreak (id, queryid, case_No, 
+      name, type, sex, age, 
+      card_Number, ent_No, identity_Departure, 
+      head, filing_Date, publish_Date, 
+      executeCourt, province, execute_Documentnumber, 
+      gistunit, focus_Number, create_times, 
+      duty, disrupttypename, performance, 
+      performedpar, unperformpart)
+    values (#{id,jdbcType=BIGINT}, #{queryid,jdbcType=BIGINT}, #{caseNo,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, #{age,jdbcType=VARCHAR}, 
+      #{cardNumber,jdbcType=VARCHAR}, #{entNo,jdbcType=VARCHAR}, #{identityDeparture,jdbcType=VARCHAR}, 
+      #{head,jdbcType=VARCHAR}, #{filingDate,jdbcType=DATE}, #{publishDate,jdbcType=DATE}, 
+      #{executecourt,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, #{executeDocumentnumber,jdbcType=VARCHAR}, 
+      #{gistunit,jdbcType=VARCHAR}, #{focusNumber,jdbcType=INTEGER}, #{createTimes,jdbcType=TIMESTAMP}, 
+      #{duty,jdbcType=LONGVARCHAR}, #{disrupttypename,jdbcType=LONGVARCHAR}, #{performance,jdbcType=LONGVARCHAR}, 
+      #{performedpar,jdbcType=LONGVARCHAR}, #{unperformpart,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="duomi.dbMap.bean.EnterprisePunishbreakPoWithBLOBs" >
+    insert into t_dm_personenterprise_punishbreak
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="queryid != null" >
+        queryid,
+      </if>
+      <if test="caseNo != null" >
+        case_No,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="age != null" >
+        age,
+      </if>
+      <if test="cardNumber != null" >
+        card_Number,
+      </if>
+      <if test="entNo != null" >
+        ent_No,
+      </if>
+      <if test="identityDeparture != null" >
+        identity_Departure,
+      </if>
+      <if test="head != null" >
+        head,
+      </if>
+      <if test="filingDate != null" >
+        filing_Date,
+      </if>
+      <if test="publishDate != null" >
+        publish_Date,
+      </if>
+      <if test="executecourt != null" >
+        executeCourt,
+      </if>
+      <if test="province != null" >
+        province,
+      </if>
+      <if test="executeDocumentnumber != null" >
+        execute_Documentnumber,
+      </if>
+      <if test="gistunit != null" >
+        gistunit,
+      </if>
+      <if test="focusNumber != null" >
+        focus_Number,
+      </if>
+      <if test="createTimes != null" >
+        create_times,
+      </if>
+      <if test="duty != null" >
+        duty,
+      </if>
+      <if test="disrupttypename != null" >
+        disrupttypename,
+      </if>
+      <if test="performance != null" >
+        performance,
+      </if>
+      <if test="performedpar != null" >
+        performedpar,
+      </if>
+      <if test="unperformpart != null" >
+        unperformpart,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="queryid != null" >
+        #{queryid,jdbcType=BIGINT},
+      </if>
+      <if test="caseNo != null" >
+        #{caseNo,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null" >
+        #{age,jdbcType=VARCHAR},
+      </if>
+      <if test="cardNumber != null" >
+        #{cardNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="entNo != null" >
+        #{entNo,jdbcType=VARCHAR},
+      </if>
+      <if test="identityDeparture != null" >
+        #{identityDeparture,jdbcType=VARCHAR},
+      </if>
+      <if test="head != null" >
+        #{head,jdbcType=VARCHAR},
+      </if>
+      <if test="filingDate != null" >
+        #{filingDate,jdbcType=DATE},
+      </if>
+      <if test="publishDate != null" >
+        #{publishDate,jdbcType=DATE},
+      </if>
+      <if test="executecourt != null" >
+        #{executecourt,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="executeDocumentnumber != null" >
+        #{executeDocumentnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="gistunit != null" >
+        #{gistunit,jdbcType=VARCHAR},
+      </if>
+      <if test="focusNumber != null" >
+        #{focusNumber,jdbcType=INTEGER},
+      </if>
+      <if test="createTimes != null" >
+        #{createTimes,jdbcType=TIMESTAMP},
+      </if>
+      <if test="duty != null" >
+        #{duty,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="disrupttypename != null" >
+        #{disrupttypename,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="performance != null" >
+        #{performance,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="performedpar != null" >
+        #{performedpar,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="unperformpart != null" >
+        #{unperformpart,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="duomi.dbMap.bean.EnterprisePunishbreakPoWithBLOBs" >
+    update t_dm_personenterprise_punishbreak
+    <set >
+      <if test="queryid != null" >
+        queryid = #{queryid,jdbcType=BIGINT},
+      </if>
+      <if test="caseNo != null" >
+        case_No = #{caseNo,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null" >
+        age = #{age,jdbcType=VARCHAR},
+      </if>
+      <if test="cardNumber != null" >
+        card_Number = #{cardNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="entNo != null" >
+        ent_No = #{entNo,jdbcType=VARCHAR},
+      </if>
+      <if test="identityDeparture != null" >
+        identity_Departure = #{identityDeparture,jdbcType=VARCHAR},
+      </if>
+      <if test="head != null" >
+        head = #{head,jdbcType=VARCHAR},
+      </if>
+      <if test="filingDate != null" >
+        filing_Date = #{filingDate,jdbcType=DATE},
+      </if>
+      <if test="publishDate != null" >
+        publish_Date = #{publishDate,jdbcType=DATE},
+      </if>
+      <if test="executecourt != null" >
+        executeCourt = #{executecourt,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="executeDocumentnumber != null" >
+        execute_Documentnumber = #{executeDocumentnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="gistunit != null" >
+        gistunit = #{gistunit,jdbcType=VARCHAR},
+      </if>
+      <if test="focusNumber != null" >
+        focus_Number = #{focusNumber,jdbcType=INTEGER},
+      </if>
+      <if test="createTimes != null" >
+        create_times = #{createTimes,jdbcType=TIMESTAMP},
+      </if>
+      <if test="duty != null" >
+        duty = #{duty,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="disrupttypename != null" >
+        disrupttypename = #{disrupttypename,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="performance != null" >
+        performance = #{performance,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="performedpar != null" >
+        performedpar = #{performedpar,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="unperformpart != null" >
+        unperformpart = #{unperformpart,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="duomi.dbMap.bean.EnterprisePunishbreakPoWithBLOBs" >
+    update t_dm_personenterprise_punishbreak
+    set queryid = #{queryid,jdbcType=BIGINT},
+      case_No = #{caseNo,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      age = #{age,jdbcType=VARCHAR},
+      card_Number = #{cardNumber,jdbcType=VARCHAR},
+      ent_No = #{entNo,jdbcType=VARCHAR},
+      identity_Departure = #{identityDeparture,jdbcType=VARCHAR},
+      head = #{head,jdbcType=VARCHAR},
+      filing_Date = #{filingDate,jdbcType=DATE},
+      publish_Date = #{publishDate,jdbcType=DATE},
+      executeCourt = #{executecourt,jdbcType=VARCHAR},
+      province = #{province,jdbcType=VARCHAR},
+      execute_Documentnumber = #{executeDocumentnumber,jdbcType=VARCHAR},
+      gistunit = #{gistunit,jdbcType=VARCHAR},
+      focus_Number = #{focusNumber,jdbcType=INTEGER},
+      create_times = #{createTimes,jdbcType=TIMESTAMP},
+      duty = #{duty,jdbcType=LONGVARCHAR},
+      disrupttypename = #{disrupttypename,jdbcType=LONGVARCHAR},
+      performance = #{performance,jdbcType=LONGVARCHAR},
+      performedpar = #{performedpar,jdbcType=LONGVARCHAR},
+      unperformpart = #{unperformpart,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="duomi.dbMap.bean.EnterprisePunishbreakPo" >
+    update t_dm_personenterprise_punishbreak
+    set queryid = #{queryid,jdbcType=BIGINT},
+      case_No = #{caseNo,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      age = #{age,jdbcType=VARCHAR},
+      card_Number = #{cardNumber,jdbcType=VARCHAR},
+      ent_No = #{entNo,jdbcType=VARCHAR},
+      identity_Departure = #{identityDeparture,jdbcType=VARCHAR},
+      head = #{head,jdbcType=VARCHAR},
+      filing_Date = #{filingDate,jdbcType=DATE},
+      publish_Date = #{publishDate,jdbcType=DATE},
+      executeCourt = #{executecourt,jdbcType=VARCHAR},
+      province = #{province,jdbcType=VARCHAR},
+      execute_Documentnumber = #{executeDocumentnumber,jdbcType=VARCHAR},
+      gistunit = #{gistunit,jdbcType=VARCHAR},
+      focus_Number = #{focusNumber,jdbcType=INTEGER},
+      create_times = #{createTimes,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

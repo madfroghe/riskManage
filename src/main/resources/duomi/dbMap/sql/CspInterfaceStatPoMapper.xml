@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="duomi.dbMap.mapper.CspInterfaceStatPoMapper" >
+  <resultMap id="BaseResultMap" type="duomi.dbMap.bean.CspInterfaceStatPo" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="app_no" property="appNo" jdbcType="VARCHAR" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="id_card" property="idCard" jdbcType="VARCHAR" />
+    <result column="inter_serno" property="interSerno" jdbcType="VARCHAR" />
+    <result column="inter_no" property="interNo" jdbcType="VARCHAR" />
+    <result column="inter_type" property="interType" jdbcType="VARCHAR" />
+    <result column="inter_name" property="interName" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="in_time" property="inTime" jdbcType="TIMESTAMP" />
+    <result column="ret_time" property="retTime" jdbcType="TIMESTAMP" />
+    <result column="data_valid" property="dataValid" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="duomi.dbMap.bean.CspInterfaceStatPoWithBLOBs" extends="BaseResultMap" >
+    <result column="in_Message" property="inMessage" jdbcType="LONGVARCHAR" />
+    <result column="ret_message_ct" property="retMessageCt" jdbcType="LONGVARCHAR" />
+    <result column="ret_Message" property="retMessage" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, app_no, mobile, name, id_card, inter_serno, inter_no, inter_type, inter_name, 
+    status, in_time, ret_time, data_valid, create_time
+  </sql>
+  <sql id="Blob_Column_List" >
+    in_Message, ret_message_ct, ret_Message
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_dm_csp_interface_stat
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_dm_csp_interface_stat
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="duomi.dbMap.bean.CspInterfaceStatPoWithBLOBs" >
+    insert into t_dm_csp_interface_stat (id, app_no, mobile, 
+      name, id_card, inter_serno, 
+      inter_no, inter_type, inter_name, 
+      status, in_time, ret_time, 
+      data_valid, create_time, in_Message, 
+      ret_message_ct, ret_Message)
+    values (#{id,jdbcType=BIGINT}, #{appNo,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{idCard,jdbcType=VARCHAR}, #{interSerno,jdbcType=VARCHAR}, 
+      #{interNo,jdbcType=VARCHAR}, #{interType,jdbcType=VARCHAR}, #{interName,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR}, #{inTime,jdbcType=TIMESTAMP}, #{retTime,jdbcType=TIMESTAMP}, 
+      #{dataValid,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{inMessage,jdbcType=LONGVARCHAR}, 
+      #{retMessageCt,jdbcType=LONGVARCHAR}, #{retMessage,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="duomi.dbMap.bean.CspInterfaceStatPoWithBLOBs" >
+    insert into t_dm_csp_interface_stat
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="appNo != null" >
+        app_no,
+      </if>
+      <if test="mobile != null" >
+        mobile,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="idCard != null" >
+        id_card,
+      </if>
+      <if test="interSerno != null" >
+        inter_serno,
+      </if>
+      <if test="interNo != null" >
+        inter_no,
+      </if>
+      <if test="interType != null" >
+        inter_type,
+      </if>
+      <if test="interName != null" >
+        inter_name,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="inTime != null" >
+        in_time,
+      </if>
+      <if test="retTime != null" >
+        ret_time,
+      </if>
+      <if test="dataValid != null" >
+        data_valid,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="inMessage != null" >
+        in_Message,
+      </if>
+      <if test="retMessageCt != null" >
+        ret_message_ct,
+      </if>
+      <if test="retMessage != null" >
+        ret_Message,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="appNo != null" >
+        #{appNo,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="idCard != null" >
+        #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="interSerno != null" >
+        #{interSerno,jdbcType=VARCHAR},
+      </if>
+      <if test="interNo != null" >
+        #{interNo,jdbcType=VARCHAR},
+      </if>
+      <if test="interType != null" >
+        #{interType,jdbcType=VARCHAR},
+      </if>
+      <if test="interName != null" >
+        #{interName,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="inTime != null" >
+        #{inTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="retTime != null" >
+        #{retTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dataValid != null" >
+        #{dataValid,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="inMessage != null" >
+        #{inMessage,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="retMessageCt != null" >
+        #{retMessageCt,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="retMessage != null" >
+        #{retMessage,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="duomi.dbMap.bean.CspInterfaceStatPoWithBLOBs" >
+    update t_dm_csp_interface_stat
+    <set >
+      <if test="appNo != null" >
+        app_no = #{appNo,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="idCard != null" >
+        id_card = #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="interSerno != null" >
+        inter_serno = #{interSerno,jdbcType=VARCHAR},
+      </if>
+      <if test="interNo != null" >
+        inter_no = #{interNo,jdbcType=VARCHAR},
+      </if>
+      <if test="interType != null" >
+        inter_type = #{interType,jdbcType=VARCHAR},
+      </if>
+      <if test="interName != null" >
+        inter_name = #{interName,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="inTime != null" >
+        in_time = #{inTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="retTime != null" >
+        ret_time = #{retTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dataValid != null" >
+        data_valid = #{dataValid,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="inMessage != null" >
+        in_Message = #{inMessage,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="retMessageCt != null" >
+        ret_message_ct = #{retMessageCt,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="retMessage != null" >
+        ret_Message = #{retMessage,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="duomi.dbMap.bean.CspInterfaceStatPoWithBLOBs" >
+    update t_dm_csp_interface_stat
+    set app_no = #{appNo,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      id_card = #{idCard,jdbcType=VARCHAR},
+      inter_serno = #{interSerno,jdbcType=VARCHAR},
+      inter_no = #{interNo,jdbcType=VARCHAR},
+      inter_type = #{interType,jdbcType=VARCHAR},
+      inter_name = #{interName,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      in_time = #{inTime,jdbcType=TIMESTAMP},
+      ret_time = #{retTime,jdbcType=TIMESTAMP},
+      data_valid = #{dataValid,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      in_Message = #{inMessage,jdbcType=LONGVARCHAR},
+      ret_message_ct = #{retMessageCt,jdbcType=LONGVARCHAR},
+      ret_Message = #{retMessage,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="duomi.dbMap.bean.CspInterfaceStatPo" >
+    update t_dm_csp_interface_stat
+    set app_no = #{appNo,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      id_card = #{idCard,jdbcType=VARCHAR},
+      inter_serno = #{interSerno,jdbcType=VARCHAR},
+      inter_no = #{interNo,jdbcType=VARCHAR},
+      inter_type = #{interType,jdbcType=VARCHAR},
+      inter_name = #{interName,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      in_time = #{inTime,jdbcType=TIMESTAMP},
+      ret_time = #{retTime,jdbcType=TIMESTAMP},
+      data_valid = #{dataValid,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="duomi.dbMap.mapper.MultiplelendRegistPoMapper" >
+	<sql id="TABLE_NAME" >
+	    t_dm_multiplelend_regist
+	  </sql>
+	  
+	  <select id="querylistByMap" resultMap="BaseResultMap" parameterType="java.util.Map" >
+	    select 
+	    	<include refid="Base_Column_List" />
+	    from 
+	     	<include refid="TABLE_NAME" /> 
+	    <where>
+		     <trim suffixOverrides="," >
+		     		<if test="multiplelendId != null" >
+				        MultipleLend_id = #{multiplelendId,jdbcType=BIGINT},
+				      </if>
+				      <if test="type != null" >
+				        type = #{type,jdbcType=VARCHAR},
+				      </if>
+				      <if test="code != null" >
+				        code = #{code,jdbcType=VARCHAR},
+				      </if>
+				      <if test="time != null" >
+				        time = #{time,jdbcType=VARCHAR},
+				      </if>
+				      <if test="createTime != null" >
+				        create_time = #{createTime,jdbcType=TIMESTAMP},
+				      </if>
+		     </trim>
+	    </where>
+	     
+	  </select>
+
+</mapper>

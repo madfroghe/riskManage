@@ -1,0 +1,55 @@
+{
+"success": true,
+"data": {
+"mobile": "XXXXXX",
+"province": "XXX",
+"city": "XXXXX",
+"cycle": "2015-04-19--2017-04-19",
+"creditPlatformRegistrationDetails": [
+{
+"type": "非银行",
+"code": "EM_100001 ",
+"time": "2016/9/5 0:00:00"
+}
+],
+"loanApplicationDetails": [
+{
+"type": "非银行",
+"code": "EM_100001",
+"time": "2016/9/5 0:00:00",
+"applicationAmountut": "0W～0.2W",
+"applicationResult": " "
+}
+],
+"loanLenderDetails": [
+{
+"type": "非银行",
+"code": "EM_100001",
+"time": "2016/9/5 0:00:00",
+"loanlendersAmount": "0W～0.2W"
+}
+],
+"loanRejectDetails": [
+{
+"type": "非银行",
+"code": "PT1000038",
+"time": "2016/3/14 0:00:00"
+}
+],
+"loanOverdueDetails": [
+{
+"code": "EM_100001",
+"counts": "1",
+"money": "0W～0.2W"
+}
+],
+"arrearsInquiry": [
+{
+"code": "PT1000038",
+"money": "0W～0.2W"
+}
+],
+"status": "EXIST",
+"statusDesc": "查询有数据"
+}
+}

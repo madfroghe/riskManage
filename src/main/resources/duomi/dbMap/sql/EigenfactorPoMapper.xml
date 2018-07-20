@@ -1,0 +1,591 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="duomi.dbMap.mapper.EigenfactorPoMapper">
+  <resultMap id="BaseResultMap" type="duomi.dbMap.bean.EigenfactorPo">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="gbm_sbh_hsi" jdbcType="VARCHAR" property="gbmSbhHsi" />
+    <result column="fim_pay_bpi" jdbcType="VARCHAR" property="fimPayBpi" />
+    <result column="fim_nf_bsi" jdbcType="VARCHAR" property="fimNfBsi" />
+    <result column="cpl_age_level" jdbcType="VARCHAR" property="cplAgeLevel" />
+    <result column="cpl_cps_level" jdbcType="VARCHAR" property="cplCpsLevel" />
+    <result column="fim_nf_bpi" jdbcType="VARCHAR" property="fimNfBpi" />
+    <result column="fim_cc_bsi3" jdbcType="VARCHAR" property="fimCcBsi3" />
+    <result column="fim_cc_bsi2" jdbcType="VARCHAR" property="fimCcBsi2" />
+    <result column="fim_cc_bsi1" jdbcType="VARCHAR" property="fimCcBsi1" />
+    <result column="fim_nf_bci2" jdbcType="VARCHAR" property="fimNfBci2" />
+    <result column="cpl_sex_level" jdbcType="VARCHAR" property="cplSexLevel" />
+    <result column="fim_nf_bci3" jdbcType="VARCHAR" property="fimNfBci3" />
+    <result column="gbm_lh_bfi" jdbcType="VARCHAR" property="gbmLhBfi" />
+    <result column="fim_cc_bfi" jdbcType="VARCHAR" property="fimCcBfi" />
+    <result column="fim_nf_bfi" jdbcType="VARCHAR" property="fimNfBfi" />
+    <result column="gbm_tm_bsi" jdbcType="VARCHAR" property="gbmTmBsi" />
+    <result column="fim_pay_bfi" jdbcType="VARCHAR" property="fimPayBfi" />
+    <result column="som_rni_rsi" jdbcType="VARCHAR" property="somRniRsi" />
+    <result column="cpl_device_level" jdbcType="VARCHAR" property="cplDeviceLevel" />
+    <result column="gbm_cbh_hsi" jdbcType="VARCHAR" property="gbmCbhHsi" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, gbm_sbh_hsi, fim_pay_bpi, fim_nf_bsi, cpl_age_level, cpl_cps_level, fim_nf_bpi, 
+    fim_cc_bsi3, fim_cc_bsi2, fim_cc_bsi1, fim_nf_bci2, cpl_sex_level, fim_nf_bci3, gbm_lh_bfi, 
+    fim_cc_bfi, fim_nf_bfi, gbm_tm_bsi, fim_pay_bfi, som_rni_rsi, cpl_device_level, gbm_cbh_hsi, 
+    create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_dm_csp_eigenfactor
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from t_dm_csp_eigenfactor
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="duomi.dbMap.bean.EigenfactorPo">
+    insert into t_dm_csp_eigenfactor (id, gbm_sbh_hsi, fim_pay_bpi, 
+      fim_nf_bsi, cpl_age_level, cpl_cps_level, 
+      fim_nf_bpi, fim_cc_bsi3, fim_cc_bsi2, 
+      fim_cc_bsi1, fim_nf_bci2, cpl_sex_level, 
+      fim_nf_bci3, gbm_lh_bfi, fim_cc_bfi, 
+      fim_nf_bfi, gbm_tm_bsi, fim_pay_bfi, 
+      som_rni_rsi, cpl_device_level, gbm_cbh_hsi, 
+      create_time)
+    values (#{id,jdbcType=BIGINT}, #{gbmSbhHsi,jdbcType=VARCHAR}, #{fimPayBpi,jdbcType=VARCHAR}, 
+      #{fimNfBsi,jdbcType=VARCHAR}, #{cplAgeLevel,jdbcType=VARCHAR}, #{cplCpsLevel,jdbcType=VARCHAR}, 
+      #{fimNfBpi,jdbcType=VARCHAR}, #{fimCcBsi3,jdbcType=VARCHAR}, #{fimCcBsi2,jdbcType=VARCHAR}, 
+      #{fimCcBsi1,jdbcType=VARCHAR}, #{fimNfBci2,jdbcType=VARCHAR}, #{cplSexLevel,jdbcType=VARCHAR}, 
+      #{fimNfBci3,jdbcType=VARCHAR}, #{gbmLhBfi,jdbcType=VARCHAR}, #{fimCcBfi,jdbcType=VARCHAR}, 
+      #{fimNfBfi,jdbcType=VARCHAR}, #{gbmTmBsi,jdbcType=VARCHAR}, #{fimPayBfi,jdbcType=VARCHAR}, 
+      #{somRniRsi,jdbcType=VARCHAR}, #{cplDeviceLevel,jdbcType=VARCHAR}, #{gbmCbhHsi,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="duomi.dbMap.bean.EigenfactorPo">
+    insert into t_dm_csp_eigenfactor
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="gbmSbhHsi != null">
+        gbm_sbh_hsi,
+      </if>
+      <if test="fimPayBpi != null">
+        fim_pay_bpi,
+      </if>
+      <if test="fimNfBsi != null">
+        fim_nf_bsi,
+      </if>
+      <if test="cplAgeLevel != null">
+        cpl_age_level,
+      </if>
+      <if test="cplCpsLevel != null">
+        cpl_cps_level,
+      </if>
+      <if test="fimNfBpi != null">
+        fim_nf_bpi,
+      </if>
+      <if test="fimCcBsi3 != null">
+        fim_cc_bsi3,
+      </if>
+      <if test="fimCcBsi2 != null">
+        fim_cc_bsi2,
+      </if>
+      <if test="fimCcBsi1 != null">
+        fim_cc_bsi1,
+      </if>
+      <if test="fimNfBci2 != null">
+        fim_nf_bci2,
+      </if>
+      <if test="cplSexLevel != null">
+        cpl_sex_level,
+      </if>
+      <if test="fimNfBci3 != null">
+        fim_nf_bci3,
+      </if>
+      <if test="gbmLhBfi != null">
+        gbm_lh_bfi,
+      </if>
+      <if test="fimCcBfi != null">
+        fim_cc_bfi,
+      </if>
+      <if test="fimNfBfi != null">
+        fim_nf_bfi,
+      </if>
+      <if test="gbmTmBsi != null">
+        gbm_tm_bsi,
+      </if>
+      <if test="fimPayBfi != null">
+        fim_pay_bfi,
+      </if>
+      <if test="somRniRsi != null">
+        som_rni_rsi,
+      </if>
+      <if test="cplDeviceLevel != null">
+        cpl_device_level,
+      </if>
+      <if test="gbmCbhHsi != null">
+        gbm_cbh_hsi,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="gbmSbhHsi != null">
+        #{gbmSbhHsi,jdbcType=VARCHAR},
+      </if>
+      <if test="fimPayBpi != null">
+        #{fimPayBpi,jdbcType=VARCHAR},
+      </if>
+      <if test="fimNfBsi != null">
+        #{fimNfBsi,jdbcType=VARCHAR},
+      </if>
+      <if test="cplAgeLevel != null">
+        #{cplAgeLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="cplCpsLevel != null">
+        #{cplCpsLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="fimNfBpi != null">
+        #{fimNfBpi,jdbcType=VARCHAR},
+      </if>
+      <if test="fimCcBsi3 != null">
+        #{fimCcBsi3,jdbcType=VARCHAR},
+      </if>
+      <if test="fimCcBsi2 != null">
+        #{fimCcBsi2,jdbcType=VARCHAR},
+      </if>
+      <if test="fimCcBsi1 != null">
+        #{fimCcBsi1,jdbcType=VARCHAR},
+      </if>
+      <if test="fimNfBci2 != null">
+        #{fimNfBci2,jdbcType=VARCHAR},
+      </if>
+      <if test="cplSexLevel != null">
+        #{cplSexLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="fimNfBci3 != null">
+        #{fimNfBci3,jdbcType=VARCHAR},
+      </if>
+      <if test="gbmLhBfi != null">
+        #{gbmLhBfi,jdbcType=VARCHAR},
+      </if>
+      <if test="fimCcBfi != null">
+        #{fimCcBfi,jdbcType=VARCHAR},
+      </if>
+      <if test="fimNfBfi != null">
+        #{fimNfBfi,jdbcType=VARCHAR},
+      </if>
+      <if test="gbmTmBsi != null">
+        #{gbmTmBsi,jdbcType=VARCHAR},
+      </if>
+      <if test="fimPayBfi != null">
+        #{fimPayBfi,jdbcType=VARCHAR},
+      </if>
+      <if test="somRniRsi != null">
+        #{somRniRsi,jdbcType=VARCHAR},
+      </if>
+      <if test="cplDeviceLevel != null">
+        #{cplDeviceLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="gbmCbhHsi != null">
+        #{gbmCbhHsi,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="duomi.dbMap.bean.EigenfactorPo">
+    update t_dm_csp_eigenfactor
+    <set>
+      <if test="gbmSbhHsi != null">
+        gbm_sbh_hsi = #{gbmSbhHsi,jdbcType=VARCHAR},
+      </if>
+      <if test="fimPayBpi != null">
+        fim_pay_bpi = #{fimPayBpi,jdbcType=VARCHAR},
+      </if>
+      <if test="fimNfBsi != null">
+        fim_nf_bsi = #{fimNfBsi,jdbcType=VARCHAR},
+      </if>
+      <if test="cplAgeLevel != null">
+        cpl_age_level = #{cplAgeLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="cplCpsLevel != null">
+        cpl_cps_level = #{cplCpsLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="fimNfBpi != null">
+        fim_nf_bpi = #{fimNfBpi,jdbcType=VARCHAR},
+      </if>
+      <if test="fimCcBsi3 != null">
+        fim_cc_bsi3 = #{fimCcBsi3,jdbcType=VARCHAR},
+      </if>
+      <if test="fimCcBsi2 != null">
+        fim_cc_bsi2 = #{fimCcBsi2,jdbcType=VARCHAR},
+      </if>
+      <if test="fimCcBsi1 != null">
+        fim_cc_bsi1 = #{fimCcBsi1,jdbcType=VARCHAR},
+      </if>
+      <if test="fimNfBci2 != null">
+        fim_nf_bci2 = #{fimNfBci2,jdbcType=VARCHAR},
+      </if>
+      <if test="cplSexLevel != null">
+        cpl_sex_level = #{cplSexLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="fimNfBci3 != null">
+        fim_nf_bci3 = #{fimNfBci3,jdbcType=VARCHAR},
+      </if>
+      <if test="gbmLhBfi != null">
+        gbm_lh_bfi = #{gbmLhBfi,jdbcType=VARCHAR},
+      </if>
+      <if test="fimCcBfi != null">
+        fim_cc_bfi = #{fimCcBfi,jdbcType=VARCHAR},
+      </if>
+      <if test="fimNfBfi != null">
+        fim_nf_bfi = #{fimNfBfi,jdbcType=VARCHAR},
+      </if>
+      <if test="gbmTmBsi != null">
+        gbm_tm_bsi = #{gbmTmBsi,jdbcType=VARCHAR},
+      </if>
+      <if test="fimPayBfi != null">
+        fim_pay_bfi = #{fimPayBfi,jdbcType=VARCHAR},
+      </if>
+      <if test="somRniRsi != null">
+        som_rni_rsi = #{somRniRsi,jdbcType=VARCHAR},
+      </if>
+      <if test="cplDeviceLevel != null">
+        cpl_device_level = #{cplDeviceLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="gbmCbhHsi != null">
+        gbm_cbh_hsi = #{gbmCbhHsi,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="duomi.dbMap.bean.EigenfactorPo">
+    update t_dm_csp_eigenfactor
+    set gbm_sbh_hsi = #{gbmSbhHsi,jdbcType=VARCHAR},
+      fim_pay_bpi = #{fimPayBpi,jdbcType=VARCHAR},
+      fim_nf_bsi = #{fimNfBsi,jdbcType=VARCHAR},
+      cpl_age_level = #{cplAgeLevel,jdbcType=VARCHAR},
+      cpl_cps_level = #{cplCpsLevel,jdbcType=VARCHAR},
+      fim_nf_bpi = #{fimNfBpi,jdbcType=VARCHAR},
+      fim_cc_bsi3 = #{fimCcBsi3,jdbcType=VARCHAR},
+      fim_cc_bsi2 = #{fimCcBsi2,jdbcType=VARCHAR},
+      fim_cc_bsi1 = #{fimCcBsi1,jdbcType=VARCHAR},
+      fim_nf_bci2 = #{fimNfBci2,jdbcType=VARCHAR},
+      cpl_sex_level = #{cplSexLevel,jdbcType=VARCHAR},
+      fim_nf_bci3 = #{fimNfBci3,jdbcType=VARCHAR},
+      gbm_lh_bfi = #{gbmLhBfi,jdbcType=VARCHAR},
+      fim_cc_bfi = #{fimCcBfi,jdbcType=VARCHAR},
+      fim_nf_bfi = #{fimNfBfi,jdbcType=VARCHAR},
+      gbm_tm_bsi = #{gbmTmBsi,jdbcType=VARCHAR},
+      fim_pay_bfi = #{fimPayBfi,jdbcType=VARCHAR},
+      som_rni_rsi = #{somRniRsi,jdbcType=VARCHAR},
+      cpl_device_level = #{cplDeviceLevel,jdbcType=VARCHAR},
+      gbm_cbh_hsi = #{gbmCbhHsi,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+  
+  <!-- 
+  <resultMap id="BaseResultMap" type="duomi.dbMap.bean.EigenfactorPo">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="gbm_sbh_hsi" jdbcType="VARCHAR" property="gbmSbhHsi" />
+    <result column="fim_pay_bpi" jdbcType="VARCHAR" property="fimPayBpi" />
+    <result column="fim_nf_bsi" jdbcType="VARCHAR" property="fimNfBsi" />
+    <result column="cpl_age_level" jdbcType="VARCHAR" property="cplAgeLevel" />
+    <result column="cpl_cps_level" jdbcType="VARCHAR" property="cplCpsLevel" />
+    <result column="fim_nf_bpi" jdbcType="VARCHAR" property="fimNfBpi" />
+    <result column="fim_cc_bsi3" jdbcType="VARCHAR" property="fimCcBsi3" />
+    <result column="fim_cc_bsi2" jdbcType="VARCHAR" property="fimCcBsi2" />
+    <result column="fim_cc_bsi1" jdbcType="VARCHAR" property="fimCcBsi1" />
+    <result column="fim_nf_bci2" jdbcType="VARCHAR" property="fimNfBci2" />
+    <result column="cpl_sex_level" jdbcType="VARCHAR" property="cplSexLevel" />
+    <result column="fim_nf_bci3" jdbcType="VARCHAR" property="fimNfBci3" />
+    <result column="gbm_lh_bfi" jdbcType="VARCHAR" property="gbmLhBfi" />
+    <result column="fim_cc_bfi" jdbcType="VARCHAR" property="fimCcBfi" />
+    <result column="fim_nf_bfi" jdbcType="VARCHAR" property="fimNfBfi" />
+    <result column="gbm_tm_bsi" jdbcType="VARCHAR" property="gbmTmBsi" />
+    <result column="fim_pay_bfi" jdbcType="VARCHAR" property="fimPayBfi" />
+    <result column="som_rni_rsi" jdbcType="VARCHAR" property="somRniRsi" />
+    <result column="cpl_device_level" jdbcType="VARCHAR" property="cplDeviceLevel" />
+    <result column="gbm_cbh_hsi" jdbcType="VARCHAR" property="gbmCbhHsi" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, gbm_sbh_hsi, fim_pay_bpi, fim_nf_bsi, cpl_age_level, cpl_cps_level, fim_nf_bpi, 
+    fim_cc_bsi3, fim_cc_bsi2, fim_cc_bsi1, fim_nf_bci2, cpl_sex_level, fim_nf_bci3, gbm_lh_bfi, 
+    fim_cc_bfi, fim_nf_bfi, gbm_tm_bsi, fim_pay_bfi, som_rni_rsi, cpl_device_level, gbm_cbh_hsi, 
+    create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_dm_csp_eigenfactor
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from t_dm_csp_eigenfactor
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="duomi.dbMap.bean.EigenfactorPo">
+    insert into t_dm_csp_eigenfactor (id, gbm_sbh_hsi, fim_pay_bpi, 
+      fim_nf_bsi, cpl_age_level, cpl_cps_level, 
+      fim_nf_bpi, fim_cc_bsi3, fim_cc_bsi2, 
+      fim_cc_bsi1, fim_nf_bci2, cpl_sex_level, 
+      fim_nf_bci3, gbm_lh_bfi, fim_cc_bfi, 
+      fim_nf_bfi, gbm_tm_bsi, fim_pay_bfi, 
+      som_rni_rsi, cpl_device_level, gbm_cbh_hsi, 
+      create_time)
+    values (#{id,jdbcType=BIGINT}, #{gbmSbhHsi,jdbcType=VARCHAR}, #{fimPayBpi,jdbcType=VARCHAR}, 
+      #{fimNfBsi,jdbcType=VARCHAR}, #{cplAgeLevel,jdbcType=VARCHAR}, #{cplCpsLevel,jdbcType=VARCHAR}, 
+      #{fimNfBpi,jdbcType=VARCHAR}, #{fimCcBsi3,jdbcType=VARCHAR}, #{fimCcBsi2,jdbcType=VARCHAR}, 
+      #{fimCcBsi1,jdbcType=VARCHAR}, #{fimNfBci2,jdbcType=VARCHAR}, #{cplSexLevel,jdbcType=VARCHAR}, 
+      #{fimNfBci3,jdbcType=VARCHAR}, #{gbmLhBfi,jdbcType=VARCHAR}, #{fimCcBfi,jdbcType=VARCHAR}, 
+      #{fimNfBfi,jdbcType=VARCHAR}, #{gbmTmBsi,jdbcType=VARCHAR}, #{fimPayBfi,jdbcType=VARCHAR}, 
+      #{somRniRsi,jdbcType=VARCHAR}, #{cplDeviceLevel,jdbcType=VARCHAR}, #{gbmCbhHsi,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="duomi.dbMap.bean.EigenfactorPo">
+    insert into t_dm_csp_eigenfactor
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="gbmSbhHsi != null">
+        gbm_sbh_hsi,
+      </if>
+      <if test="fimPayBpi != null">
+        fim_pay_bpi,
+      </if>
+      <if test="fimNfBsi != null">
+        fim_nf_bsi,
+      </if>
+      <if test="cplAgeLevel != null">
+        cpl_age_level,
+      </if>
+      <if test="cplCpsLevel != null">
+        cpl_cps_level,
+      </if>
+      <if test="fimNfBpi != null">
+        fim_nf_bpi,
+      </if>
+      <if test="fimCcBsi3 != null">
+        fim_cc_bsi3,
+      </if>
+      <if test="fimCcBsi2 != null">
+        fim_cc_bsi2,
+      </if>
+      <if test="fimCcBsi1 != null">
+        fim_cc_bsi1,
+      </if>
+      <if test="fimNfBci2 != null">
+        fim_nf_bci2,
+      </if>
+      <if test="cplSexLevel != null">
+        cpl_sex_level,
+      </if>
+      <if test="fimNfBci3 != null">
+        fim_nf_bci3,
+      </if>
+      <if test="gbmLhBfi != null">
+        gbm_lh_bfi,
+      </if>
+      <if test="fimCcBfi != null">
+        fim_cc_bfi,
+      </if>
+      <if test="fimNfBfi != null">
+        fim_nf_bfi,
+      </if>
+      <if test="gbmTmBsi != null">
+        gbm_tm_bsi,
+      </if>
+      <if test="fimPayBfi != null">
+        fim_pay_bfi,
+      </if>
+      <if test="somRniRsi != null">
+        som_rni_rsi,
+      </if>
+      <if test="cplDeviceLevel != null">
+        cpl_device_level,
+      </if>
+      <if test="gbmCbhHsi != null">
+        gbm_cbh_hsi,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="gbmSbhHsi != null">
+        #{gbmSbhHsi,jdbcType=VARCHAR},
+      </if>
+      <if test="fimPayBpi != null">
+        #{fimPayBpi,jdbcType=VARCHAR},
+      </if>
+      <if test="fimNfBsi != null">
+        #{fimNfBsi,jdbcType=VARCHAR},
+      </if>
+      <if test="cplAgeLevel != null">
+        #{cplAgeLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="cplCpsLevel != null">
+        #{cplCpsLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="fimNfBpi != null">
+        #{fimNfBpi,jdbcType=VARCHAR},
+      </if>
+      <if test="fimCcBsi3 != null">
+        #{fimCcBsi3,jdbcType=VARCHAR},
+      </if>
+      <if test="fimCcBsi2 != null">
+        #{fimCcBsi2,jdbcType=VARCHAR},
+      </if>
+      <if test="fimCcBsi1 != null">
+        #{fimCcBsi1,jdbcType=VARCHAR},
+      </if>
+      <if test="fimNfBci2 != null">
+        #{fimNfBci2,jdbcType=VARCHAR},
+      </if>
+      <if test="cplSexLevel != null">
+        #{cplSexLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="fimNfBci3 != null">
+        #{fimNfBci3,jdbcType=VARCHAR},
+      </if>
+      <if test="gbmLhBfi != null">
+        #{gbmLhBfi,jdbcType=VARCHAR},
+      </if>
+      <if test="fimCcBfi != null">
+        #{fimCcBfi,jdbcType=VARCHAR},
+      </if>
+      <if test="fimNfBfi != null">
+        #{fimNfBfi,jdbcType=VARCHAR},
+      </if>
+      <if test="gbmTmBsi != null">
+        #{gbmTmBsi,jdbcType=VARCHAR},
+      </if>
+      <if test="fimPayBfi != null">
+        #{fimPayBfi,jdbcType=VARCHAR},
+      </if>
+      <if test="somRniRsi != null">
+        #{somRniRsi,jdbcType=VARCHAR},
+      </if>
+      <if test="cplDeviceLevel != null">
+        #{cplDeviceLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="gbmCbhHsi != null">
+        #{gbmCbhHsi,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="duomi.dbMap.bean.EigenfactorPo">
+    update t_dm_csp_eigenfactor
+    <set>
+      <if test="gbmSbhHsi != null">
+        gbm_sbh_hsi = #{gbmSbhHsi,jdbcType=VARCHAR},
+      </if>
+      <if test="fimPayBpi != null">
+        fim_pay_bpi = #{fimPayBpi,jdbcType=VARCHAR},
+      </if>
+      <if test="fimNfBsi != null">
+        fim_nf_bsi = #{fimNfBsi,jdbcType=VARCHAR},
+      </if>
+      <if test="cplAgeLevel != null">
+        cpl_age_level = #{cplAgeLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="cplCpsLevel != null">
+        cpl_cps_level = #{cplCpsLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="fimNfBpi != null">
+        fim_nf_bpi = #{fimNfBpi,jdbcType=VARCHAR},
+      </if>
+      <if test="fimCcBsi3 != null">
+        fim_cc_bsi3 = #{fimCcBsi3,jdbcType=VARCHAR},
+      </if>
+      <if test="fimCcBsi2 != null">
+        fim_cc_bsi2 = #{fimCcBsi2,jdbcType=VARCHAR},
+      </if>
+      <if test="fimCcBsi1 != null">
+        fim_cc_bsi1 = #{fimCcBsi1,jdbcType=VARCHAR},
+      </if>
+      <if test="fimNfBci2 != null">
+        fim_nf_bci2 = #{fimNfBci2,jdbcType=VARCHAR},
+      </if>
+      <if test="cplSexLevel != null">
+        cpl_sex_level = #{cplSexLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="fimNfBci3 != null">
+        fim_nf_bci3 = #{fimNfBci3,jdbcType=VARCHAR},
+      </if>
+      <if test="gbmLhBfi != null">
+        gbm_lh_bfi = #{gbmLhBfi,jdbcType=VARCHAR},
+      </if>
+      <if test="fimCcBfi != null">
+        fim_cc_bfi = #{fimCcBfi,jdbcType=VARCHAR},
+      </if>
+      <if test="fimNfBfi != null">
+        fim_nf_bfi = #{fimNfBfi,jdbcType=VARCHAR},
+      </if>
+      <if test="gbmTmBsi != null">
+        gbm_tm_bsi = #{gbmTmBsi,jdbcType=VARCHAR},
+      </if>
+      <if test="fimPayBfi != null">
+        fim_pay_bfi = #{fimPayBfi,jdbcType=VARCHAR},
+      </if>
+      <if test="somRniRsi != null">
+        som_rni_rsi = #{somRniRsi,jdbcType=VARCHAR},
+      </if>
+      <if test="cplDeviceLevel != null">
+        cpl_device_level = #{cplDeviceLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="gbmCbhHsi != null">
+        gbm_cbh_hsi = #{gbmCbhHsi,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="duomi.dbMap.bean.EigenfactorPo">
+    update t_dm_csp_eigenfactor
+    set gbm_sbh_hsi = #{gbmSbhHsi,jdbcType=VARCHAR},
+      fim_pay_bpi = #{fimPayBpi,jdbcType=VARCHAR},
+      fim_nf_bsi = #{fimNfBsi,jdbcType=VARCHAR},
+      cpl_age_level = #{cplAgeLevel,jdbcType=VARCHAR},
+      cpl_cps_level = #{cplCpsLevel,jdbcType=VARCHAR},
+      fim_nf_bpi = #{fimNfBpi,jdbcType=VARCHAR},
+      fim_cc_bsi3 = #{fimCcBsi3,jdbcType=VARCHAR},
+      fim_cc_bsi2 = #{fimCcBsi2,jdbcType=VARCHAR},
+      fim_cc_bsi1 = #{fimCcBsi1,jdbcType=VARCHAR},
+      fim_nf_bci2 = #{fimNfBci2,jdbcType=VARCHAR},
+      cpl_sex_level = #{cplSexLevel,jdbcType=VARCHAR},
+      fim_nf_bci3 = #{fimNfBci3,jdbcType=VARCHAR},
+      gbm_lh_bfi = #{gbmLhBfi,jdbcType=VARCHAR},
+      fim_cc_bfi = #{fimCcBfi,jdbcType=VARCHAR},
+      fim_nf_bfi = #{fimNfBfi,jdbcType=VARCHAR},
+      gbm_tm_bsi = #{gbmTmBsi,jdbcType=VARCHAR},
+      fim_pay_bfi = #{fimPayBfi,jdbcType=VARCHAR},
+      som_rni_rsi = #{somRniRsi,jdbcType=VARCHAR},
+      cpl_device_level = #{cplDeviceLevel,jdbcType=VARCHAR},
+      gbm_cbh_hsi = #{gbmCbhHsi,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+   -->
+  
+</mapper>

@@ -1,0 +1,11 @@
+{
+  "success": true,
+  "data": {
+    "name": "阿斯",
+    "mobile": "1592118xxxx",
+    "idCard": "310224********3110",
+    "score": 592,
+    "status": "EXIST",
+    "statusDesc": "查询成功"
+  }
+}

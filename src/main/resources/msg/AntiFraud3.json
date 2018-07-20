@@ -1,0 +1,27 @@
+{
+    "success":true,
+    "isPay":true,
+    "data":{
+        "finalDecision":"Reject",
+        "finalScore":"0",
+        "strategySet":[
+            {
+                "riskType":"creditRisk",
+                "strategyDecision":"Reject",
+                "strategyId":"1e8a0f6702344bcdaee16faff872ede3",
+                "strategyMode":"WorstMode",
+                "strategyName":"欺诈关注清单策略",
+                "strategyScore":0
+            },
+            {
+                "riskType":"creditRisk",
+                "strategyDecision":"Reject",
+                "strategyId":"866b1916688a4ea7a5225a50c7cb1294",
+                "strategyMode":"WorstMode",
+                "strategyName":"欺诈信息验证策略",
+                "strategyScore":0
+            }
+        ],
+        "status":"EXIST"
+    }
+}

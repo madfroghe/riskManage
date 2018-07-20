@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="duomi.dbMap.mapper.AntifraudStrategyRulesPoMapper" >
+  <resultMap id="BaseResultMap" type="duomi.dbMap.bean.AntifraudStrategyRulesPo" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="antifraud_id" property="antifraudId" jdbcType="BIGINT" />
+    <result column="antifraud_strategy_id" property="antifraudStrategyId" jdbcType="BIGINT" />
+    <result column="rule_Name" property="ruleName" jdbcType="VARCHAR" />
+    <result column="rule_Id" property="ruleId" jdbcType="VARCHAR" />
+    <result column="score" property="score" jdbcType="VARCHAR" />
+    <result column="decision" property="decision" jdbcType="VARCHAR" />
+    <result column="memo" property="memo" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, antifraud_id, antifraud_strategy_id, rule_Name, rule_Id, score, decision, memo, 
+    create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_dm_antifraud_strategy_rules
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_dm_antifraud_strategy_rules
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="duomi.dbMap.bean.AntifraudStrategyRulesPo" >
+    insert into t_dm_antifraud_strategy_rules (id, antifraud_id, antifraud_strategy_id, 
+      rule_Name, rule_Id, score, 
+      decision, memo, create_time
+      )
+    values (#{id,jdbcType=BIGINT}, #{antifraudId,jdbcType=BIGINT}, #{antifraudStrategyId,jdbcType=BIGINT}, 
+      #{ruleName,jdbcType=VARCHAR}, #{ruleId,jdbcType=VARCHAR}, #{score,jdbcType=VARCHAR}, 
+      #{decision,jdbcType=VARCHAR}, #{memo,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="duomi.dbMap.bean.AntifraudStrategyRulesPo" >
+    insert into t_dm_antifraud_strategy_rules
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="antifraudId != null" >
+        antifraud_id,
+      </if>
+      <if test="antifraudStrategyId != null" >
+        antifraud_strategy_id,
+      </if>
+      <if test="ruleName != null" >
+        rule_Name,
+      </if>
+      <if test="ruleId != null" >
+        rule_Id,
+      </if>
+      <if test="score != null" >
+        score,
+      </if>
+      <if test="decision != null" >
+        decision,
+      </if>
+      <if test="memo != null" >
+        memo,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="antifraudId != null" >
+        #{antifraudId,jdbcType=BIGINT},
+      </if>
+      <if test="antifraudStrategyId != null" >
+        #{antifraudStrategyId,jdbcType=BIGINT},
+      </if>
+      <if test="ruleName != null" >
+        #{ruleName,jdbcType=VARCHAR},
+      </if>
+      <if test="ruleId != null" >
+        #{ruleId,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null" >
+        #{score,jdbcType=VARCHAR},
+      </if>
+      <if test="decision != null" >
+        #{decision,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null" >
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="duomi.dbMap.bean.AntifraudStrategyRulesPo" >
+    update t_dm_antifraud_strategy_rules
+    <set >
+      <if test="antifraudId != null" >
+        antifraud_id = #{antifraudId,jdbcType=BIGINT},
+      </if>
+      <if test="antifraudStrategyId != null" >
+        antifraud_strategy_id = #{antifraudStrategyId,jdbcType=BIGINT},
+      </if>
+      <if test="ruleName != null" >
+        rule_Name = #{ruleName,jdbcType=VARCHAR},
+      </if>
+      <if test="ruleId != null" >
+        rule_Id = #{ruleId,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null" >
+        score = #{score,jdbcType=VARCHAR},
+      </if>
+      <if test="decision != null" >
+        decision = #{decision,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null" >
+        memo = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="duomi.dbMap.bean.AntifraudStrategyRulesPo" >
+    update t_dm_antifraud_strategy_rules
+    set antifraud_id = #{antifraudId,jdbcType=BIGINT},
+      antifraud_strategy_id = #{antifraudStrategyId,jdbcType=BIGINT},
+      rule_Name = #{ruleName,jdbcType=VARCHAR},
+      rule_Id = #{ruleId,jdbcType=VARCHAR},
+      score = #{score,jdbcType=VARCHAR},
+      decision = #{decision,jdbcType=VARCHAR},
+      memo = #{memo,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

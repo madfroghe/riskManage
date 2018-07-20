@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="duomi.dbMap.mapper.HouseTokeyPoMapper" >
+  <resultMap id="BaseResultMap" type="duomi.dbMap.bean.HouseTokeyPo" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="tokey" property="tokey" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, tokey
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_dm_house_tokey
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_dm_house_tokey
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="duomi.dbMap.bean.HouseTokeyPo" >
+    insert into t_dm_house_tokey (id, tokey)
+    values (#{id,jdbcType=BIGINT}, #{tokey,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="duomi.dbMap.bean.HouseTokeyPo" >
+    insert into t_dm_house_tokey
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="tokey != null" >
+        tokey,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="tokey != null" >
+        #{tokey,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="duomi.dbMap.bean.HouseTokeyPo" >
+    update t_dm_house_tokey
+    <set >
+      <if test="tokey != null" >
+        tokey = #{tokey,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="duomi.dbMap.bean.HouseTokeyPo" >
+    update t_dm_house_tokey
+    set tokey = #{tokey,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="duomi.dbMap.mapper.MultiplelendArrearsinquiryPoMapper" >
+  <resultMap id="BaseResultMap" type="duomi.dbMap.bean.MultiplelendArrearsinquiryPo" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="MultipleLend_id" property="multiplelendId" jdbcType="BIGINT" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="money" property="money" jdbcType="VARCHAR" />
+    <result column="creat_time" property="creatTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, MultipleLend_id, code, money, creat_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_dm_multiplelend_arrearsinquiry
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_dm_multiplelend_arrearsinquiry
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="duomi.dbMap.bean.MultiplelendArrearsinquiryPo" >
+    insert into t_dm_multiplelend_arrearsinquiry (id, MultipleLend_id, code, 
+      money, creat_time)
+    values (#{id,jdbcType=BIGINT}, #{multiplelendId,jdbcType=BIGINT}, #{code,jdbcType=VARCHAR}, 
+      #{money,jdbcType=VARCHAR}, #{creatTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="duomi.dbMap.bean.MultiplelendArrearsinquiryPo" >
+    insert into t_dm_multiplelend_arrearsinquiry
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="multiplelendId != null" >
+        MultipleLend_id,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="money != null" >
+        money,
+      </if>
+      <if test="creatTime != null" >
+        creat_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="multiplelendId != null" >
+        #{multiplelendId,jdbcType=BIGINT},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="money != null" >
+        #{money,jdbcType=VARCHAR},
+      </if>
+      <if test="creatTime != null" >
+        #{creatTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="duomi.dbMap.bean.MultiplelendArrearsinquiryPo" >
+    update t_dm_multiplelend_arrearsinquiry
+    <set >
+      <if test="multiplelendId != null" >
+        MultipleLend_id = #{multiplelendId,jdbcType=BIGINT},
+      </if>
+      <if test="code != null" >
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="money != null" >
+        money = #{money,jdbcType=VARCHAR},
+      </if>
+      <if test="creatTime != null" >
+        creat_time = #{creatTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="duomi.dbMap.bean.MultiplelendArrearsinquiryPo" >
+    update t_dm_multiplelend_arrearsinquiry
+    set MultipleLend_id = #{multiplelendId,jdbcType=BIGINT},
+      code = #{code,jdbcType=VARCHAR},
+      money = #{money,jdbcType=VARCHAR},
+      creat_time = #{creatTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

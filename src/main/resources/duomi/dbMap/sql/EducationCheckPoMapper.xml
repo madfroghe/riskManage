@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="duomi.dbMap.mapper.EducationCheckPoMapper" >
+  <resultMap id="BaseResultMap" type="duomi.dbMap.bean.EducationCheckPo" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="app_no" property="appNo" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="id_Card" property="idCard" jdbcType="VARCHAR" />
+    <result column="graduate_School" property="graduateSchool" jdbcType="VARCHAR" />
+    <result column="education_Background" property="educationBackground" jdbcType="VARCHAR" />
+    <result column="matriculation_Time" property="matriculationTime" jdbcType="VARCHAR" />
+    <result column="profession" property="profession" jdbcType="VARCHAR" />
+    <result column="graduation_Time" property="graduationTime" jdbcType="VARCHAR" />
+    <result column="graduation_Conclusion" property="graduationConclusion" jdbcType="VARCHAR" />
+    <result column="education_Type" property="educationType" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, app_no, name, id_Card, graduate_School, education_Background, matriculation_Time, 
+    profession, graduation_Time, graduation_Conclusion, education_Type, status, create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_dm_education_check
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_dm_education_check
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="duomi.dbMap.bean.EducationCheckPo" >
+    insert into t_dm_education_check (id, app_no, name, 
+      id_Card, graduate_School, education_Background, 
+      matriculation_Time, profession, graduation_Time, 
+      graduation_Conclusion, education_Type, status, 
+      create_time)
+    values (#{id,jdbcType=BIGINT}, #{appNo,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{idCard,jdbcType=VARCHAR}, #{graduateSchool,jdbcType=VARCHAR}, #{educationBackground,jdbcType=VARCHAR}, 
+      #{matriculationTime,jdbcType=VARCHAR}, #{profession,jdbcType=VARCHAR}, #{graduationTime,jdbcType=VARCHAR}, 
+      #{graduationConclusion,jdbcType=VARCHAR}, #{educationType,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="duomi.dbMap.bean.EducationCheckPo" >
+    insert into t_dm_education_check
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="appNo != null" >
+        app_no,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="idCard != null" >
+        id_Card,
+      </if>
+      <if test="graduateSchool != null" >
+        graduate_School,
+      </if>
+      <if test="educationBackground != null" >
+        education_Background,
+      </if>
+      <if test="matriculationTime != null" >
+        matriculation_Time,
+      </if>
+      <if test="profession != null" >
+        profession,
+      </if>
+      <if test="graduationTime != null" >
+        graduation_Time,
+      </if>
+      <if test="graduationConclusion != null" >
+        graduation_Conclusion,
+      </if>
+      <if test="educationType != null" >
+        education_Type,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="appNo != null" >
+        #{appNo,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="idCard != null" >
+        #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="graduateSchool != null" >
+        #{graduateSchool,jdbcType=VARCHAR},
+      </if>
+      <if test="educationBackground != null" >
+        #{educationBackground,jdbcType=VARCHAR},
+      </if>
+      <if test="matriculationTime != null" >
+        #{matriculationTime,jdbcType=VARCHAR},
+      </if>
+      <if test="profession != null" >
+        #{profession,jdbcType=VARCHAR},
+      </if>
+      <if test="graduationTime != null" >
+        #{graduationTime,jdbcType=VARCHAR},
+      </if>
+      <if test="graduationConclusion != null" >
+        #{graduationConclusion,jdbcType=VARCHAR},
+      </if>
+      <if test="educationType != null" >
+        #{educationType,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="duomi.dbMap.bean.EducationCheckPo" >
+    update t_dm_education_check
+    <set >
+      <if test="appNo != null" >
+        app_no = #{appNo,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="idCard != null" >
+        id_Card = #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="graduateSchool != null" >
+        graduate_School = #{graduateSchool,jdbcType=VARCHAR},
+      </if>
+      <if test="educationBackground != null" >
+        education_Background = #{educationBackground,jdbcType=VARCHAR},
+      </if>
+      <if test="matriculationTime != null" >
+        matriculation_Time = #{matriculationTime,jdbcType=VARCHAR},
+      </if>
+      <if test="profession != null" >
+        profession = #{profession,jdbcType=VARCHAR},
+      </if>
+      <if test="graduationTime != null" >
+        graduation_Time = #{graduationTime,jdbcType=VARCHAR},
+      </if>
+      <if test="graduationConclusion != null" >
+        graduation_Conclusion = #{graduationConclusion,jdbcType=VARCHAR},
+      </if>
+      <if test="educationType != null" >
+        education_Type = #{educationType,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="duomi.dbMap.bean.EducationCheckPo" >
+    update t_dm_education_check
+    set app_no = #{appNo,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      id_Card = #{idCard,jdbcType=VARCHAR},
+      graduate_School = #{graduateSchool,jdbcType=VARCHAR},
+      education_Background = #{educationBackground,jdbcType=VARCHAR},
+      matriculation_Time = #{matriculationTime,jdbcType=VARCHAR},
+      profession = #{profession,jdbcType=VARCHAR},
+      graduation_Time = #{graduationTime,jdbcType=VARCHAR},
+      graduation_Conclusion = #{graduationConclusion,jdbcType=VARCHAR},
+      education_Type = #{educationType,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

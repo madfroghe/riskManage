@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="duomi.dbMap.mapper.LitigationJudgmentDocPoMapper" >
+	
+	<sql id="TABLE_NAME" >
+	    t_dm_personlitigation_judgmentdoc
+	  </sql>
+	  
+	  <select id="querylistByMap" resultMap="BaseResultMap" parameterType="java.util.Map" >
+	    select 
+	    	<include refid="Base_Column_List" />
+	    from 
+	     	<include refid="TABLE_NAME" /> 
+	    <where>
+		     <trim suffixOverrides="AND" >
+		     	  <if test="queryid != null" >
+			        queryid = #{queryid,jdbcType=BIGINT} AND
+			      </if>
+			      <if test="caseNo != null" >
+			        case_No = #{caseNo,jdbcType=VARCHAR} AND
+			      </if>
+			      <if test="caseType != null" >
+			        case_Type = #{caseType,jdbcType=VARCHAR} AND
+			      </if>
+			      <if test="recordTime != null" >
+			        record_Time = #{recordTime,jdbcType=VARCHAR} AND
+			      </if>
+			      <if test="content != null" >
+			        content = #{content,jdbcType=VARCHAR} AND
+			      </if>
+			      <if test="title != null" >
+			        title = #{title,jdbcType=VARCHAR} AND
+			      </if>
+			      <if test="resume != null" >
+			        resume = #{resume,jdbcType=VARCHAR} AND
+			      </if>
+			      <if test="creatTime != null" >
+			        creat_time = #{creatTime,jdbcType=TIMESTAMP} AND
+			      </if>
+		     </trim>
+	    </where>
+	     
+	  </select>
+
+
+</mapper>

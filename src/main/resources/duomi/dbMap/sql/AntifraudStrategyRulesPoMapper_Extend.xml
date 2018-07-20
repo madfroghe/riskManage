@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="duomi.dbMap.mapper.AntifraudStrategyRulesPoMapper" >
+	
+	<sql id="TABLE_NAME" >
+	    t_dm_antifraud_strategy_rules
+	  </sql>
+	  
+	  <select id="querylistByMap" resultMap="BaseResultMap" parameterType="java.util.Map" >
+	    select 
+	    	<include refid="Base_Column_List" />
+	    from 
+	     	<include refid="TABLE_NAME" /> 
+	    <where>
+		     <trim suffixOverrides="AND" >
+			     <if test="id != null" >
+			        #{id,jdbcType=BIGINT} AND
+			      </if>
+			      <if test="antifraudId != null" >
+			        #{antifraudId,jdbcType=BIGINT} AND
+			      </if>
+			      <if test="antifraudStrategyId != null" >
+			        #{antifraudStrategyId,jdbcType=BIGINT} AND
+			      </if>
+			      <if test="ruleName != null" >
+			        #{ruleName,jdbcType=VARCHAR} AND
+			      </if>
+			      <if test="ruleId != null" >
+			        #{ruleId,jdbcType=VARCHAR} AND
+			      </if>
+			      <if test="score != null" >
+			        #{score,jdbcType=VARCHAR} AND
+			      </if>
+			      <if test="decision != null" >
+			        #{decision,jdbcType=VARCHAR} AND
+			      </if>
+			      <if test="memo != null" >
+			        #{memo,jdbcType=VARCHAR} AND
+			      </if>
+			      <if test="createTime != null" >
+			        #{createTime,jdbcType=TIMESTAMP} AND
+			      </if>
+		     </trim>
+	    </where>
+	     
+	  </select>
+
+</mapper>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="duomi.dbMap.mapper.LitigationDiscreditNoticePoMapper" >
+
+	<sql id="TABLE_NAME" >
+	    t_dm_personlitigation_discreditnotice
+	  </sql>
+	  
+	  <select id="querylistByMap" resultMap="BaseResultMap" parameterType="java.util.Map" >
+	    select 
+	    	<include refid="Base_Column_List" />
+	    from 
+	     	<include refid="TABLE_NAME" /> 
+	    <where>
+		     <trim suffixOverrides="AND" >
+		     	<if test="queryid != null" >
+			        queryid = #{queryid,jdbcType=BIGINT} AND
+			      </if>
+			      <if test="gender != null" >
+			        gender = #{gender,jdbcType=VARCHAR} AND
+			      </if>
+			      <if test="implementationStatus != null" >
+			        implementation_Status = #{implementationStatus,jdbcType=VARCHAR} AND
+			      </if>
+			      <if test="execid != null" >
+			        execid = #{execid,jdbcType=VARCHAR} AND
+			      </if>
+			      <if test="name != null" >
+			        name = #{name,jdbcType=VARCHAR} AND
+			      </if>
+			      <if test="identificationNo != null" >
+			        identification_NO = #{identificationNo,jdbcType=VARCHAR} AND
+			      </if>
+			      <if test="executableUnit != null" >
+			        executable_Unit = #{executableUnit,jdbcType=VARCHAR} AND
+			      </if>
+			      <if test="specificCircumstances != null" >
+			        specific_Circumstances = #{specificCircumstances,jdbcType=VARCHAR} AND
+			      </if>
+			      <if test="age != null" >
+			        age = #{age,jdbcType=VARCHAR} AND
+			      </if>
+			      <if test="postTime != null" >
+			        post_Time = #{postTime,jdbcType=VARCHAR} AND
+			      </if>
+			      <if test="caseNo != null" >
+			        case_NO = #{caseNo,jdbcType=VARCHAR} AND
+			      </if>
+			      <if test="recordTime != null" >
+			        record_Time = #{recordTime,jdbcType=VARCHAR} AND
+			      </if>
+			      <if test="court != null" >
+			        court = #{court,jdbcType=VARCHAR} AND
+			      </if>
+			      <if test="type != null" >
+			        type = #{type,jdbcType=VARCHAR} AND
+			      </if>
+			      <if test="province != null" >
+			        province = #{province,jdbcType=VARCHAR} AND
+			      </if>
+			      <if test="createTime != null" >
+			        create_time = #{createTime,jdbcType=TIMESTAMP} AND
+			      </if>
+		     </trim>
+	    </where>
+	     
+	  </select>
+
+
+</mapper>

@@ -1,0 +1,15 @@
+{
+"success":true,
+"data":{
+"name":"test",
+"idCard":"11111",
+"graduateSchool":"四川大学",
+"educationBackground":"本科",
+"matriculationTime":"2017",
+"profession":"电子",
+"graduationTime":"2019",
+"graduationConclusion":"结论",
+"educationType":"本科",
+"status":"EXIST"
+    }
+}

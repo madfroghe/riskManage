@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="duomi.dbMap.mapper.MobileDetailRecordPoMapper" >
+  <resultMap id="BaseResultMap" type="duomi.dbMap.bean.MobileDetailRecordPo" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="app_no" property="appNo" jdbcType="VARCHAR" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="task_id" property="taskId" jdbcType="VARCHAR" />
+    <result column="call_start_time" property="callStartTime" jdbcType="VARCHAR" />
+    <result column="call_address" property="callAddress" jdbcType="VARCHAR" />
+    <result column="call_type_name" property="callTypeName" jdbcType="VARCHAR" />
+    <result column="call_other_number" property="callOtherNumber" jdbcType="VARCHAR" />
+    <result column="call_time" property="callTime" jdbcType="VARCHAR" />
+    <result column="call_land_type" property="callLandType" jdbcType="VARCHAR" />
+    <result column="call_cost" property="callCost" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+  <resultMap id="mobileDetailRecordWithCountMap" type="duomi.dbMap.bean.MobileDetailRecordWithCountPo">
+    <result column="mobile" property="mobile" jdbcType="VARCHAR"/>
+    <result column="call_other_number" property="callOtherNumber" jdbcType="VARCHAR"/>
+    <result column="call_time" property="callTime" jdbcType="VARCHAR"/>
+    <result column="counts" property="counts" jdbcType="INTEGER"/>
+    <result column="called" property="called" jdbcType="INTEGER"/>
+    <result column="min_call_time" property="min_call_time" jdbcType="VARCHAR"/>
+    <result column="max_call_time" property="max_call_time" jdbcType="VARCHAR"/>
+    <result column="max_day_counts" property="max_day_counts" jdbcType="INTEGER"/>
+    <result column="day_start_counts" property="day_start_counts" jdbcType="INTEGER"/>
+  </resultMap>
+
+  <resultMap id="moveDetailMap" type="duomi.dbMap.bean.MoveDetail">
+     <result column="call_start_time" property="callStartTime" jdbcType="VARCHAR"/>
+     <result column="call_address" property="callAddress" jdbcType="VARCHAR"/>
+  </resultMap>
+
+  <resultMap id="costDetailMap" type="duomi.dbMap.bean.CostDetail">
+     <result column="totalMoney" property="totalMoney" jdbcType="VARCHAR"/>
+     <result column="callTime" property="month" jdbcType="VARCHAR"/>
+  </resultMap>
+
+
+  <sql id="Base_Column_List" >
+    id, app_no, mobile, task_id, call_start_time, call_address, call_type_name, call_other_number, 
+    call_time, call_land_type, call_cost, create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_duomi_mobiledetail_record
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_duomi_mobiledetail_record
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="duomi.dbMap.bean.MobileDetailRecordPo" >
+    insert into t_duomi_mobiledetail_record (id, app_no, mobile, 
+      task_id, call_start_time, call_address, 
+      call_type_name, call_other_number, call_time, 
+      call_land_type, call_cost, create_time
+      )
+    values (#{id,jdbcType=BIGINT}, #{appNo,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, 
+      #{taskId,jdbcType=VARCHAR}, #{callStartTime,jdbcType=VARCHAR}, #{callAddress,jdbcType=VARCHAR}, 
+      #{callTypeName,jdbcType=VARCHAR}, #{callOtherNumber,jdbcType=VARCHAR}, #{callTime,jdbcType=VARCHAR}, 
+      #{callLandType,jdbcType=VARCHAR}, #{callCost,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="duomi.dbMap.bean.MobileDetailRecordPo" >
+    insert into t_duomi_mobiledetail_record
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="appNo != null" >
+        app_no,
+      </if>
+      <if test="mobile != null" >
+        mobile,
+      </if>
+      <if test="taskId != null" >
+        task_id,
+      </if>
+      <if test="callStartTime != null" >
+        call_start_time,
+      </if>
+      <if test="callAddress != null" >
+        call_address,
+      </if>
+      <if test="callTypeName != null" >
+        call_type_name,
+      </if>
+      <if test="callOtherNumber != null" >
+        call_other_number,
+      </if>
+      <if test="callTime != null" >
+        call_time,
+      </if>
+      <if test="callLandType != null" >
+        call_land_type,
+      </if>
+      <if test="callCost != null" >
+        call_cost,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="appNo != null" >
+        #{appNo,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="taskId != null" >
+        #{taskId,jdbcType=VARCHAR},
+      </if>
+      <if test="callStartTime != null" >
+        #{callStartTime,jdbcType=VARCHAR},
+      </if>
+      <if test="callAddress != null" >
+        #{callAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="callTypeName != null" >
+        #{callTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="callOtherNumber != null" >
+        #{callOtherNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="callTime != null" >
+        #{callTime,jdbcType=VARCHAR},
+      </if>
+      <if test="callLandType != null" >
+        #{callLandType,jdbcType=VARCHAR},
+      </if>
+      <if test="callCost != null" >
+        #{callCost,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="duomi.dbMap.bean.MobileDetailRecordPo" >
+    update t_duomi_mobiledetail_record
+    <set >
+      <if test="appNo != null" >
+        app_no = #{appNo,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="taskId != null" >
+        task_id = #{taskId,jdbcType=VARCHAR},
+      </if>
+      <if test="callStartTime != null" >
+        call_start_time = #{callStartTime,jdbcType=VARCHAR},
+      </if>
+      <if test="callAddress != null" >
+        call_address = #{callAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="callTypeName != null" >
+        call_type_name = #{callTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="callOtherNumber != null" >
+        call_other_number = #{callOtherNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="callTime != null" >
+        call_time = #{callTime,jdbcType=VARCHAR},
+      </if>
+      <if test="callLandType != null" >
+        call_land_type = #{callLandType,jdbcType=VARCHAR},
+      </if>
+      <if test="callCost != null" >
+        call_cost = #{callCost,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="duomi.dbMap.bean.MobileDetailRecordPo" >
+    update t_duomi_mobiledetail_record
+    set app_no = #{appNo,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      task_id = #{taskId,jdbcType=VARCHAR},
+      call_start_time = #{callStartTime,jdbcType=VARCHAR},
+      call_address = #{callAddress,jdbcType=VARCHAR},
+      call_type_name = #{callTypeName,jdbcType=VARCHAR},
+      call_other_number = #{callOtherNumber,jdbcType=VARCHAR},
+      call_time = #{callTime,jdbcType=VARCHAR},
+      call_land_type = #{callLandType,jdbcType=VARCHAR},
+      call_cost = #{callCost,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

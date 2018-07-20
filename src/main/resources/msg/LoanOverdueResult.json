@@ -1,0 +1,18 @@
+{
+"success":true,
+"data":{
+"month":"24",
+"list":[
+                    {
+"P_TYPE": "2",
+"PLATFORM": "EM_107199",
+"COUNTS": "6",
+"MONEY": "0W～0.2W",
+"PROVINCE": "广西",
+"CITY": "钦州"
+        }],
+"status":"EXIST",
+"statusDesc":"查询有结果"
+    }
+}
+

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="duomi.dbMap.mapper.CallDetailPoMapper" >
+    <resultMap id="BaseResultMap" type="duomi.dbMap.bean.CallDetailPo" >
+        <id column="id" property="id" jdbcType="BIGINT" />
+        <result column="task_id" property="taskId" jdbcType="VARCHAR" />
+        <result column="status_type" property="statusType" jdbcType="VARCHAR" />
+    </resultMap>
+    <resultMap id="ResultMapWithBLOBs" type="duomi.dbMap.bean.CallDetailPoWithBLOBs" extends="BaseResultMap" >
+        <result column="req_json" property="reqJson" jdbcType="LONGVARCHAR" />
+        <result column="res_json" property="resJson" jdbcType="LONGVARCHAR" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+        id, task_id, status_type
+    </sql>
+    <sql id="Blob_Column_List" >
+        req_json, res_json
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+        select
+        <include refid="Base_Column_List" />
+        ,
+        <include refid="Blob_Column_List" />
+        from t_dm_csp_call_detail
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+        delete from t_dm_csp_call_detail
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" parameterType="duomi.dbMap.bean.CallDetailPoWithBLOBs" >
+        insert into t_dm_csp_call_detail (id, task_id, status_type,
+        req_json, res_json)
+        values (#{id,jdbcType=BIGINT}, #{taskId,jdbcType=VARCHAR}, #{statusType,jdbcType=VARCHAR},
+        #{reqJson,jdbcType=LONGVARCHAR}, #{resJson,jdbcType=LONGVARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="duomi.dbMap.bean.CallDetailPoWithBLOBs" >
+        insert into t_dm_csp_call_detail
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                id,
+            </if>
+            <if test="taskId != null" >
+                task_id,
+            </if>
+            <if test="statusType != null" >
+                status_type,
+            </if>
+            <if test="reqJson != null" >
+                req_json,
+            </if>
+            <if test="resJson != null" >
+                res_json,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="taskId != null" >
+                #{taskId,jdbcType=VARCHAR},
+            </if>
+            <if test="statusType != null" >
+                #{statusType,jdbcType=VARCHAR},
+            </if>
+            <if test="reqJson != null" >
+                #{reqJson,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="resJson != null" >
+                #{resJson,jdbcType=LONGVARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="duomi.dbMap.bean.CallDetailPoWithBLOBs" >
+        update t_dm_csp_call_detail
+        <set >
+            <if test="taskId != null" >
+                task_id = #{taskId,jdbcType=VARCHAR},
+            </if>
+            <if test="statusType != null" >
+                status_type = #{statusType,jdbcType=VARCHAR},
+            </if>
+            <if test="reqJson != null" >
+                req_json = #{reqJson,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="resJson != null" >
+                res_json = #{resJson,jdbcType=LONGVARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKeyWithBLOBs" parameterType="duomi.dbMap.bean.CallDetailPoWithBLOBs" >
+        update t_dm_csp_call_detail
+        set task_id = #{taskId,jdbcType=VARCHAR},
+        status_type = #{statusType,jdbcType=VARCHAR},
+        req_json = #{reqJson,jdbcType=LONGVARCHAR},
+        res_json = #{resJson,jdbcType=LONGVARCHAR}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="duomi.dbMap.bean.CallDetailPo" >
+        update t_dm_csp_call_detail
+        set task_id = #{taskId,jdbcType=VARCHAR},
+        status_type = #{statusType,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+</mapper>

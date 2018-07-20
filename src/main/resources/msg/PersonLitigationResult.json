@@ -1,0 +1,37 @@
+{
+    "success":true,
+    "data":{
+        "sxgg":{
+            "idCard":"xxx",
+            "status":"NO_DATA"
+        },
+        "cpws":{
+            "idCard":"xxx",
+            "status":"NO_DATA",
+            "pageData":[
+                {
+                	"caseNo":"1xxxx",
+                	"caseType":"2xxxx",
+                	"recordTime":"3xxxx",
+                	"content":"4xxxx",
+                	"title":"5xxxx",
+                	"desc":"6xxxx"
+                }
+            ]
+        },
+        "zxgg":{
+            "idCard":"xxx",
+            "status":"EXIST",
+            "pageData":[
+                {
+                    "name":"xxx",
+                    "identificationNO":"xxx",
+                    "executionTarget":72150,
+                    "recordTime":1484236800000,
+                    "caseNO":"(2017)黔0382执141号",
+                    "court":" "
+                }
+            ]
+        }
+    }
+}

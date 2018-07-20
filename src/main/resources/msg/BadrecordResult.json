@@ -1,0 +1,10 @@
+{
+"success": true,
+"data": {
+"name": "XXX",
+"idCard": "511102XXXXXX5925",
+"comparisonResult": "前科",
+"caseTime": "2010-10-21 00:00:00/",
+"status": "EXIST"
+  }
+}

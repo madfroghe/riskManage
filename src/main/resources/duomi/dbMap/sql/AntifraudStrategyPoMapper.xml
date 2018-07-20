@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="duomi.dbMap.mapper.AntifraudStrategyPoMapper" >
+  <resultMap id="BaseResultMap" type="duomi.dbMap.bean.AntifraudStrategyPo" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="antifraud_id" property="antifraudId" jdbcType="BIGINT" />
+    <result column="risk_Type" property="riskType" jdbcType="VARCHAR" />
+    <result column="strategy_Decision" property="strategyDecision" jdbcType="VARCHAR" />
+    <result column="strategy_Id" property="strategyId" jdbcType="VARCHAR" />
+    <result column="strategy_Mode" property="strategyMode" jdbcType="VARCHAR" />
+    <result column="strategy_Name" property="strategyName" jdbcType="VARCHAR" />
+    <result column="strategy_Score" property="strategyScore" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, antifraud_id, risk_Type, strategy_Decision, strategy_Id, strategy_Mode, strategy_Name, 
+    strategy_Score, create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_dm_antifraud_strategy
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_dm_antifraud_strategy
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="duomi.dbMap.bean.AntifraudStrategyPo" >
+    insert into t_dm_antifraud_strategy (id, antifraud_id, risk_Type, 
+      strategy_Decision, strategy_Id, strategy_Mode, 
+      strategy_Name, strategy_Score, create_time
+      )
+    values (#{id,jdbcType=BIGINT}, #{antifraudId,jdbcType=BIGINT}, #{riskType,jdbcType=VARCHAR}, 
+      #{strategyDecision,jdbcType=VARCHAR}, #{strategyId,jdbcType=VARCHAR}, #{strategyMode,jdbcType=VARCHAR}, 
+      #{strategyName,jdbcType=VARCHAR}, #{strategyScore,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="duomi.dbMap.bean.AntifraudStrategyPo" >
+    insert into t_dm_antifraud_strategy
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="antifraudId != null" >
+        antifraud_id,
+      </if>
+      <if test="riskType != null" >
+        risk_Type,
+      </if>
+      <if test="strategyDecision != null" >
+        strategy_Decision,
+      </if>
+      <if test="strategyId != null" >
+        strategy_Id,
+      </if>
+      <if test="strategyMode != null" >
+        strategy_Mode,
+      </if>
+      <if test="strategyName != null" >
+        strategy_Name,
+      </if>
+      <if test="strategyScore != null" >
+        strategy_Score,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="antifraudId != null" >
+        #{antifraudId,jdbcType=BIGINT},
+      </if>
+      <if test="riskType != null" >
+        #{riskType,jdbcType=VARCHAR},
+      </if>
+      <if test="strategyDecision != null" >
+        #{strategyDecision,jdbcType=VARCHAR},
+      </if>
+      <if test="strategyId != null" >
+        #{strategyId,jdbcType=VARCHAR},
+      </if>
+      <if test="strategyMode != null" >
+        #{strategyMode,jdbcType=VARCHAR},
+      </if>
+      <if test="strategyName != null" >
+        #{strategyName,jdbcType=VARCHAR},
+      </if>
+      <if test="strategyScore != null" >
+        #{strategyScore,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="duomi.dbMap.bean.AntifraudStrategyPo" >
+    update t_dm_antifraud_strategy
+    <set >
+      <if test="antifraudId != null" >
+        antifraud_id = #{antifraudId,jdbcType=BIGINT},
+      </if>
+      <if test="riskType != null" >
+        risk_Type = #{riskType,jdbcType=VARCHAR},
+      </if>
+      <if test="strategyDecision != null" >
+        strategy_Decision = #{strategyDecision,jdbcType=VARCHAR},
+      </if>
+      <if test="strategyId != null" >
+        strategy_Id = #{strategyId,jdbcType=VARCHAR},
+      </if>
+      <if test="strategyMode != null" >
+        strategy_Mode = #{strategyMode,jdbcType=VARCHAR},
+      </if>
+      <if test="strategyName != null" >
+        strategy_Name = #{strategyName,jdbcType=VARCHAR},
+      </if>
+      <if test="strategyScore != null" >
+        strategy_Score = #{strategyScore,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="duomi.dbMap.bean.AntifraudStrategyPo" >
+    update t_dm_antifraud_strategy
+    set antifraud_id = #{antifraudId,jdbcType=BIGINT},
+      risk_Type = #{riskType,jdbcType=VARCHAR},
+      strategy_Decision = #{strategyDecision,jdbcType=VARCHAR},
+      strategy_Id = #{strategyId,jdbcType=VARCHAR},
+      strategy_Mode = #{strategyMode,jdbcType=VARCHAR},
+      strategy_Name = #{strategyName,jdbcType=VARCHAR},
+      strategy_Score = #{strategyScore,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

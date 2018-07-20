@@ -1,0 +1,12 @@
+{
+  "success": true,
+  "data": {
+    "name": "XXX",
+"mobile": "XXXXXXXXXXX",
+"idCard": "XXXXXXXXXXXXXXXX",
+"status": "EXIST",
+"statusDesc": "查询成功",
+"number": "[0,2]",
+"numberDesc": "0~2个"
+  }
+}

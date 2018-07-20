@@ -1,0 +1,116 @@
+{
+  "success": true,
+  "data": {
+    "ryposshaList": [
+      {
+        "card": "510203********0824",
+        "contribution": "220.000000",
+        "contributionCurrency": "人民币",
+        "currency": "人民币",
+        "entName": "深圳瑞合通资产管理有限公司",
+        "entNo": "44030******6262",
+        "entType": "有限责任公司",
+        "identId": "",
+        "name": "*倩",
+        "regcapital": "1000.000000",
+        "status": "在营（开业）",
+        "fundedRatio": ""
+      },
+      {
+        "card": "510203********0824",
+        "contribution": "1000.000000",
+        "contributionCurrency": "人民币",
+        "currency": "人民币",
+        "entName": "四川投点点信息技术有限公司",
+        "entNo": "5101*******8631",
+        "entType": "有限责任公司(自然人投资或控股)",
+        "identId": "",
+        "name": "*倩",
+        "regcapital": "5000.000000",
+        "status": "注销",
+        "fundedRatio": ""
+      },
+      {
+        "card": "510203********0824",
+        "contribution": "660.000000",
+        "contributionCurrency": "人民币",
+        "currency": "人民币",
+        "entName": "深圳易米互联网金融服务有限公司",
+        "entNo": "44030******3890",
+        "entType": "有限责任公司",
+        "identId": "",
+        "name": "*倩",
+        "regcapital": "3000.000000",
+        "status": "在营（开业）",
+        "fundedRatio": ""
+      }
+    ],
+    "ryposperList": [
+      {
+        "currency": "人民币",
+        "entName": "深圳瑞合通资产管理有限公司",
+        "entNo": "44030******6262",
+        "entType": "有限责任公司",
+        "position": "总经理",
+        "regcapital": "1000.000000",
+        "status": "在营（开业）",
+        "name": ""
+      },
+      {
+        "currency": "人民币",
+        "entName": "深圳易米互联网金融服务有限公司",
+        "entNo": "44030******3890",
+        "entType": "有限责任公司",
+        "position": "",
+        "regcapital": "3000.000000",
+        "status": "在营（开业）",
+        "name": ""
+      },
+      {
+        "currency": "人民币",
+        "entName": "四川投点点信息技术有限公司",
+        "entNo": "510203********0824",
+        "entType": "有限责任公司(自然人投资或控股)",
+        "position": "监事",
+        "regcapital": "5000.000000",
+        "status": "注销",
+        "name": ""
+      },
+      {
+        "currency": "人民币",
+        "entName": "深圳易米互联网金融服务有限公司",
+        "entNo": "44030******3890",
+        "entType": "有限责任公司",
+        "position": "总经理",
+        "regcapital": "3000.000000",
+        "status": "在营（开业）",
+        "name": ""
+      }
+    ],
+    "ryposfrList": [
+      {
+        "currency": "人民币",
+        "entName": "深圳易米互联网金融服务有限公司",
+        "entNo": "44030******3890",
+        "entType": "有限责任公司",
+        "name": "*倩",
+        "regcapital": "3000.000000",
+        "status": "在营（开业）"
+      },
+      {
+        "currency": "人民币",
+        "entName": "深圳瑞合通资产管理有限公司",
+        "entNo": "44030******6262",
+        "entType": "有限责任公司",
+        "name": "*倩",
+        "regcapital": "1000.000000",
+        "status": "在营（开业）"
+      }
+    ],
+    "punishbreakList": [],
+    "punishedList": [],
+    "personCaseinfoList": [],
+    "idCard": "510203********0824",
+    "status": "EXIST"
+  }
+}

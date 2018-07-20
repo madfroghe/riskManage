@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="duomi.dbMap.mapper.MultiplelendOverduePoMapper" >
+
+	<sql id="TABLE_NAME" >
+	    t_dm_multiplelend_overdue
+	  </sql>
+	  
+	  <select id="querylistByMap" resultMap="BaseResultMap" parameterType="java.util.Map" >
+	    select 
+	    	<include refid="Base_Column_List" />
+	    from 
+	     	<include refid="TABLE_NAME" /> 
+	    <where>
+		     <trim suffixOverrides="AND" >
+		     	<if test="multiplelendId != null" >
+			        MultipleLend_id = #{multiplelendId,jdbcType=BIGINT} AND
+			      </if>
+			      <if test="code != null" >
+			        code = #{code,jdbcType=VARCHAR} AND
+			      </if>
+			      <if test="counts != null" >
+			        counts = #{counts,jdbcType=INTEGER} AND
+			      </if>
+			      <if test="money != null" >
+			        money = #{money,jdbcType=VARCHAR} AND
+			      </if>
+			      <if test="createTime != null" >
+			        create_time = #{createTime,jdbcType=TIMESTAMP} AND
+			      </if>
+		     </trim>
+	    </where>
+	     
+	  </select>
+
+</mapper>

@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="duomi.dbMap.mapper.MobileDetailRecordPoMapper" >
+  
+ 	 <sql id="TABLE_NAME" >
+	    t_duomi_mobiledetail_record
+	  </sql>
+	  
+	  <select id="querylistByMap" resultMap="BaseResultMap" parameterType="java.util.Map" >
+	    select 
+	    	<include refid="Base_Column_List" />
+	    from 
+	     	<include refid="TABLE_NAME" /> 
+	    <where>
+	     	<trim suffixOverrides="AND" >
+			     <if test="appNo != null" >
+			        app_no = #{appNo,jdbcType=VARCHAR} AND
+			      </if>
+			      <if test="mobile != null" >
+			        mobile = #{mobile,jdbcType=VARCHAR} AND
+			      </if>
+			      <if test="taskId != null" >
+			        task_id = #{taskId,jdbcType=VARCHAR} AND
+			      </if>
+			      <if test="callStartTime != null" >
+			        call_start_time = #{callStartTime,jdbcType=VARCHAR} AND
+			      </if>
+			      <if test="callAddress != null" >
+			        call_address = #{callAddress,jdbcType=VARCHAR} AND
+			      </if>
+			      <if test="callTypeName != null" >
+			        call_type_name = #{callTypeName,jdbcType=VARCHAR} AND
+			      </if>
+			      <if test="callOtherNumber != null" >
+			        call_other_number = #{callOtherNumber,jdbcType=VARCHAR} AND
+			      </if>
+			      <if test="callTime != null" >
+			        call_time = #{callTime,jdbcType=VARCHAR} AND
+			      </if>
+			      <if test="callLandType != null" >
+			        call_land_type = #{callLandType,jdbcType=VARCHAR} AND
+			      </if>
+			      <if test="callCost != null" >
+			        call_cost = #{callCost,jdbcType=VARCHAR} AND
+			      </if>
+		       </trim>
+	    </where>
+	  </select>
+
+
+	  <select id="queryListByMobile" resultMap="mobileDetailRecordWithCountMap" parameterType="java.lang.String">
+		  select
+		  A.mobile,
+		  A.call_other_number,
+		  A.call_time,
+		  A.counts,
+		  A.called,
+		  A.min_call_time,
+		  A.max_call_time,
+		  B.max_day_counts,
+		  A.day_start_counts
+
+		  from
+
+		  (select
+		  mobile,
+		  call_other_number,
+		  sum(call_time) call_time,
+		  count(*) counts,
+		  sum(case when call_type_name='被叫' then 1 else 0 end) called,
+		  min(DATE(call_start_time)) min_call_time,
+		  max(DATE(call_start_time)) max_call_time,
+		  sum(case when
+		  (time(call_start_time)>time_format('00:00:00', '%H.%i.%s')) &amp; (time(call_start_time) &lt; time_format('06:00:00', '%H.%i.%s'))
+		  then 1 else 0 end) day_start_counts
+		  from t_duomi_mobiledetail_record
+		  where
+		  task_id = (select  max(task_id)   from t_duomi_mobiledetail_record  where mobile = #{mobile,jdbcType=VARCHAR})
+		  GROUP BY mobile,call_other_number) A
+
+
+		  LEFT JOIN
+		  (select mobile,call_other_number,max(day_counts) max_day_counts from
+		  (select
+		  mobile,
+		  call_other_number,
+		  date(call_start_time) days ,
+		  count(*) day_counts
+		  from t_duomi_mobiledetail_record
+		  where
+		  task_id = (select  max(task_id)   from t_duomi_mobiledetail_record  where mobile = #{mobile,jdbcType=VARCHAR})
+		  GROUP BY
+		  mobile,
+		  call_other_number,
+		  date(call_start_time))  a
+		  GROUP BY
+		  mobile,call_other_number) B ON A.mobile = B.mobile and A.call_other_number = B.call_other_number
+		  ORDER BY counts desc
+	  </select>
+
+
+	  <select id="queryMoveDetailListByMobile" resultMap="moveDetailMap" parameterType="java.lang.String">
+         SELECT DISTINCT(call_start_time) , call_address FROM t_duomi_mobiledetail_record WHERE task_id = (
+                    SELECT MAX(task_id) FROM t_duomi_mobiledetail_record WHERE mobile = #{mobile,jdbcType=VARCHAR})
+                    AND call_start_time > DATE_SUB(CURDATE(), INTERVAL 3 MONTH)
+         ORDER BY call_start_time DESC
+	  </select>
+
+      <select id="queryMonthCostDetailByMobile" resultMap="costDetailMap" parameterType="java.lang.String">
+		  SELECT sum(call_cost) as totalMoney , date_format(call_start_time, '%Y-%m') as callTime from t_duomi_mobiledetail_record
+            WHERE task_id = (
+                    SELECT MAX(task_id) FROM t_duomi_mobiledetail_record WHERE mobile = #{mobile,jdbcType=VARCHAR})
+                    AND call_start_time > DATE_SUB(CURDATE(), INTERVAL 6 MONTH)
+          group by date_format(call_start_time, '%Y-%m');
+	  </select>
+
+
+	  <select id="queryLatelyTaskByMap" resultMap="BaseResultMap" parameterType="java.util.Map" >
+	    select
+	    	DISTINCT a.mobile,a.task_id
+	    from 
+	     	<include refid="TABLE_NAME" />  a
+	    <where>
+	     	<trim suffixOverrides="AND" >
+			     <if test="appNo != null" >
+			        app_no = #{appNo,jdbcType=VARCHAR} AND
+			      </if>
+			      <if test="mobile != null" >
+			        mobile = #{mobile,jdbcType=VARCHAR} AND
+			      </if>
+			      <if test="taskId != null" >
+			        task_id = #{taskId,jdbcType=VARCHAR} AND
+			      </if>
+			      <if test="callStartTime != null" >
+			        call_start_time = #{callStartTime,jdbcType=VARCHAR} AND
+			      </if>
+			      <if test="callAddress != null" >
+			        call_address = #{callAddress,jdbcType=VARCHAR} AND
+			      </if>
+			      <if test="callTypeName != null" >
+			        call_type_name = #{callTypeName,jdbcType=VARCHAR} AND
+			      </if>
+			      <if test="callOtherNumber != null" >
+			        call_other_number = #{callOtherNumber,jdbcType=VARCHAR} AND
+			      </if>
+			      <if test="callTime != null" >
+			        call_time = #{callTime,jdbcType=VARCHAR} AND
+			      </if>
+			      <if test="callLandType != null" >
+			        call_land_type = #{callLandType,jdbcType=VARCHAR} AND
+			      </if>
+			      <if test="callCost != null" >
+			        call_cost = #{callCost,jdbcType=VARCHAR} AND
+			      </if>
+		       </trim>
+	    </where>
+	    order by  a.create_time DESC LIMIT  1;
+	  </select>
+
+	<select id="queryLatelyTaskInfoByMap" resultMap="BaseResultMap" parameterType="java.util.Map" >
+		select
+		<include refid="Base_Column_List" />
+		from
+		<include refid="TABLE_NAME" />  a
+		<where>
+			<trim suffixOverrides="AND" >
+				<if test="appNo != null" >
+					app_no = #{appNo,jdbcType=VARCHAR} AND
+				</if>
+				<if test="mobile != null" >
+					mobile = #{mobile,jdbcType=VARCHAR} AND
+				</if>
+				<if test="taskId != null" >
+					task_id = #{taskId,jdbcType=VARCHAR} AND
+				</if>
+				<if test="callStartTime != null" >
+					call_start_time = #{callStartTime,jdbcType=VARCHAR} AND
+				</if>
+				<if test="callAddress != null" >
+					call_address = #{callAddress,jdbcType=VARCHAR} AND
+				</if>
+				<if test="callTypeName != null" >
+					call_type_name = #{callTypeName,jdbcType=VARCHAR} AND
+				</if>
+				<if test="callOtherNumber != null" >
+					call_other_number = #{callOtherNumber,jdbcType=VARCHAR} AND
+				</if>
+				<if test="callTime != null" >
+					call_time = #{callTime,jdbcType=VARCHAR} AND
+				</if>
+				<if test="callLandType != null" >
+					call_land_type = #{callLandType,jdbcType=VARCHAR} AND
+				</if>
+				<if test="callCost != null" >
+					call_cost = #{callCost,jdbcType=VARCHAR} AND
+				</if>
+			</trim>
+		</where>
+		order by  a.create_time DESC LIMIT  1;
+	</select>
+  
+</mapper>

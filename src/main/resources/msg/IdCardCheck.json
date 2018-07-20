@@ -1,0 +1,10 @@
+{
+"success":true,
+"data":
+	{
+	"name":"test",
+	"idCard":"12323232332",
+	"status":"SAME",
+	"statusDesc":"一致"
+	    }
+}

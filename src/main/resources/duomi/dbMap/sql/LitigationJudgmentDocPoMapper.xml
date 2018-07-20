@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="duomi.dbMap.mapper.LitigationJudgmentDocPoMapper" >
+  <resultMap id="BaseResultMap" type="duomi.dbMap.bean.LitigationJudgmentDocPo" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="queryid" property="queryid" jdbcType="BIGINT" />
+    <result column="case_No" property="caseNo" jdbcType="VARCHAR" />
+    <result column="case_Type" property="caseType" jdbcType="VARCHAR" />
+    <result column="record_Time" property="recordTime" jdbcType="VARCHAR" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="resume" property="resume" jdbcType="VARCHAR" />
+    <result column="creat_time" property="creatTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, queryid, case_No, case_Type, record_Time, content, title, resume, creat_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_dm_personlitigation_judgmentdoc
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_dm_personlitigation_judgmentdoc
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="duomi.dbMap.bean.LitigationJudgmentDocPo" >
+    insert into t_dm_personlitigation_judgmentdoc (id, queryid, case_No, 
+      case_Type, record_Time, content, 
+      title, resume, creat_time
+      )
+    values (#{id,jdbcType=BIGINT}, #{queryid,jdbcType=BIGINT}, #{caseNo,jdbcType=VARCHAR}, 
+      #{caseType,jdbcType=VARCHAR}, #{recordTime,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, 
+      #{title,jdbcType=VARCHAR}, #{resume,jdbcType=VARCHAR}, #{creatTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="duomi.dbMap.bean.LitigationJudgmentDocPo" >
+    insert into t_dm_personlitigation_judgmentdoc
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="queryid != null" >
+        queryid,
+      </if>
+      <if test="caseNo != null" >
+        case_No,
+      </if>
+      <if test="caseType != null" >
+        case_Type,
+      </if>
+      <if test="recordTime != null" >
+        record_Time,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="resume != null" >
+        resume,
+      </if>
+      <if test="creatTime != null" >
+        creat_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="queryid != null" >
+        #{queryid,jdbcType=BIGINT},
+      </if>
+      <if test="caseNo != null" >
+        #{caseNo,jdbcType=VARCHAR},
+      </if>
+      <if test="caseType != null" >
+        #{caseType,jdbcType=VARCHAR},
+      </if>
+      <if test="recordTime != null" >
+        #{recordTime,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="resume != null" >
+        #{resume,jdbcType=VARCHAR},
+      </if>
+      <if test="creatTime != null" >
+        #{creatTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="duomi.dbMap.bean.LitigationJudgmentDocPo" >
+    update t_dm_personlitigation_judgmentdoc
+    <set >
+      <if test="queryid != null" >
+        queryid = #{queryid,jdbcType=BIGINT},
+      </if>
+      <if test="caseNo != null" >
+        case_No = #{caseNo,jdbcType=VARCHAR},
+      </if>
+      <if test="caseType != null" >
+        case_Type = #{caseType,jdbcType=VARCHAR},
+      </if>
+      <if test="recordTime != null" >
+        record_Time = #{recordTime,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="resume != null" >
+        resume = #{resume,jdbcType=VARCHAR},
+      </if>
+      <if test="creatTime != null" >
+        creat_time = #{creatTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="duomi.dbMap.bean.LitigationJudgmentDocPo" >
+    update t_dm_personlitigation_judgmentdoc
+    set queryid = #{queryid,jdbcType=BIGINT},
+      case_No = #{caseNo,jdbcType=VARCHAR},
+      case_Type = #{caseType,jdbcType=VARCHAR},
+      record_Time = #{recordTime,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      resume = #{resume,jdbcType=VARCHAR},
+      creat_time = #{creatTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

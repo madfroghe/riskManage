@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="duomi.dbMap.mapper.LitigationCourtNoticePoMapper" >
+	
+	<sql id="TABLE_NAME" >
+	    t_dm_personlitigation_courtnotice
+	  </sql>
+	  
+	  <select id="querylistByMap" resultMap="BaseResultMap" parameterType="java.util.Map" >
+	    select 
+	    	<include refid="Base_Column_List" />
+	    from 
+	     	<include refid="TABLE_NAME" /> 
+	    <where>
+		     <trim suffixOverrides="AND" >
+		     	<if test="queryid != null" >
+			        queryid = #{queryid,jdbcType=BIGINT} AND
+			      </if>
+			      <if test="announcementType != null" >
+			        announcement_Type = #{announcementType,jdbcType=VARCHAR} AND
+			      </if>
+			      <if test="content != null" >
+			        content = #{content,jdbcType=VARCHAR} AND
+			      </if>
+			      <if test="recordTime != null" >
+			        record_Time = #{recordTime,jdbcType=VARCHAR} AND
+			      </if>
+			      <if test="name != null" >
+			        name = #{name,jdbcType=VARCHAR} AND
+			      </if>
+			      <if test="court != null" >
+			        court = #{court,jdbcType=VARCHAR} AND
+			      </if>
+			      <if test="createTime != null" >
+			        create_time = #{createTime,jdbcType=TIMESTAMP} AND
+			      </if>
+		     
+		     </trim>
+	    </where>
+	     
+	  </select>
+	
+	
+</mapper>

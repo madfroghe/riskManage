@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="duomi.dbMap.mapper.CspInterfaceLogPoMapper" >
+  <resultMap id="BaseResultMap" type="duomi.dbMap.bean.CspInterfaceLogPo" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="inter_id" property="interId" jdbcType="BIGINT" />
+    <result column="app_no" property="appNo" jdbcType="VARCHAR" />
+    <result column="mobile_no" property="mobileNo" jdbcType="VARCHAR" />
+    <result column="inter_no" property="interNo" jdbcType="VARCHAR" />
+    <result column="msg_type" property="msgType" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="duomi.dbMap.bean.CspInterfaceLogPo" extends="BaseResultMap" >
+    <result column="message" property="message" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, inter_id, app_no, mobile_no, inter_no, msg_type, create_time
+  </sql>
+  <sql id="Blob_Column_List" >
+    message
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_dm_csp_interface_log
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_dm_csp_interface_log
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="duomi.dbMap.bean.CspInterfaceLogPo" >
+    insert into t_dm_csp_interface_log (id, inter_id, app_no, 
+      mobile_no, inter_no, msg_type, 
+      create_time, message)
+    values (#{id,jdbcType=BIGINT}, #{interId,jdbcType=BIGINT}, #{appNo,jdbcType=VARCHAR}, 
+      #{mobileNo,jdbcType=VARCHAR}, #{interNo,jdbcType=VARCHAR}, #{msgType,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{message,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="duomi.dbMap.bean.CspInterfaceLogPo" >
+    insert into t_dm_csp_interface_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="interId != null" >
+        inter_id,
+      </if>
+      <if test="appNo != null" >
+        app_no,
+      </if>
+      <if test="mobileNo != null" >
+        mobile_no,
+      </if>
+      <if test="interNo != null" >
+        inter_no,
+      </if>
+      <if test="msgType != null" >
+        msg_type,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="message != null" >
+        message,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="interId != null" >
+        #{interId,jdbcType=BIGINT},
+      </if>
+      <if test="appNo != null" >
+        #{appNo,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileNo != null" >
+        #{mobileNo,jdbcType=VARCHAR},
+      </if>
+      <if test="interNo != null" >
+        #{interNo,jdbcType=VARCHAR},
+      </if>
+      <if test="msgType != null" >
+        #{msgType,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="message != null" >
+        #{message,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="duomi.dbMap.bean.CspInterfaceLogPo" >
+    update t_dm_csp_interface_log
+    <set >
+      <if test="interId != null" >
+        inter_id = #{interId,jdbcType=BIGINT},
+      </if>
+      <if test="appNo != null" >
+        app_no = #{appNo,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileNo != null" >
+        mobile_no = #{mobileNo,jdbcType=VARCHAR},
+      </if>
+      <if test="interNo != null" >
+        inter_no = #{interNo,jdbcType=VARCHAR},
+      </if>
+      <if test="msgType != null" >
+        msg_type = #{msgType,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="message != null" >
+        message = #{message,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="duomi.dbMap.bean.CspInterfaceLogPo" >
+    update t_dm_csp_interface_log
+    set inter_id = #{interId,jdbcType=BIGINT},
+      app_no = #{appNo,jdbcType=VARCHAR},
+      mobile_no = #{mobileNo,jdbcType=VARCHAR},
+      inter_no = #{interNo,jdbcType=VARCHAR},
+      msg_type = #{msgType,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      message = #{message,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="duomi.dbMap.bean.CspInterfaceLogPo" >
+    update t_dm_csp_interface_log
+    set inter_id = #{interId,jdbcType=BIGINT},
+      app_no = #{appNo,jdbcType=VARCHAR},
+      mobile_no = #{mobileNo,jdbcType=VARCHAR},
+      inter_no = #{interNo,jdbcType=VARCHAR},
+      msg_type = #{msgType,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

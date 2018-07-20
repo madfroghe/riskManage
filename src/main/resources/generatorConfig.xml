@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration >
+  <!-- 数据库驱动包位置 --> 
+  
+  <classPathEntry  
+      location="/Users/jiangdongcheng/Desktop/mysql-connector-java-5.1.44/mysql-connector-java-5.1.44.jar" />
+      <!--   
+  <classPathEntry  
+      location="E:\\maven_repository\\repository\\mysql\\mysql-connector-java\\5.1.4\\mysql-connector-java-5.1.4.jar" />
+     --> 
+      
+  <context id="context1" >
+    <commentGenerator>
+        <property name="javaFileEncoding" value="UTF-8" />
+        <!-- 是否去除自动生成的注释 true：是 ， false：否 -->
+        <property name="suppressAllComments" value="true"/>
+        <!-- true代表取消时间戳，避免重复提交SVN -->
+        <property name="suppressDate" value="true"/>
+    </commentGenerator>
+
+    <!-- 数据库链接URL、用户名、密码 -->
+    <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://101.132.222.183:3306/cspdb" userId="csp" password="csp@2018" />
+    <!-- 生成模型的包名和位置 -->
+    <javaModelGenerator targetPackage="duomi.dbMap.bean" targetProject="src/main/java/" />
+    <!-- 生成映射文件的包名和位置 -->
+    <sqlMapGenerator targetPackage="duomi.dbMap.sql" targetProject="src/main/java" />
+    <!-- 生成DAO的包名和位置 -->
+    <javaClientGenerator targetPackage="duomi.dbMap.mapper" targetProject="src/main/java" type="XMLMAPPER" />
+    <!-- 要生成的表(tableName：表名 ，domainObjectName：生成的文件主名。 如下，会生成BabyVisitRecord. -->
+    <!-- 5个false是为了去掉ByExample后缀的方法 -->
+    
+    
+     <!-- ilog 日志 -->
+<!-- 	<table tableName="t_dm_decision_log" domainObjectName="DecisionLogRecordPo" 
+   		 enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+    </table> -->
+    
+     <!-- 通话详单 -->
+
+	<!-- <table tableName="t_duomi_mobiledetail_Record" domainObjectName="MobileDetailRecordPo" 
+   		 enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+    </table> -->
+ 
+    
+     <!-- 户籍查询 -->
+<!--     <table tableName="t_dm_CensusRegister" domainObjectName="CensusRegisterPo" 
+   		 enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+    </table>  --> 
+    
+    <!-- 房价网tokey -->
+    <!-- <table tableName="t_dm_house_tokey" domainObjectName="HouseTokeyPo" 
+   		 enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+    </table>  -->
+    
+    
+    <!--个人涉诉全类查询 -->
+    <!-- <table tableName="t_dm_PersonLitigation" domainObjectName="PersonLitigationPo" 
+   		 enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+    </table> 
+    <table tableName="t_dm_PersonLitigation_CourtNotice" domainObjectName="LitigationCourtNoticePo" 
+   		 enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+    </table>  
+    <table tableName="t_dm_PersonLitigation_DiscreditNotice" domainObjectName="LitigationDiscreditNoticePo" 
+   		 enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+    </table>
+    <table tableName="t_dm_PersonLitigation_ExecutiveNotice" domainObjectName="LitigationExecutiveNoticePo" 
+   		 enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+    </table> -->
+    <!-- <table tableName="t_dm_PersonLitigation_JudgmentDoc" domainObjectName="LitigationJudgmentDocPo" 
+   		 enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+    </table> -->
+    
+       <!-- 个人名下企业查询-->
+   <!-- <table tableName="t_dm_PersonEnterprise" domainObjectName="PersonEnterprisePo" 
+   		 enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+    </table> 
+     <table tableName="t_dm_PersonEnterprise_Manager" domainObjectName="EnterpriseManagerPo" 
+   		 enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+    </table> 
+       <table tableName="t_dm_PersonEnterprise_PersonCase" domainObjectName="EnterprisePersoncasePo" 
+   		 enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+    </table> 
+     <table tableName="t_dm_PersonEnterprise_PunishBreak" domainObjectName="EnterprisePunishbreakPo" 
+   		 enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+    </table> 
+    <table tableName="t_dm_PersonEnterprise_Punished" domainObjectName="EnterprisePunishedPo" 
+   		 enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+    </table> 
+    <table tableName="t_dm_PersonEnterprise_Representative" domainObjectName="EnterpriseRepresentativePo" 
+   		 enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+    </table> 
+    <table tableName="t_dm_PersonEnterprise_Shareholder" domainObjectName="EnterpriseShareholderPo" 
+   		 enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+    </table>  -->
+    
+     <!-- 智宝手机自然人接入号码个数查询-->
+<!--    <table tableName="t_dm_Mobile_AccessNum" domainObjectName="MobileAccessnumPo" 
+   		 enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+    </table>  -->
+    
+     <!-- 智宝手机月平均消费 -->
+   <!--  <table tableName="t_dm_Mobile_AverageFee" domainObjectName="MobileAveragefeePo" 
+   		 enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+    </table> -->
+    
+    
+     <!-- 手机号指定月通话天数最多的城市 -->
+   <!--  <table tableName="t_dm_Mobile_MostCity" domainObjectName="MobileMostcityPo" 
+   		 enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+    </table> -->
+    
+    <!-- 手机号码最近三月停机次数查询 -->
+    <!-- <table tableName="t_dm_Mobile_Halt" domainObjectName="MobileHaltPo" 
+   		 enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+    </table> -->
+    
+      <!--个人黑名单-->
+ <!-- 	<table  tableName="t_dm_PersonBlacklist" domainObjectName="PersonBlacklistPo" 
+   		 enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+    </table>  
+    <table  tableName="t_dm_personblacklist_detail" domainObjectName="PersonBlacklistDetailPo" 
+   		 enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+    </table>    -->
+    
+    
+    <!--反欺诈云-->
+ 	 <!-- <table  tableName="t_dm_MultipleLend" domainObjectName="MultipleLendPo" 
+   		 enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+    </table>  -->
+    <!--  <table  tableName="t_dm_MultipleLend_ArrearsInquiry" domainObjectName="MultiplelendArrearsinquiryPo" 
+   		 enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+    </table> 
+     <table  tableName="t_dm_MultipleLend_LoanApp" domainObjectName="MultiplelendLoanappPo" 
+   		 enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+    </table>
+    <table  tableName="t_dm_MultipleLend_LoanLender" domainObjectName="MultiplelendLoanlenderPo" 
+   		 enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+    </table>
+    <table  tableName="t_dm_MultipleLend_LoanReject" domainObjectName="MultiplelendLoanrejectPo" 
+   		 enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+    </table>
+    <table  tableName="t_dm_MultipleLend_Overdue" domainObjectName="MultiplelendOverduePo" 
+   		 enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+    </table>
+     <table  tableName="t_dm_MultipleLend_Regist" domainObjectName="MultiplelendRegistPo" 
+   		 enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+    </table> -->
+    
+    
+    <!--反欺诈云-->
+ 	<!-- <table  tableName="t_dm_antifraud" domainObjectName="AntifraudPo" 
+   		 enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+    </table> 
+    <table  tableName="t_dm_antifraud_strategy" domainObjectName="AntifraudStrategyPo" 
+   		 enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+    </table> -->
+   <!--   <table  tableName="t_dm_antifraud_strategy_rules" domainObjectName="AntifraudStrategyRulesPo" 
+   		 enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+    </table> -->
+    
+     <!--手机号在网时长查询(三大运营商)-->
+ 	<!-- <table  tableName="t_dm_mobile_status" domainObjectName="MobileStatusPo" 
+   		 enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+    </table>  -->
+    
+    
+        <!--手机号在网时长查询(三大运营商)-->
+<!--  	<table  tableName="t_dm_phone_Online_Duration" domainObjectName="PhoneOnlineDurationPo" 
+   		 enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+    </table>  -->
+    
+    <!--个人信用评分-->
+ <!-- 	<table  tableName="t_dm_Credit_Score" domainObjectName="CreditScorePo" 
+   		 enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+    </table>  -->
+    
+    
+      <!--不良信息核查-->
+<!-- 	<table  tableName="t_dm_badrecord_check" domainObjectName="BadrecordCheckPo" 
+   		 enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+    </table> 
+     -->
+    
+        <!--学历查询-->
+   <!-- <table  tableName="t_dm_education_check" domainObjectName="EducationCheckPo" 
+   		 enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+    </table> -->
+    
+    
+        <!--身份证一致性验证-->
+   <!--  <table  tableName="t_dm_idcard_check" domainObjectName="IdcardCheckPo" 
+   		 enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+    </table> -->
+    
+    
+    <!--手机三要素鉴权-->
+<!--    <table  tableName="t_dm_mobile_check" domainObjectName="MobileCheckPo" 
+   		 enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+    </table>  -->
+    
+    
+       <!--银行卡四要素验证-->
+<!--   <table  tableName="t_dm_bankcard_four" domainObjectName="BankcardFourPo" 
+   		 enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+    </table>  -->
+    
+    
+    <!--银行卡三要素验证-->
+ <!--    <table  tableName="T_DM_BANKCARD_THREE" domainObjectName="BankcardThreePo" 
+   		 enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+    </table>  -->
+    
+    <!--外部服务查询状态表-->
+    <!--<table  tableName="T_DM_CSP_INTERFACE_STAT" domainObjectName="CspInterfaceStatPo" -->
+   		 <!--enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">-->
+    <!--</table>-->
+    
+    <!--外部服务查询日志表-->
+  <!--  <table  tableName="T_DM_CSP_INTERFACE_LOG" domainObjectName="CspInterfaceLogPo" 
+   		 enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+    </table>  -->
+
+
+      <!-- 极光接口-反欺诈特征因子 -->
+      <!--<table  tableName="t_dm_csp_eigenfactor" domainObjectName="EigenfactorPo"-->
+              <!--enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">-->
+      <!--</table>-->
+
+
+      <!-- 文红那边保存taskInfo -->
+      <!--<table  tableName="t_dm_csp_task_info" domainObjectName="SaveTaskInfoPo"-->
+              <!--enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">-->
+      <!--</table>-->
+
+      <!-- 保存通话详单 -->
+      <!--<table  tableName="t_dm_csp_call_detail" domainObjectName="CallDetailPo"-->
+              <!--enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">-->
+      <!--</table>-->
+
+      <!-- 房价网去数据库中获取Token -->
+      <!--<table  tableName="t_csp_authorization" domainObjectName="FJWAuthorizationPo"-->
+              <!--enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">-->
+      <!--</table>-->
+
+      <!-- 为app端新开一个接口  -->
+      <!--<table  tableName="t_dm_csp_check_mobile_for_app" domainObjectName="CheckMobileForApp"-->
+              <!--enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">-->
+      <!--</table>-->
+
+      <!-- 同盾 获取报告信息 -->
+      <!--<table  tableName="t_dm_csp_td_report_detail" domainObjectName="TDReportDetailPo"-->
+              <!--enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">-->
+      <!--</table>-->
+
+  </context>
+</generatorConfiguration>

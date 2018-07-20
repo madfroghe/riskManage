@@ -1,0 +1,11 @@
+{
+"success":true,
+"data":{
+"name":"小龙",
+"idCard":"1232",
+"mobile":"123132",
+"accountNo":"1231231",
+"status":"SAME",
+"statusDesc":"认证信息匹配"
+    }
+}

@@ -1,0 +1,25 @@
+{
+  "success": true,
+  "data": {
+    "name": "test冷XX",
+    "idCard": "51062319******3416",
+    "status": "EXIST",
+    "statusDesc": "查询成功",
+    "data": [
+      {
+        "overdue_days": "",
+        "overdue_date": "365-1000",
+        "legal_state": "执行中",
+        "type": "人法网名单",
+        "overdue_amount": "10000-50000"
+      },
+      {
+        "overdue_days": "",
+        "overdue_date": "365-1000",
+        "legal_state": "执行中",
+        "type": "失信网名单",
+        "overdue_amount": "未知"
+      }
+    ]
+  }
+}

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="duomi.dbMap.mapper.MultiplelendLoanlenderPoMapper" >
+	<sql id="TABLE_NAME" >
+	    t_dm_multiplelend_loanlender
+	  </sql>
+	  
+	  <select id="querylistByMap" resultMap="BaseResultMap" parameterType="java.util.Map" >
+	    select 
+	    	<include refid="Base_Column_List" />
+	    from 
+	     	<include refid="TABLE_NAME" /> 
+	    <where>
+		     <trim suffixOverrides="AND" >
+		     	<if test="multiplelendId != null" >
+			        MultipleLend_id = #{multiplelendId,jdbcType=BIGINT} AND
+			      </if>
+			      <if test="type != null" >
+			        type = #{type,jdbcType=VARCHAR} AND
+			      </if>
+			      <if test="code != null" >
+			        code = #{code,jdbcType=VARCHAR} AND
+			      </if>
+			      <if test="time != null" >
+			        time = #{time,jdbcType=VARCHAR} AND
+			      </if>
+			      <if test="loanlendersAmount != null" >
+			        loanlenders_Amount = #{loanlendersAmount,jdbcType=DOUBLE} AND
+			      </if>
+			      <if test="createTime != null" >
+			        create_time = #{createTime,jdbcType=TIMESTAMP} AND
+			      </if>
+		     </trim>
+	    </where>
+	     
+	  </select>
+
+
+</mapper>
