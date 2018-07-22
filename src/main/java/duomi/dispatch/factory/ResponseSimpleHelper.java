@@ -298,16 +298,16 @@ public class ResponseSimpleHelper<T> {
 		//请求成功
 		if(TianyanchaRespCodeEnum.SUCC.getCode().equals(code)){
 			response.setResData(result);
-			response.setAppNo(request.getAppNo());
-			response.setMobile(request.getMobile());
 			response.setTradStat(ComRspConstants.TRADSTAT_SUCCESS);
 		//其它为失败
 		}else{
 			response.setTradStat(ComRspConstants.TRADSTAT_FAIL);
 			response.setDataStat(ComRspConstants.dataStat_NODATA);
-			response.setCode(code);
-			response.setCodeDesc(StringUtils.isEmpty(msg) ? TianyanchaRespCodeEnum.getCodeDesc(code) : msg);
 		}
+		response.setAppNo(request.getAppNo());
+		response.setMobile(request.getMobile());
+		response.setCode(code);
+		response.setCodeDesc(StringUtils.isEmpty(msg) ? TianyanchaRespCodeEnum.getCodeDesc(code) : msg);
 		logger.info("处理天眼查返回报文结束，处理结果{}" + JSONUtils.toJSONString(response));
 
 		return response;
