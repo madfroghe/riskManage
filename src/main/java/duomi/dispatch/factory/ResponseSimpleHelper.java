@@ -97,7 +97,7 @@ public class ResponseSimpleHelper<T> {
 			comRsp = this.createBaiRongSuccessRsp(request,(T)brPackageRsp);
 			String comRspStr = JSONUtils.toJSONString(comRsp);
 			logger.debug("返回调度平台信息: "+ comRspStr);
-			return null;
+			return comRsp;
 		}else{
 			comRsp = this.createErrorBrRsp(request,brPackageRsp);
 			String comRspStr = JSONUtils.toJSONString(comRsp);
@@ -221,7 +221,7 @@ public class ResponseSimpleHelper<T> {
 		ComResponse<T> output = new ComResponse<T>();
 		output.setTradStat(ComRspConstants.TRADSTAT_FAIL);
 		output.setDataStat(ComRspConstants.dataStat_NODATA);
-		output.setCode(brRsp.getString("code"));
+		output.setCode(brRsp.getString("Code"));
 		output.setCodeDesc("参看接口说明");
 		return output;
 	}
@@ -288,18 +288,29 @@ public class ResponseSimpleHelper<T> {
 		logger.info("开始处理天眼查返回报文{}" + respStr);
 		ComResponse response = new ComResponse();
 		//将返回报文转为json对象
-		JSONObject respJson = JSONObject.fromObject(respStr);
+		com.alibaba.fastjson.JSONObject respJson = com.alibaba.fastjson.JSONObject.parseObject(respStr);
 
 		//解析json对象，获取码值和描述信息
 		String code = respJson.getString("error_code");
 		String msg = respJson.getString("reason");
-		JSONObject result = respJson.getJSONObject("result");
+		com.alibaba.fastjson.JSONObject result = respJson.getJSONObject("result");
 
 		//请求成功
-		if(TianyanchaRespCodeEnum.SUCC.getCode().equals(code)){
-			response.setResData(result);
+		if(TianyanchaRespCodeEnum.SUCC.getCode().equals(code) ){
+			//返回了数据,处理状态为‘成功’
+			if(result != null && result.size() > 0){
+				response.setResData(result);
+				response.setTradStat(ComRspConstants.TRADSTAT_SUCCESS);
+			}else{//没有返回数据
+				response.setTradStat(ComRspConstants.TRADSTAT_FAIL);
+				response.setDataStat(ComRspConstants.dataStat_NODATA);
+				msg = "请求成功但是返回数据为空,天眼查返回数据异常";
+			}
+
+		//返回的结果为"无数据",处理状态为‘成功’
+		}else if(TianyanchaRespCodeEnum.NO_DATA.getCode().equals(code)){
 			response.setTradStat(ComRspConstants.TRADSTAT_SUCCESS);
-		//其它为失败
+			//其它为失败
 		}else{
 			response.setTradStat(ComRspConstants.TRADSTAT_FAIL);
 			response.setDataStat(ComRspConstants.dataStat_NODATA);
@@ -308,7 +319,7 @@ public class ResponseSimpleHelper<T> {
 		response.setMobile(request.getMobile());
 		response.setCode(code);
 		response.setCodeDesc(StringUtils.isEmpty(msg) ? TianyanchaRespCodeEnum.getCodeDesc(code) : msg);
-		logger.info("处理天眼查返回报文结束，处理结果{}" + JSONUtils.toJSONString(response));
+		logger.info("处理天眼查返回报文结束，处理结果{}" + com.alibaba.fastjson.JSONObject.toJSONString(response));
 
 		return response;
 	}

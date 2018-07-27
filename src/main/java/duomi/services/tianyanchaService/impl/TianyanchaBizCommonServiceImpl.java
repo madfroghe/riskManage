@@ -1,5 +1,7 @@
 package duomi.services.tianyanchaService.impl;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import duomi.Enums.tianyancha.TianyanchaBizEnum;
 import duomi.Enums.tianyancha.TianyanchaRespCodeEnum;
 import duomi.com.constants.ComRspConstants;
@@ -13,8 +15,6 @@ import duomi.dispatch.request.ComRequest;
 import duomi.dispatch.response.ComResponse;
 import duomi.services.OutsideServiceRegistService;
 import duomi.services.tianyanchaService.TianyanchaBizCommonService;
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,19 +29,21 @@ import java.util.Set;
 @Service
 public class TianyanchaBizCommonServiceImpl implements TianyanchaBizCommonService {
     private final static Logger logger = Logger.getLogger(TianyanchaBizCommonServiceImpl.class);
-    @Value("#{configProperties['tyc_page_num']}")
+    @Value("#{configProperties['TYC_PAGE_NUM']}")
     private int pageNum;
     //异常控制集合
     private final static Set<String> syncCtrlSet = new HashSet<>();
     @Autowired
     private OutsideServiceRegistService regitSrv;
     @Override
-    public ComResponse<JSONObject> entranceOfqueryBizInfo(TianyanchaBizEnum bizEnum, ComRequest request) throws HttpBizException {
+    public ComResponse<JSONObject> entranceOfqueryBizInfo(TianyanchaBizEnum bizEnum, ComRequest request,Map<String,String> thirdParams) throws HttpBizException {
         String appNo = request.getAppNo();
         if(StringUtils.isEmpty(appNo)){
             throw new HttpBizException("工单编号appNo不能为空!");
         }
-        ComResponse<JSONObject> response;
+        ComResponse<JSONObject> response = new ComResponse<JSONObject>();
+        response.setTradStat(ComRspConstants.TRADSTAT_FAIL);
+
         String syncCtrlKey = null;
         try{
             /*
@@ -61,17 +63,17 @@ public class TianyanchaBizCommonServiceImpl implements TianyanchaBizCommonServic
             boolean isPage = bizEnum.isPage();
             if(isPage){
                 //调用分页逻辑
-                response = queryBizInfoOfPage(bizEnum,request);
+                response = queryBizInfoOfPage(bizEnum,request,thirdParams);
             } else{
                 //调用通用逻辑
-                response = queryBizInfoOfCom(bizEnum,request);
+                response = queryBizInfoOfCom(bizEnum,request,thirdParams);
             }
         }catch (HttpBizException e){
             logger.error(e.getMessage(),e);
-            throw new HttpBizException(e.getMessage());
+            response.setCodeDesc(e.getMessage());
         }catch (Exception e){
             logger.error("查询" + bizEnum.getName() + "信息发生异常",e);
-            throw new HttpBizException("查询" + bizEnum.getName() + "信息发生异常" + e);
+            response.setCodeDesc("查询" + bizEnum.getName() + "信息发生异常:" + e.getMessage());
         }finally {
             syncCtrlSet.remove(syncCtrlKey);
         }
@@ -80,20 +82,26 @@ public class TianyanchaBizCommonServiceImpl implements TianyanchaBizCommonServic
     }
 
     @Override
-    public ComResponse<JSONObject> queryBizInfoOfPage(TianyanchaBizEnum bizEnum, ComRequest request) throws HttpBizException {
+    public ComResponse<JSONObject> queryBizInfoOfPage(TianyanchaBizEnum bizEnum, ComRequest request,Map<String,String> thirdParams) throws HttpBizException {
         ComResponse<JSONObject> AllRespJson = null;
+        String pageNo = "1";
         //因为要分页，InterSerno在表中是用于区分一个接口调用多次的情况，此处以该字段标记当前页
-        request.setInterSerno("1");
+        request.setInterSerno(pageNo);
+        thirdParams.put("pageNum",pageNo);
         //查询出第一页的数据，获取到数据总数
-        ComResponse<JSONObject> firstPageRespJson = queryBizInfoOfCom(bizEnum,request);
+        ComResponse<JSONObject> firstPageRespJson = queryBizInfoOfCom(bizEnum,request,thirdParams);
         if(ComRspConstants.TRADSTAT_FAIL.equals(firstPageRespJson.getTradStat())){
             throw new HttpBizException("获取" + bizEnum.getName() + "第一页的数据失败,"
                     + "结果码值:" + firstPageRespJson.getCode() + ",失败原因:" + firstPageRespJson.getCodeDesc());
         }
 
+        //如果返回结果为没有数据,则不再继续处理
+        if(TianyanchaRespCodeEnum.NO_DATA.getCode().equals(firstPageRespJson.getCode())){
+            return firstPageRespJson;
+        }
         //获取总数据条数
         JSONObject result = firstPageRespJson.getResData();
-        int totalNum = result.getInt("total");
+        int totalNum = result.getIntValue("total");
 
         //根据总条数计算总共有多少页
         int pageSize = totalNum % pageNum == 0 ? totalNum/pageNum : (totalNum/pageNum) + 1;
@@ -102,10 +110,14 @@ public class TianyanchaBizCommonServiceImpl implements TianyanchaBizCommonServic
 
         //因为第一页数据已经获取,所以遍历获取第一页之后的数据
         for (int i = 2; i <= pageSize; i++) {
-            request.setInterSerno("1");
+            pageNo = i + "";
+            //设置当前查询页,用于区别当前页是否有查询结果
+            request.setInterSerno(pageNo);
+            //设置第三方请求参数的页数值
+            thirdParams.put("pageNum", pageNo);
             //其中某页获取失败,继续获取之后页数的数据，获取成功则将结果集汇总
             try{
-                ComResponse<JSONObject> response = queryBizInfoOfCom(bizEnum,request);
+                ComResponse<JSONObject> response = queryBizInfoOfCom(bizEnum,request,thirdParams);
                 if(ComRspConstants.TRADSTAT_FAIL.equals(response.getTradStat())){
                     throw new HttpBizException("失败码值:" + response.getCode() + ",失败原因:" + response.getCodeDesc());
                 }
@@ -123,7 +135,7 @@ public class TianyanchaBizCommonServiceImpl implements TianyanchaBizCommonServic
     }
 
     @Override
-    public ComResponse<JSONObject> queryBizInfoOfCom(TianyanchaBizEnum bizEnum, ComRequest request) throws HttpBizException {
+    public ComResponse<JSONObject> queryBizInfoOfCom(TianyanchaBizEnum bizEnum, ComRequest request,Map<String,String> thirdParams) throws HttpBizException {
         logger.info("接收到" + bizEnum.getName() + "请求,入参{}" + JSONUtils.toJSONString(request));
         //默认返回值为失败
         ComResponse<JSONObject> output;
@@ -149,15 +161,15 @@ public class TianyanchaBizCommonServiceImpl implements TianyanchaBizCommonServic
                 String retMsg = cspStatPo.getRetMessage();
                 output = ResponseSimpleHelper.tycConvertRsp(request,retMsg);
             }else{ //未请求
-                reqParams = bizEnum.getParams();
-                if(reqParams == null){
+                if(thirdParams == null){
                     throw new HttpBizException("请求参数不能为空!");
                 }
                 //发送http请求并处理数据
-                String retMsg = reqAndDealData(request,bizEnum.getIntfName(),reqParams);
+                String retMsg = reqAndDealData(request,bizEnum.getIntfName(),thirdParams);
                 //解析返回报文
                 output = ResponseSimpleHelper.tycConvertRsp(request,retMsg);
             }
+
         }catch (Exception e){
             logger.error(bizEnum.getName() + "查询异常:",e);
             throw new HttpBizException(bizEnum.getName() + "查询异常:" + e.toString());
@@ -177,16 +189,17 @@ public class TianyanchaBizCommonServiceImpl implements TianyanchaBizCommonServic
         regitSrv.updateCspStusBefore(request);
 
         //发送http请求
-        logger.info("发送请求至" + intfName + "接口,入参{}" + JSONObject.fromObject(params));
+        logger.info("发送请求至" + intfName + "接口,入参{}" + JSONObject.toJSONString(params));
         String retMsg = TianyanchaHttpHelper.httpGetReq(intfName,params);
         logger.info("接收到接口" + intfName + "返回结果,出参{}" + retMsg);
 
-        JSONObject resultJson = JSONObject.fromObject(retMsg);
+        JSONObject resultJson = JSONObject.parseObject(retMsg);
 
         String code = resultJson.getString("error_code");
 
-        //如果返回结果不是成功，
-        if(!TianyanchaRespCodeEnum.SUCC.getCode().equals(code)){
+        //如果返回结果不是成功或者无数据,则处理结果为‘异常’
+        if(!(TianyanchaRespCodeEnum.SUCC.getCode().equals(code)
+                || TianyanchaRespCodeEnum.NO_DATA.getCode().equals(code))){
             //更新外部服务查询状态表为“异常-99”
             regitSrv.updateCspStus4Error(request, retMsg);
         }else{
@@ -205,11 +218,8 @@ public class TianyanchaBizCommonServiceImpl implements TianyanchaBizCommonServic
         }
         params.put("name",bizFullName);
         try{
-            //获取对应枚举，并封装参数
-            TianyanchaBizEnum bizEnum = TianyanchaBizEnum.TYC_BASE_INFO;
-            bizEnum.setParams(params);
-
-            ComResponse<JSONObject> resp = queryBizInfoOfCom(bizEnum,request);
+            //获取企业基本信息
+            ComResponse<JSONObject> resp = queryBizInfoOfCom(TianyanchaBizEnum.TYC_BASE_INFO,request,params);
 
             //处理状态为“成功”,则获取解析json结果获取企业id
             if(ComRspConstants.TRADSTAT_SUCCESS.equals(resp.getTradStat())){

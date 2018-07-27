@@ -1,7 +1,5 @@
 package duomi.Enums.tianyancha;
 
-import java.util.Map;
-
 /**
  * 天眼查企业信息查询接口枚举
  */
@@ -31,8 +29,6 @@ public enum TianyanchaBizEnum {
     private boolean isPage;
     //接口名称
     private String intfName;
-    //请求接口所需的参数
-    private Map<String,String> params;
 
     TianyanchaBizEnum(String code, String name, String type, boolean isPage, String intfName) {
         this.code = code;
@@ -81,11 +77,4 @@ public enum TianyanchaBizEnum {
         this.intfName = intfName;
     }
 
-    public Map<String, String> getParams() {
-        return params;
-    }
-
-    public void setParams(Map<String, String> params) {
-        this.params = params;
-    }
 }

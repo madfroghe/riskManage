@@ -1,5 +1,7 @@
 package duomi.com.constants;
 
+import duomi.init.GlobalConfig;
+
 public class PubConstants {
 	public static final String ZBADATA_SWITCH = "on"; // 调用智宝数聚接口开关
 	public static final String ZBADATA_SWITCH_OFF = "off"; // 调用智宝数聚接口开关 停用
@@ -55,13 +57,19 @@ public class PubConstants {
 //	public static final String BR_API_CODE = "3000958"; //百融API CODE
 
 	/** 百融接口相关开关，密匙等 测试账号 */
-	public static final String BR_SWITCH = "on";    //百融接口开关
-	public static final String BR_USERNAME = "dma_test";  //百融登陆用户名
-	public static final String BR_PWD = "dma_test";  //百融登陆密码
-	public static final String BR_LOGIN_NAME = "LoginApi"; //百融登陆名
-	public static final String BR_API_CODE = "3100330"; //百融API CODE
-	public static final String BR_BIZ_API_CODE= "8000002"; //百融企业API CODE
-	public static final String BR_BIZ_V1_QUERY_DATA_URL= "https://api.100credit.cn/biz/v1/query_data"; //百融企业请求数据接口
-	public static final String Br_BIZ_V1_GET_RESULT_URL="https://api.100credit.cn/biz/v1/get_result"; //百融企业结果查询
+	public static final String BR_SWITCH = GlobalConfig.get("BR_SWITCH");    //百融接口开关
+	public static final String BR_LOGIN_NAME = GlobalConfig.get("BR_LOGIN_NAME"); //百融登陆名
+
+	//个人
+	public static final String BR_PERSONAL_USERNAME = GlobalConfig.get("BR_PERSONAL_USERNAME");  //百融个人登陆用户名
+	public static final String BR_PERSONAL_PWD = GlobalConfig.get("BR_PERSONAL_PWD");  //百融个人登陆密码
+	public static final String BR_PERSONAL_API_CODE = GlobalConfig.get("BR_PERSONAL_API_CODE"); //百融API CODE
+
+	//企业
+	public static final String BR_BIZ_USERNAME = GlobalConfig.get("BR_BIZ_USERNAME"); //百融企业登录用户名
+	public static final String BR_BIZ_PWD = GlobalConfig.get("BR_BIZ_PWD"); //百融企业登录密码
+	public static final String BR_BIZ_API_CODE = GlobalConfig.get("BR_BIZ_API_CODE"); //百融企业API CODE
+	public static final String BR_BIZ_V1_QUERY_DATA_URL = GlobalConfig.get("BR_BIZ_V1_QUERY_DATA_URL"); //百融企业请求数据接口
+	public static final String Br_BIZ_V1_GET_RESULT_URL = GlobalConfig.get("Br_BIZ_V1_GET_RESULT_URL");//百融企业结果查询
 
 }

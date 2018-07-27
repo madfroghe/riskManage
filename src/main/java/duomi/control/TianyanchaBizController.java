@@ -1,11 +1,11 @@
 package duomi.control;
 
+import com.alibaba.fastjson.JSONObject;
 import duomi.Enums.tianyancha.TianyanchaBizEnum;
 import duomi.com.exception.HttpBizException;
 import duomi.dispatch.request.ComRequest;
 import duomi.dispatch.response.ComResponse;
 import duomi.services.tianyanchaService.TianyanchaBizCommonService;
-import net.sf.json.JSONObject;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,11 +37,7 @@ public class TianyanchaBizController {
         }
         params.put("name",bizFullName);
 
-        //获取对应枚举，并封装参数
-        TianyanchaBizEnum bizEnum = TianyanchaBizEnum.TYC_BASE_INFO;
-        bizEnum.setParams(params);
-
-        return tianyanchaBizCommonService.entranceOfqueryBizInfo(bizEnum,request);
+        return tianyanchaBizCommonService.entranceOfqueryBizInfo(TianyanchaBizEnum.TYC_BASE_INFO,request,params);
     }
 
     /**
@@ -59,12 +55,7 @@ public class TianyanchaBizController {
             throw new HttpBizException("企业全称不能为空!");
         }
         params.put("name",bizFullName);
-
-        //获取对应枚举，并封装参数
-        TianyanchaBizEnum bizEnum = TianyanchaBizEnum.TYC_LAW_SUIT;
-        bizEnum.setParams(params);
-
-        return tianyanchaBizCommonService.entranceOfqueryBizInfo(bizEnum,request);
+        return tianyanchaBizCommonService.entranceOfqueryBizInfo(TianyanchaBizEnum.TYC_LAW_SUIT,request,params);
     }
 
     /**
@@ -82,12 +73,7 @@ public class TianyanchaBizController {
             throw new HttpBizException("企业全称不能为空!");
         }
         params.put("name",bizFullName);
-
-        //获取对应枚举，并封装参数
-        TianyanchaBizEnum bizEnum = TianyanchaBizEnum.TYC_COURT_ANNOUNCEMENT;
-        bizEnum.setParams(params);
-
-        return tianyanchaBizCommonService.entranceOfqueryBizInfo(bizEnum,request);
+        return tianyanchaBizCommonService.entranceOfqueryBizInfo(TianyanchaBizEnum.TYC_COURT_ANNOUNCEMENT,request,params);
     }
 
     /**
@@ -106,11 +92,7 @@ public class TianyanchaBizController {
         }
         params.put("name",bizFullName);
 
-        //获取对应枚举，并封装参数
-        TianyanchaBizEnum bizEnum = TianyanchaBizEnum.TYC_DISHONEST;
-        bizEnum.setParams(params);
-
-        return tianyanchaBizCommonService.entranceOfqueryBizInfo(bizEnum,request);
+        return tianyanchaBizCommonService.entranceOfqueryBizInfo(TianyanchaBizEnum.TYC_DISHONEST,request,params);
     }
 
     /**
@@ -129,11 +111,7 @@ public class TianyanchaBizController {
         }
         params.put("name",bizFullName);
 
-        //获取对应枚举，并封装参数
-        TianyanchaBizEnum bizEnum = TianyanchaBizEnum.TYC_EXEC_INFO;
-        bizEnum.setParams(params);
-
-        return tianyanchaBizCommonService.entranceOfqueryBizInfo(bizEnum,request);
+        return tianyanchaBizCommonService.entranceOfqueryBizInfo(TianyanchaBizEnum.TYC_EXEC_INFO,request,params);
     }
 
     /**
@@ -152,11 +130,7 @@ public class TianyanchaBizController {
         }
         params.put("name",bizFullName);
 
-        //获取对应枚举，并封装参数
-        TianyanchaBizEnum bizEnum = TianyanchaBizEnum.TYC_KT_ANNOUNCEMENT;
-        bizEnum.setParams(params);
-
-        return tianyanchaBizCommonService.entranceOfqueryBizInfo(bizEnum,request);
+        return tianyanchaBizCommonService.entranceOfqueryBizInfo(TianyanchaBizEnum.TYC_KT_ANNOUNCEMENT,request,params);
     }
 
     /**
@@ -175,11 +149,7 @@ public class TianyanchaBizController {
         }
         params.put("name",bizFullName);
 
-        //获取对应枚举，并封装参数
-        TianyanchaBizEnum bizEnum = TianyanchaBizEnum.TYC_ABNORMAL;
-        bizEnum.setParams(params);
-
-        return tianyanchaBizCommonService.entranceOfqueryBizInfo(bizEnum,request);
+        return tianyanchaBizCommonService.entranceOfqueryBizInfo(TianyanchaBizEnum.TYC_ABNORMAL,request,params);
     }
 
     /**
@@ -198,11 +168,7 @@ public class TianyanchaBizController {
         }
         params.put("name",bizFullName);
 
-        //获取对应枚举，并封装参数
-        TianyanchaBizEnum bizEnum = TianyanchaBizEnum.TYC_PUNISHMENT_INFO;
-        bizEnum.setParams(params);
-
-        return tianyanchaBizCommonService.entranceOfqueryBizInfo(bizEnum,request);
+        return tianyanchaBizCommonService.entranceOfqueryBizInfo(TianyanchaBizEnum.TYC_PUNISHMENT_INFO,request,params);
     }
 
     /**
@@ -221,11 +187,7 @@ public class TianyanchaBizController {
         }
         params.put("name",bizFullName);
 
-        //获取对应枚举，并封装参数
-        TianyanchaBizEnum bizEnum = TianyanchaBizEnum.TYC_ILLEGAL_INFO;
-        bizEnum.setParams(params);
-
-        return tianyanchaBizCommonService.entranceOfqueryBizInfo(bizEnum,request);
+        return tianyanchaBizCommonService.entranceOfqueryBizInfo(TianyanchaBizEnum.TYC_ILLEGAL_INFO,request,params);
     }
 
     /**
@@ -243,12 +205,7 @@ public class TianyanchaBizController {
             throw new HttpBizException("企业全称不能为空!");
         }
         params.put("name",bizFullName);
-
-        //获取对应枚举，并封装参数
-        TianyanchaBizEnum bizEnum = TianyanchaBizEnum.TYC_EQUITY_INFO;
-        bizEnum.setParams(params);
-
-        return tianyanchaBizCommonService.entranceOfqueryBizInfo(bizEnum,request);
+        return tianyanchaBizCommonService.entranceOfqueryBizInfo(TianyanchaBizEnum.TYC_EQUITY_INFO,request,params);
     }
 
     /**
@@ -267,11 +224,7 @@ public class TianyanchaBizController {
         }
         params.put("name",bizFullName);
 
-        //获取对应枚举，并封装参数
-        TianyanchaBizEnum bizEnum = TianyanchaBizEnum.TYC_MORTGAGE_INFO;
-        bizEnum.setParams(params);
-
-        return tianyanchaBizCommonService.entranceOfqueryBizInfo(bizEnum,request);
+        return tianyanchaBizCommonService.entranceOfqueryBizInfo(TianyanchaBizEnum.TYC_MORTGAGE_INFO,request,params);
     }
 
     /**
@@ -290,11 +243,7 @@ public class TianyanchaBizController {
         }
         params.put("name",bizFullName);
 
-        //获取对应枚举，并封装参数
-        TianyanchaBizEnum bizEnum = TianyanchaBizEnum.TYC_JUDICIAL_SALE;
-        bizEnum.setParams(params);
-
-        return tianyanchaBizCommonService.entranceOfqueryBizInfo(bizEnum,request);
+        return tianyanchaBizCommonService.entranceOfqueryBizInfo(TianyanchaBizEnum.TYC_JUDICIAL_SALE,request,params);
     }
 
     /**
@@ -309,10 +258,8 @@ public class TianyanchaBizController {
         //查询企业id
         String bizId = tianyanchaBizCommonService.getBizId(request);
         params.put("id",bizId);
-        //封装请求参数
-        TianyanchaBizEnum bizEnum = TianyanchaBizEnum.TYC_RELATION_MAP;
-        bizEnum.setParams(params);
+
         //调用通用接口
-        return tianyanchaBizCommonService.entranceOfqueryBizInfo(bizEnum,request);
+        return tianyanchaBizCommonService.entranceOfqueryBizInfo(TianyanchaBizEnum.TYC_RELATION_MAP,request,params);
     }
 }

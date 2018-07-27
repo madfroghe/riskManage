@@ -34,4 +34,6 @@ public interface BRBizCommonService {
 
     //百融-企业四要素验证
     ComResponse<JSONObject> getBizFour(BRCommonRequest request);
+
+    void queryResult();
 }

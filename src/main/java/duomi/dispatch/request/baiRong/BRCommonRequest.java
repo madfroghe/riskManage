@@ -2,6 +2,9 @@ package duomi.dispatch.request.baiRong;
 
 import duomi.dispatch.request.ComRequest;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class BRCommonRequest extends ComRequest {
 
     private String productApi;
@@ -30,22 +33,44 @@ public class BRCommonRequest extends ComRequest {
     }
 
     public enum ProductApiEnum{
-        BIZ_DETAIL("BizDetail","企业工商详情"),
-        BIZ_COMPANY_MAP("BizCompanyMap","企业关系"),
-        BIZ_RELATIONSHIP("BizRelationship","企业图谱"),
-        BIZ_BLACK_LIST("BizBlackList","企业疑似关系"),
-        BIZ_KEY_SEARCH("BizKeySearch","企业关键字模糊查询"),
-        BIZ_EXECUTOR("BizExecutor","企业被执行人信息"),
-        BIZ_UNCREDIT_EXECUTOR("BizUncreditExecutor","企业失信被执行人信息"),
-        BIZ_COURT_ANNOUNCEMENT("BizCourtAnnouncement","企业法院公告"),
-        BIZ_FOUR("BizFour","企业四要素认证");
+        BIZ_DETAIL("BizDetail","企业工商详情","BR0000004"),
+        BIZ_COMPANY_MAP("BizCompanyMap","企业图谱","BR0000005"),
+        BIZ_RELATIONSHIP("BizRelationship","企业疑似关系","BR0000008"),
+        BIZ_BLACK_LIST("BizBlackList","企业黑名单","BR0000006"),
+        BIZ_KEY_SEARCH("BizKeySearch","企业关键字模糊查询","BR0000007"),
+        BIZ_EXECUTOR("BizExecutor","企业被执行人信息","BR0000009"),
+        BIZ_UNCREDIT_EXECUTOR("BizUncreditExecutor","企业失信被执行人信息","BR00000010"),
+        BIZ_COURT_ANNOUNCEMENT("BizCourtAnnouncement","企业法院公告","BR00000011"),
+        BIZ_FOUR("BizFour","企业四要素认证","BR00000012");
         private String key;
         private String name;
-        ProductApiEnum(String key,String name) {
-            this.key =key;
-            this.name =name;
+        private String innerNo;
+        //innerNo转key
+        private static Map<String,String> innerNoToKeyMap = new HashMap<>();
+        //初始化填冲值
+        static{
+            for (ProductApiEnum apiEnum : ProductApiEnum.values()) {
+                innerNoToKeyMap.put(apiEnum.getInnerNo(),apiEnum.getKey());
+            }
+            
+        }
+        ProductApiEnum(String key, String name, String innerNo) {
+            this.key = key;
+            this.name = name;
+            this.innerNo = innerNo;
+        }
+        /**
+         * 通过innerNo获取key值
+         * @param innerNo
+         * @return
+         */
+        public static String getKeyByInnerNo(String innerNo){
+            return innerNoToKeyMap.get(innerNo);
         }
 
+        public String getInnerNo() {
+            return innerNo;
+        }
         public String getKey() {
             return key;
         }

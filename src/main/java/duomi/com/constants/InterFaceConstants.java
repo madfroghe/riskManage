@@ -385,7 +385,7 @@ public class InterFaceConstants {
 	public static final String BR_BIZ_RELATIONSHIP_TYPE = "08";
 
 	
-	public static final String BR_BIZ_EXECUTOR_NO = "BR00000009";
+	public static final String BR_BIZ_EXECUTOR_NO = "BR0000009";
 	public static final String BR_BIZ_EXECUTOR_NAME = "百融-被执行人信息";
 	public static final String BR_BIZ_EXECUTOR_TYPE = "08";
 

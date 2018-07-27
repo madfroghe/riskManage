@@ -1,9 +1,10 @@
 package duomi.dbMap.mapper;
 
-import java.util.Map;
-
 import duomi.dbMap.bean.CspInterfaceStatPo;
 import duomi.dbMap.bean.CspInterfaceStatPoWithBLOBs;
+
+import java.util.List;
+import java.util.Map;
 
 public interface CspInterfaceStatPoMapper {
 	public int deleteByPrimaryKey(Long id);
@@ -23,4 +24,6 @@ public interface CspInterfaceStatPoMapper {
     public int insertWithoutKey(CspInterfaceStatPo record);
     
     public CspInterfaceStatPoWithBLOBs selectByMap(Map<String, Object> params);
+
+    public List<CspInterfaceStatPoWithBLOBs> selectNoResultData();
 }

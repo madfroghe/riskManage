@@ -35,7 +35,7 @@ public class BRongHttpServiceImpl implements BRongHttpService {
 
         MerchantServer ms=new MerchantServer();
         //登陆百融，获取tokenID
-        String login_result=ms.login(PubConstants.BR_USERNAME,PubConstants.BR_PWD,PubConstants.BR_LOGIN_NAME,PubConstants.BR_API_CODE);
+        String login_result=ms.login(PubConstants.BR_PERSONAL_USERNAME,PubConstants.BR_PERSONAL_PWD,PubConstants.BR_LOGIN_NAME,PubConstants.BR_PERSONAL_API_CODE);
 
         JSONObject json=JSONObject.fromObject(login_result);
 
@@ -73,7 +73,7 @@ public class BRongHttpServiceImpl implements BRongHttpService {
 
         MerchantServer ms=new MerchantServer();
         //登陆百融，获取tokenID
-        String login_result=ms.login(PubConstants.BR_USERNAME,PubConstants.BR_PWD,PubConstants.BR_LOGIN_NAME,PubConstants.BR_API_CODE);
+        String login_result=ms.login(PubConstants.BR_PERSONAL_USERNAME,PubConstants.BR_PERSONAL_PWD,PubConstants.BR_LOGIN_NAME,PubConstants.BR_PERSONAL_API_CODE);
 
         JSONObject json=JSONObject.fromObject(login_result);
 
@@ -105,7 +105,7 @@ public class BRongHttpServiceImpl implements BRongHttpService {
 
         MerchantServer ms=new MerchantServer();
         //登陆百融，获取tokenID
-        String login_result=ms.login(PubConstants.BR_USERNAME,PubConstants.BR_PWD,PubConstants.BR_LOGIN_NAME,PubConstants.BR_API_CODE);
+        String login_result=ms.login(PubConstants.BR_PERSONAL_USERNAME,PubConstants.BR_PERSONAL_PWD,PubConstants.BR_LOGIN_NAME,PubConstants.BR_PERSONAL_API_CODE);
 
         JSONObject json=JSONObject.fromObject(login_result);
 

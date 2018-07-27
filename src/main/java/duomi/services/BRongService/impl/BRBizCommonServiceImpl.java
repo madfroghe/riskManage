@@ -1,8 +1,10 @@
 package duomi.services.BRongService.impl;
 
+import com.bfd.util.MD5Utils;
 import duomi.com.constants.MongoDbCollectionConstants;
 import duomi.com.constants.PubConstants;
 import duomi.com.exception.HttpBizException;
+import duomi.com.httpIvk.helper.HttpUtil;
 import duomi.com.httpIvk.services.BRongBizHttpService;
 import duomi.com.utils.JSONUtils;
 import duomi.dbMap.bean.CspInterfaceStatPoWithBLOBs;
@@ -13,14 +15,20 @@ import duomi.mongodb.dao.Impl.MongodbBaseDao2Impl;
 import duomi.services.BRongService.BRBizCommonService;
 import duomi.services.OutsideServiceRegistService;
 import net.sf.json.JSONObject;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+import static duomi.com.httpIvk.services.BRongBizHttpServiceImpl.tokenid;
 
 @Service
 public class BRBizCommonServiceImpl implements BRBizCommonService {
-
+    private Logger logger = Logger.getLogger(BRBizCommonServiceImpl.class);
     @Autowired
     private OutsideServiceRegistService regitSrv;
     @Autowired
@@ -243,7 +251,6 @@ public class BRBizCommonServiceImpl implements BRBizCommonService {
             CspInterfaceStatPoWithBLOBs cspStatPo = (CspInterfaceStatPoWithBLOBs) retMap.get(PubConstants.CSP_STAT_PO);
             output = this.getInfoFromLocal(request, cspStatPo);
         } else {
-
             // 发送外部服务
             JSONObject data = bRongBizHttpService.getBizUncreditExecutor(request);
             //保存数据到mongodb
@@ -251,9 +258,8 @@ public class BRBizCommonServiceImpl implements BRBizCommonService {
             // 返回消息转换
             output = new ResponseSimpleHelper<JSONObject>()
                     .BizConvertRsp(request, data);
-            return output;
         }
-        return null;
+        return output;
     }
 
     @Override
@@ -306,5 +312,53 @@ public class BRBizCommonServiceImpl implements BRBizCommonService {
             return output;
         }
         return output;
+    }
+
+    @Override
+    public void queryResult() {
+        BRCommonRequest request = new BRCommonRequest();
+
+        List<CspInterfaceStatPoWithBLOBs> noResultDatas = regitSrv.queryNoResultData();
+        ExecutorService fixedThreadPool = Executors.newFixedThreadPool(4);
+
+        for (CspInterfaceStatPoWithBLOBs data : noResultDatas) {
+            fixedThreadPool.execute(new Runnable() {
+                public void run() {
+                    logger.info("开始查询" + data.getName() +"的"+ data.getInterName() + "结果信息");
+                    //封装查询参数
+                    String productApi = BRCommonRequest.ProductApiEnum.getKeyByInnerNo(data.getInterNo());
+                    com.alibaba.fastjson.JSONObject retJson = com.alibaba.fastjson.JSONObject.parseObject(data.getRetMessageCt());
+                    String taskId = retJson.getJSONObject("Task").getString("Id");
+                    JSONObject jso = new JSONObject();
+                    jso.put("tokenid",tokenid);  //拿到tokenid
+                    jso.put("apiCode",PubConstants.BR_BIZ_API_CODE);
+                    JSONObject jsonData = new JSONObject();
+                    jsonData.put("api",productApi);
+                    jsonData.put("taskid",taskId);
+                    jso.put("jsonData",jsonData);
+                    jso.put("checkCode",MD5Utils.genMd5(jsonData.toString() + MD5Utils.genMd5(jso.getString("apiCode") + jso.getString("tokenid"))));
+                    String result = HttpUtil.sendFormPost( PubConstants.Br_BIZ_V1_GET_RESULT_URL,jso.toString(),60000);
+                    JSONObject rtJson = JSONUtils.toJSONObject(result);
+                    //如果返回结果为查询成功
+                    if(rtJson.getString("Code").equals("20000")){
+                        //获取到成功或失败结果时记录结果,其他为处理中
+                        if (rtJson.getJSONObject("Task").getString("Status").equals("FINISHED") ||
+                                rtJson.getJSONObject("Task").getString("Status").equals("FAILED") ) {
+                            request.setInterId(data.getId());
+                            regitSrv.updateCspStusAfterOfSync(request, rtJson.toString());
+                        }
+                        //结果为查无结果
+                    }else if(rtJson.getString("Code").equals("80011")){
+                        request.setInterId(data.getId());
+                        regitSrv.updateCspStusAfterOfSync(request, rtJson.toString());
+                    }else{ //失败的情况
+                        request.setInterId(data.getId());
+                        regitSrv.updateCspStus4ErrorOfSync(request, rtJson.toString());
+                    }
+
+                    logger.info("查询" + data.getName() + "的" + data.getInterName() + "结果信息结束,返回报文{}" + result);
+                }
+            });
+        }
     }
 }

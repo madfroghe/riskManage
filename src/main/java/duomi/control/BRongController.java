@@ -79,7 +79,7 @@ public class BRongController {
      * */
     @RequestMapping(value = "/execution" , method = RequestMethod.POST)
     @ResponseBody
-    public ComResponse<JSONObject> getExecution(BRExecutionRequest request){
+    public ComResponse<JSONObject> getExecution(BRExecutionRequest request) throws Exception{
 
         ComResponse<JSONObject> rsp = null;
         request.setInterNo(InterFaceConstants.BR_EXECUTION_NO);
@@ -90,6 +90,7 @@ public class BRongController {
             rsp = brExecutionService.execution(request);
         } catch (Exception e) {
             e.printStackTrace();
+            throw e;
         }
 
         return rsp;

@@ -30,4 +30,6 @@ public class CspInterfaceStatPoWithBLOBs extends CspInterfaceStatPo {
     public void setRetMessage(String retMessage) {
         this.retMessage = retMessage;
     }
+
+
 }

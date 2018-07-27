@@ -28,7 +28,7 @@ public class BRongBizHttpServiceImpl implements BRongBizHttpService {
             MerchantServer ms=new MerchantServer();
             String login_result= null;
             try {
-                login_result = ms.login("ymwjr","ymwjr",PubConstants.BR_LOGIN_NAME,PubConstants.BR_BIZ_API_CODE);
+                login_result = ms.login(PubConstants.BR_BIZ_USERNAME,PubConstants.BR_BIZ_PWD,PubConstants.BR_LOGIN_NAME,PubConstants.BR_BIZ_API_CODE);
             } catch (Exception e) {
                 e.printStackTrace();
             }

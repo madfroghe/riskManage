@@ -21,8 +21,8 @@ import java.util.Map;
 @Component
 public class TianyanchaHttpHelper {
     private final static Logger logger = Logger.getLogger(TianyanchaHttpHelper.class);
-    private final static String token = GlobalConfig.get("tyc_token");
-    private final static String url = GlobalConfig.get("tyc_url");
+    private final static String token = GlobalConfig.get("TYC_TOKEN");
+    private final static String url = GlobalConfig.get("TYC_URL");
 
     /**
      * 发送http GET请求

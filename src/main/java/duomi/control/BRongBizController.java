@@ -92,4 +92,8 @@ public class BRongBizController {
         return brBizCommonService.getBizFour(request);
     }
 
+    @RequestMapping(value = "/queryResult")
+    public void queryResult () {
+        brBizCommonService.queryResult();
+    }
 }

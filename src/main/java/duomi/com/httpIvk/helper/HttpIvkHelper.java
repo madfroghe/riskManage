@@ -1,23 +1,23 @@
 package duomi.com.httpIvk.helper;
 
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.util.List;
-import java.util.Map;
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.concurrent.Callable;
-
 import com.bfd.facade.MerchantServer;
-import com.bfd.util.MD5Utils;
+import duomi.com.constants.PubConstants;
+import duomi.com.exception.HttpBizException;
+import duomi.com.httpIvk.GenData.GenTestData;
 import duomi.com.httpIvk.helper.yjCloudHelper.DesUtil;
 import duomi.com.httpIvk.helper.yjCloudHelper.WJHttpUtil;
+import duomi.com.httpIvk.param.BaseRequest;
+import duomi.com.httpIvk.param.BaseResponse;
 import duomi.com.httpIvk.param.JiGResponse;
 import duomi.com.httpIvk.services.BRongBizHttpServiceImpl;
 import duomi.com.httpIvk.wightknight.param.WightKnightResponse;
 import duomi.com.httpIvk.yiJianCloud.param.YiJianCloudResponse;
+import duomi.com.utils.GsonUtils;
+import duomi.com.utils.JSONUtils;
+import duomi.dispatch.request.ComRequest;
 import duomi.dispatch.request.baiRong.BRCommonRequest;
-import net.sf.json.JSON;
+import duomi.services.OutsideServiceRegistService;
+import net.sf.json.JSONObject;
 import org.apache.http.Consts;
 import org.apache.http.HttpEntity;
 import org.apache.http.NameValuePair;
@@ -30,18 +30,12 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.util.EntityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import duomi.com.constants.PubConstants;
-import duomi.com.exception.HttpBizException;
-import duomi.com.httpIvk.GenData.GenTestData;
-import duomi.com.httpIvk.param.BaseRequest;
-import duomi.com.httpIvk.param.BaseResponse;
-import duomi.com.utils.GsonUtils;
-import duomi.com.utils.JSONUtils;
-import duomi.dispatch.request.ComRequest;
-import duomi.services.OutsideServiceRegistService;
-import net.sf.json.JSONObject;
 import sun.misc.BASE64Encoder;
+
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.util.List;
+import java.util.Map;
 
 public class HttpIvkHelper<E> {
 
@@ -232,7 +226,7 @@ public class HttpIvkHelper<E> {
 			logger.info("---------请求消息-----------接口识别标志：" + interName);
 			logger.info("接口：" + interName + "审批工单编号：" + appno + ",请求消息：" + reqstr);
 
-			retstr = ms.getApiData(jso.toString(),PubConstants.BR_API_CODE);  //获取接口信息
+			retstr = ms.getApiData(jso.toString(),PubConstants.BR_PERSONAL_API_CODE);  //获取接口信息
 
 			logger.info("---------返回消息-----------接口识别标志：" + interName);
 			logger.info("接口：" + interName + "审批工单编号：" + appno + ",返回消息：" + retstr + "\n,请求报文:" + reqstr);
@@ -547,7 +541,9 @@ public class HttpIvkHelper<E> {
 	}
 
 	public JSONObject getBaiRongBizForData(JSONObject jso, BRCommonRequest request, String dataUrl,String resultUrl) throws Exception {
-		JSONObject output = null;
+		//记录登记表为接收
+        regitSrv.insertCspStus(request);
+        JSONObject output = null;
 		String appno = request.getAppNo();
 		String interName = request.getInterName();
 		String reqstr = "";
@@ -567,6 +563,7 @@ public class HttpIvkHelper<E> {
 			    //token 过期
                 BRongBizHttpServiceImpl.tokenid = null;
                 BRongBizHttpServiceImpl.tokenid = BRongBizHttpServiceImpl.login();
+                return getBaiRongBizForData(jso, request,dataUrl,resultUrl);
             }
 			if(!(output.getString("Code")).equals("20000")){
 				// 更新接口状态为99
@@ -575,10 +572,14 @@ public class HttpIvkHelper<E> {
 						+ reqstr);
 				throw new HttpBizException(output.getString("Code"), "详见百融接口文档");
 			}
-			String taskId = output.getJSONObject("Task").getString("Id");
+			//记录登记表为发送,并记录返回报文
+			regitSrv.updateCspStusBefore(request,output.toString());
+
+			/*String taskId = output.getJSONObject("Task").getString("Id");
 			Callable callable = new Callable<JSONObject>() {
 				@Override
 				public JSONObject call() throws Exception {
+					long waitTime = 10000;
 					while(true) {
 						JSONObject jsonData = new JSONObject();
 						jsonData.put("api",request.getProductApi());
@@ -591,7 +592,12 @@ public class HttpIvkHelper<E> {
 								rtJson.getJSONObject("Task").getString("Status").equals("FAILED")){
 							return rtJson;
 						}else{
-							Thread.sleep(3000);
+							Thread.sleep(waitTime);
+							//递增式轮询，最多一分钟一次轮询
+							waitTime += waitTime;
+							if(waitTime > 60000){
+								waitTime = 60000;
+							}
 						};
 					}
 				}
@@ -604,9 +610,9 @@ public class HttpIvkHelper<E> {
                 regitSrv.updateCspStusBefore(request);
                 // 更新登记表状态为收到服务
                 regitSrv.updateCspStusAfter(request, output.toString());
-            }
-            return output;
+            }*/
+
 		}
-		return null;
+        return output;
 	}
 }

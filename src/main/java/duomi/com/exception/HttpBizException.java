@@ -19,7 +19,7 @@ public class HttpBizException extends Exception{
 	
 	public HttpBizException(String msg)  
     {  
-        super(msg);  
+        super(msg);
     }
 
 	public String getCode() {

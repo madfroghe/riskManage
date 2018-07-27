@@ -141,5 +141,12 @@
 		    order by id desc
 		    limit 1
 	 </select>
-
+	
+	<select id="selectNoResultData" resultMap="ResultMapWithBLOBs">
+			SELECT *
+			FROM t_dm_csp_interface_stat
+			WHERE app_no LIKE 'abcdef%'
+			AND `status` = '02'
+			AND inter_type = '08'
+	</select>
 </mapper>
