@@ -1,7 +1,6 @@
 package duomi.com.httpIvk.services;
 
 import com.bfd.facade.MerchantServer;
-import com.bfd.util.MD5Utils;
 import duomi.com.constants.PubConstants;
 import duomi.com.httpIvk.helper.HttpIvkHelper;
 import duomi.dispatch.request.baiRong.BRCommonRequest;
@@ -46,7 +45,7 @@ public class BRongBizHttpServiceImpl implements BRongBizHttpService {
         JSONObject jsonData = new JSONObject();
         jsonData.put("search_key",request.getBizFullName());
         try {
-            out = helper.getBaiRongBizForData(buildRequest(request,jsonData),request,dataUrl,resultUrl);
+            out = helper.getBaiRongBizForData(jsonData,request,dataUrl,resultUrl);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -62,22 +61,14 @@ public class BRongBizHttpServiceImpl implements BRongBizHttpService {
         JSONObject jsonData = new JSONObject();
         jsonData.put("key_no",request.getKeyNo());
         try {
-            out = helper.getBaiRongBizForData(buildRequest(request,jsonData),request,dataUrl,resultUrl);
+            out = helper.getBaiRongBizForData(jsonData,request,dataUrl,resultUrl);
         } catch (Exception e) {
             e.printStackTrace();
         }
         return out;
     }
 
-    private JSONObject buildRequest(BRCommonRequest request, JSONObject jsonData) {
-        JSONObject jso = new JSONObject();
-        jso.put("tokenid",tokenid);  //拿到tokenid
-        jso.put("apiCode",PubConstants.BR_BIZ_API_CODE);
-        jsonData.put("api",request.getProductApi());
-        jso.put("jsonData",jsonData);
-        jso.put("checkCode",MD5Utils.genMd5(jsonData.toString() + MD5Utils.genMd5(PubConstants.BR_BIZ_API_CODE + tokenid)));
-        return jso;
-    }
+
 
     @Override
     public JSONObject getBizBlackList(BRCommonRequest request) {
@@ -88,7 +79,7 @@ public class BRongBizHttpServiceImpl implements BRongBizHttpService {
         try {
             JSONObject jsonData = new JSONObject();
             jsonData.put("search_key",request.getBizFullName());
-            out = helper.getBaiRongBizForData(buildRequest(request,jsonData),request,dataUrl,resultUrl);
+            out = helper.getBaiRongBizForData(jsonData,request,dataUrl,resultUrl);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -104,7 +95,7 @@ public class BRongBizHttpServiceImpl implements BRongBizHttpService {
         JSONObject jsonData = new JSONObject();
         jsonData.put("search_key",request.getBizFullName());
         try {
-            out = helper.getBaiRongBizForData(buildRequest(request,jsonData),request,dataUrl,resultUrl);
+            out = helper.getBaiRongBizForData(jsonData,request,dataUrl,resultUrl);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -124,7 +115,7 @@ public class BRongBizHttpServiceImpl implements BRongBizHttpService {
         jsonData.put("legal_person",request.getLegalPerson());
         jsonData.put("person_id",request.getPersonId());
         try {
-            out = helper.getBaiRongBizForData(buildRequest(request,jsonData),request,dataUrl,resultUrl);
+            out = helper.getBaiRongBizForData(jsonData,request,dataUrl,resultUrl);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -140,7 +131,7 @@ public class BRongBizHttpServiceImpl implements BRongBizHttpService {
         JSONObject jsonData = new JSONObject();
         jsonData.put("search_key",request.getBizFullName());
         try {
-            out = helper.getBaiRongBizForData(buildRequest(request,jsonData),request,dataUrl,resultUrl);
+            out = helper.getBaiRongBizForData(jsonData,request,dataUrl,resultUrl);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -157,7 +148,7 @@ public class BRongBizHttpServiceImpl implements BRongBizHttpService {
         JSONObject jsonData = new JSONObject();
         jsonData.put("search_key",request.getBizFullName());
         try {
-            out = helper.getBaiRongBizForData(buildRequest(request,jsonData),request,dataUrl,resultUrl);
+            out = helper.getBaiRongBizForData(jsonData,request,dataUrl,resultUrl);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -174,7 +165,7 @@ public class BRongBizHttpServiceImpl implements BRongBizHttpService {
         JSONObject jsonData = new JSONObject();
         jsonData.put("search_key",request.getBizFullName());
         try {
-            out = helper.getBaiRongBizForData(buildRequest(request,jsonData),request,dataUrl,resultUrl);
+            out = helper.getBaiRongBizForData(jsonData,request,dataUrl,resultUrl);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -190,7 +181,7 @@ public class BRongBizHttpServiceImpl implements BRongBizHttpService {
         JSONObject jsonData = new JSONObject();
         jsonData.put("search_key",request.getBizFullName());
         try {
-            out = helper.getBaiRongBizForData(buildRequest(request,jsonData),request,dataUrl,resultUrl);
+            out = helper.getBaiRongBizForData(jsonData,request,dataUrl,resultUrl);
         } catch (Exception e) {
             e.printStackTrace();
         }

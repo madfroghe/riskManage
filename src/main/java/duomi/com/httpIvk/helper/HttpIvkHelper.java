@@ -1,6 +1,7 @@
 package duomi.com.httpIvk.helper;
 
 import com.bfd.facade.MerchantServer;
+import com.bfd.util.MD5Utils;
 import duomi.com.constants.PubConstants;
 import duomi.com.exception.HttpBizException;
 import duomi.com.httpIvk.GenData.GenTestData;
@@ -540,9 +541,12 @@ public class HttpIvkHelper<E> {
 		return strResult;
 	}
 
-	public JSONObject getBaiRongBizForData(JSONObject jso, BRCommonRequest request, String dataUrl,String resultUrl) throws Exception {
+	public JSONObject getBaiRongBizForData(JSONObject jsonData, BRCommonRequest request, String dataUrl,String resultUrl) throws Exception {
 		//记录登记表为接收
         regitSrv.insertCspStus(request);
+        //构建请求参数
+		JSONObject jso = buildRequest(request,jsonData);
+
         JSONObject output = null;
 		String appno = request.getAppNo();
 		String interName = request.getInterName();
@@ -561,9 +565,8 @@ public class HttpIvkHelper<E> {
 			output = JSONUtils.toJSONObject(retstr);
 			if(output.has("code") && output.getString("code").equals("100007")){
 			    //token 过期
-                BRongBizHttpServiceImpl.tokenid = null;
-                BRongBizHttpServiceImpl.tokenid = BRongBizHttpServiceImpl.login();
-                return getBaiRongBizForData(jso, request,dataUrl,resultUrl);
+                BRongBizHttpServiceImpl.login();
+                return getBaiRongBizForData(jsonData, request,dataUrl,resultUrl);
             }
 			if(!(output.getString("Code")).equals("20000")){
 				// 更新接口状态为99
@@ -604,15 +607,27 @@ public class HttpIvkHelper<E> {
 			};
             output = (JSONObject) callable.call();
             if("20000".equals(output.getString("Code")) && output.has("Result")){
-                // 接受到调度请求后，登记外部服务查询状态表
-                regitSrv.insertCspStus(request);
-                //更新登记表状态为发送
-                regitSrv.updateCspStusBefore(request);
                 // 更新登记表状态为收到服务
-                regitSrv.updateCspStusAfter(request, output.toString());
+                regitSrv.updateCspStusAfterOfSync(request, output.toString());
             }*/
 
 		}
         return output;
+	}
+
+	/**
+	 * 构建请求参数
+	 * @param request
+	 * @param jsonData
+	 * @return
+	 */
+	private JSONObject buildRequest(BRCommonRequest request, JSONObject jsonData) {
+		JSONObject jso = new JSONObject();
+		jso.put("tokenid",BRongBizHttpServiceImpl.tokenid);  //拿到tokenid
+		jso.put("apiCode",PubConstants.BR_BIZ_API_CODE);
+		jsonData.put("api",request.getProductApi());
+		jso.put("jsonData",jsonData);
+		jso.put("checkCode",MD5Utils.genMd5(jsonData.toString() + MD5Utils.genMd5(PubConstants.BR_BIZ_API_CODE + BRongBizHttpServiceImpl.tokenid)));
+		return jso;
 	}
 }

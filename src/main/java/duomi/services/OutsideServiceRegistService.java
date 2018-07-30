@@ -30,7 +30,7 @@ public interface OutsideServiceRegistService {
 	public void updateCspStusBefore(ComRequest request,String rspStr);
 	/**
 	 * 更新外部服务查询状态表 状态和记录请求返回消息
-	 * 
+	 * updateCspStusAfter
 	 * @param statPo
 	 */
 	public void updateCspStusAfter(ComRequest request, BaseResponse baseRsp);
